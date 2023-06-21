@@ -20,7 +20,7 @@ section
                                                 i.fab.fa-telegram-plane
                                             input.form-control(type='text' aria-describedby='basic-addon3' placeholder="Dán link cần rút gọn của bạn")
 
-                                            button.btn.btn-deposit() {{$t('Rút gọn link')}}
+                                            button.btn.btn-sub.py-3() {{$t('Rút gọn link')}}
                                         .row.my-3
                                             .col
                                                 label.form-label.mb-0.px-0 {{$t("Link tùy chỉnh")}}

@@ -8,15 +8,15 @@ footer.fixed-bottom
                 img.img-logo-footer.d-none.d-lg-block(v-else src='~/assets/images/logo.png')
                 img.img-logo-footer.d-lg-none(src='~/assets/images/favicon.png')
             .d-flex
-                a.text-light.mx-2(href="https://t.me/MobagameAIBlockchain" target="_blank")
+                a.mx-2(href="https://t.me/MobagameAIBlockchain" target="_blank")
                     i.fab.fa-telegram.fa-2x
-                a.text-light.mx-2(href="javascript:void(0)" target="_blank")
+                a.mx-2(href="javascript:void(0)" target="_blank")
                     i.fab.fa-facebook.fa-2x
-                a.text-light.mx-2(href="javascript:void(0)" target="_blank")
+                a.mx-2(href="javascript:void(0)" target="_blank")
                     i.fab.fa-discord.fa-2x
-                a.text-light.mx-2(href="#" target="_blank")
+                a.mx-2(href="#" target="_blank")
                     i.fas.fa-envelope.fa-2x
-                a.text-light.mx-2(href="#" target="_blank")
+                a.mx-2(href="#" target="_blank")
                     i.fab.fa-twitter.fa-2x
             //.d-flex.justify-content-center
                 img.img-aware.d-none.d-lg-block.py-2(src='@/assets/flags/4x3/us.svg')

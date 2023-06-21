@@ -252,8 +252,8 @@ header
                 img.img-logo.d-none.d-lg-block(v-if="theme === 'dark'" src='~/assets/images/logo.png')
                 img.img-logo.d-none.d-lg-block(v-else src='~/assets/images/logo.png')
                 img.img-logo.d-lg-none(src='~/assets/images/favicon.png')
-            //.d-flex.justify-content-center
-                .dropdown.me-1(v-if="account.detail.username")
+            .d-flex.justify-content-center
+                //.dropdown.me-1(v-if="account.detail.username")
                     button.btn.btn-sub(type='button' data-bs-toggle='dropdown' aria-expanded='false')
                         .d-flex.align-items-center(v-if="$route.query.invest_id" )
                             .flex-shrink-1

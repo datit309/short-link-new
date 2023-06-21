@@ -7,17 +7,17 @@ $background-blur: rgba(10, 44, 78, 0.9);
 $bg-modal: #1d2031;
 
 $menu-bg: url(../images/bg-menu.png) no-repeat center center;
-$menu-bg-2: #9BCDD2;
+$menu-bg-2: #EEEEEE;
 
 $menu-active: #00558E;
 
 $modal-bg: #480053;
 
 $color-page: #ffffff;
-$color-page2: #1E5995;
+$color-page2: #111;
 $color-page3: #60FFFA;
 $color-page4: #9B9B9B;
-$color-page-light:#00204E;
+$color-page-light:#3A98B9;
 $btn-bg: #8EF279;
 
 $bnt-radiant: linear-gradient(#31844A, #194225);
@@ -81,6 +81,7 @@ button:active {
 
 a {
     text-decoration: none !important;
+    color: $color-page-light;
 }
 
 ::-webkit-scrollbar {
@@ -356,7 +357,7 @@ a {
 //global class
 body {
     background: $background-image-light;
-    color: black;
+    color: $color-page2;
     //background-size: 100% 100%;
     font-size: 14px;
     margin: 0;
@@ -403,12 +404,12 @@ body {
 }
 
 .btn-connect {
-    background: #FF8551;
+    background: #3A98B9;
     color: $color-page;
 }
 
 .btn-sub {
-    background: #FF8551;
+    background: #3A98B9;
     color: $color-page;
     height: 100%;
     border: 0;
@@ -423,14 +424,14 @@ body {
 }
 
 .btn-control {
-    //background: #FF8551;
+    //background: #3A98B9;
     color: $color-page-light;
     border: 1px solid $color-page-light;
 }
 
 .btn-control:hover {
     color: $color-page;
-    background: #FF8551;
+    background: #3A98B9;
 }
 
 .btn-deposit {
@@ -449,7 +450,7 @@ body {
 }
 
 .btn-coin {
-    background: #FF8551;
+    background: #3A98B9;
     color: $color-page3;
 }
 
@@ -482,7 +483,7 @@ body {
     background: $menu-bg-2;
 
     .btn-method {
-        background: #FF8551;
+        background: #3A98B9;
         color: $color-page3;
 
         .method-img {
@@ -570,7 +571,7 @@ header {
     .bg-menu {
         background: $menu-bg-2;
         .dropdown-menu {
-            background: #FF8551;
+            background: #3A98B9;
 
             .dropdown-item {
                 color: $color-page;
@@ -685,7 +686,7 @@ section {
             border: 0;
 
             .card-header {
-                background: #FF8551;
+                background: #3A98B9;
 
                 .nav-pills {
                     .nav-link {
@@ -933,7 +934,7 @@ section {
         }
     }
     .nav-pills {
-        background: #FF8551;
+        background: #3A98B9;
 
         .nav-item {
             .nav-link {
@@ -1213,7 +1214,7 @@ section {
     }
 
     .bot-header {
-        background-color: #FF8551;
+        background-color: #3A98B9;
         border-radius: 10px 10px 0 0;
         color:$color-page;
     }
@@ -1261,6 +1262,10 @@ footer {
     .bg-menu {
         background: $menu-bg-2;
         background-size: 100% 100%;
+
+        a {
+            color: $color-page2;
+        }
 
         .img-aware {
             width: 50px;
