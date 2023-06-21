@@ -1,4 +1,4 @@
-import {CACHE_MANAGER, Inject, Injectable} from '@nestjs/common';
+import {CACHE_MANAGER, HttpException, HttpStatus, Inject, Injectable} from '@nestjs/common';
 import { CreateLinkDto } from './dto/create-link.dto';
 import { UpdateLinkDto } from './dto/update-link.dto';
 import {Cache} from "cache-manager";
@@ -6,7 +6,8 @@ import {InjectModel} from "@nestjs/mongoose";
 import {UserEntity, UserEntityDocument} from "../user/entities/user.entity";
 import {PaginateModel} from "mongoose";
 import {LinkEntity, LinkEntityDocument} from "./entities/link.entity";
-import moment from "moment";
+import * as moment from 'moment';
+
 
 @Injectable()
 export class LinkService {
@@ -15,7 +16,7 @@ export class LinkService {
       @Inject(CACHE_MANAGER) private cacheManager: Cache,
       @InjectModel(UserEntity.name)
       private modelUser: PaginateModel<UserEntityDocument>,
-      @InjectModel(UserEntity.name)
+      @InjectModel(LinkEntity.name)
       private modelLink: PaginateModel<LinkEntityDocument>,
   ){
 
@@ -72,6 +73,15 @@ export class LinkService {
         body['short_link'] = await this.generateLink(5)
       }
 
+      if(body['origin_link']){
+        link = await this.modelLink.findOne({
+          origin_link: body['origin_link']
+        })
+        if(link){
+          return link
+        }
+      }
+
       link = await this.modelLink.create({
         user_id: body['user_id'],
         domain: body['domain'],
@@ -91,22 +101,53 @@ export class LinkService {
     return `This action returns all link`;
   }
 
-  async findOne(short_link: string, password: string) {
+  async findOne(short_link: string) {
     try {
+      short_link = short_link.split('/').join('')
+      let link = await this.modelLink.findOne({
+        short_link,
+      }).select('domain origin_link short_link is_password date_expires counter')
+      if(!link) {
+        throw new Error(`Link does not exist`)
+      }
+      if(link.date_expires && moment(link.date_expires, 'YYYY-MM-DD').unix() < moment().unix()) {
+        throw new Error(`Link was expired`)
+      }
+      if(!link['is_password']){
+        link['counter'] += 1
+        await link.save()
+      } else {
+        delete link['origin_link']
+      }
+
+      return link
+    } catch (e) {
+      return e
+    }
+
+  }
+
+  async checkPassword(short_link: string, password: string) {
+    try {
+
+      short_link = short_link.split('/').join('')
       let link = await this.modelLink.findOne({
         short_link,
         date_expires: {
           $gte: moment().unix()
         }
-      }).select('domain short_link password')
+      }).select('domain origin_link short_link is_password password counter')
       if(!link) {
         throw new Error(`Link does not exist`)
       }
       if(link['password'] && password != link['password']){
         throw new Error(`Password incorrect`)
       }
-      link['counter'] += 1
-      await link.save()
+      if(link['is_password']){
+        link['counter'] += 1
+        await link.save()
+      }
+
       delete link['password']
 
       return link

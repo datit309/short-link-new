@@ -7,7 +7,7 @@ import {UserEntity} from "../../user/entities/user.entity";
 @Schema({ versionKey: false, collection: 'links', timestamps: true })
 export class LinkEntity {
     @Prop({
-        required: true,
+        required: false,
         type: SchemaTypes.ObjectId,
         ref: UserEntity.name,
     })
@@ -17,7 +17,7 @@ export class LinkEntity {
     @Prop({ required: false, default: null })
     domain: string;
 
-    @Prop({ required: false, default: null })
+    @Prop({ required: true, default: null })
     origin_link: string;
 
     @Prop({ required: false, default: null })
@@ -28,6 +28,9 @@ export class LinkEntity {
 
     @Prop({ required: false, default: null })
     password: string;
+
+    @Prop({ required: false, default: false })
+    is_password: boolean;
 
     @Prop({ required: false, default: null })
     counter: number;

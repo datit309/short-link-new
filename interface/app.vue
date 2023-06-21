@@ -3,7 +3,7 @@
         <noscript>
             <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-577JB7T" height="0" width="0" style="display: none; visibility: hidden"></iframe>
         </noscript>
-        <NuxtLayout :name="layout">
+        <NuxtLayout>
             <NuxtLoadingIndicator />
             <NuxtPage />
         </NuxtLayout>
@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import Cookies from "js-cookie";
-const theme = Cookies.get('theme') || 'light'
-const layout = theme === 'light' ? 'master-light' : 'master'
+// import Cookies from "js-cookie";
+// const theme = Cookies.get('theme') || 'light'
+// const layout = theme === 'light' ? 'master-light' : 'master'
 </script>

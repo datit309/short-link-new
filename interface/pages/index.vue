@@ -8,7 +8,7 @@ section
                         nav
                             .nav.nav-pills(role='tablist')
                                 button.nav-link.active(data-bs-toggle='tab' data-bs-target='#bets' type='button' role='tab' aria-controls='nav-home' aria-selected='true')
-                                    h3 {{$t("Rút gọn link miễn phí. Dữ liệu lưu giữ vĩnh viễn")}}
+                                    h3.text-uppercase {{$t("Rút gọn link miễn phí. Dữ liệu lưu giữ vĩnh viễn")}}
                     .card-body.p-0
                         .tab-content
                             .row.mx-0.justify-content-center
@@ -18,31 +18,51 @@ section
                                         .input-group.mb-2.bg-block.px-0.input-group-lg
                                             span.input-group-text
                                                 i.fab.fa-telegram-plane
-                                            input.form-control(type='text' aria-describedby='basic-addon3' placeholder="Dán link cần rút gọn của bạn")
+                                            input.form-control.py-3(:readonly="!!new_link.short_link" v-model="short_link.origin" type='text' aria-describedby='basic-addon3' placeholder="Dán link cần rút gọn của bạn")
+                                            button.btn.btn-sub.py-3(v-if="!new_link.short_link" @click="createShortLink") {{$t('Rút gọn link')}}
 
-                                            button.btn.btn-sub.py-3() {{$t('Rút gọn link')}}
-                                        .row.my-3
-                                            .col
+                                        p.my-3
+                                            span.me-1
+                                                i.fas.fa-exclamation-triangle
+                                            span.me-1 Bằng việc bấm vào nút
+                                            span.fw-bold.me-1 RÚT GỌN LINK,
+                                            span.me-1 đồng nghĩa với việc bạn đồng ý với
+                                            span
+                                                a(href="javascript:void(0)") Điều khoản sử dụng
+                                        template(v-if="new_link.short_link" )
+                                            label.form-label.mb-0.px-0 {{$t("Link rút gọn của bạn")}}
+                                            .input-group.mb-2.bg-block.px-0
+                                                span.input-group-text
+                                                    i.fas.fa-link
+                                                input.form-control(:value="new_link.short_link" type='text' aria-describedby='basic-addon3' placeholder="Link rút gọn của bạn" readonly)
+
+                                                button.btn.btn-sub.py-2(@click="copyText(new_link.short_link)") {{$t('Sao chép')}}
+                                            .row.mt-3.justify-content-center
+                                                .col-2
+                                                    button.btn.btn-sub.py-3.w-100(@click="new_link.short_link = ''") {{$t('Tiếp tục')}}
+
+                                        .row.my-3(v-if="!new_link.short_link" )
+                                            .col-12.col-lg-4
                                                 label.form-label.mb-0.px-0 {{$t("Link tùy chỉnh")}}
                                                 .input-group.mb-2.bg-block.px-0
                                                     //span.input-group-text
                                                         i.fas.fa-link
                                                     span.input-group-text https://domain.com/
-                                                    input.form-control(type='text' aria-describedby='basic-addon3' placeholder="custom-link")
+                                                    input.form-control(v-model="short_link.custom" type='text' aria-describedby='basic-addon3' placeholder="custom-link")
                                                 p * Mặc định, hệ thống sẽ tạo link ngẫu nhiên. Bạn có thể đặt link theo tùy chọn.
-                                            .col
+                                            .col-12.col-lg-4
                                                 label.form-label.mb-0.px-0 {{$t("Thời gian hiệu lực")}}
                                                 .input-group.mb-2.bg-block.px-0
                                                     span.input-group-text
                                                         i.far.fa-calendar-alt
                                                     input.form-control(name="date_expires" type='text' aria-describedby='basic-addon3' placeholder="Thời gian hiệu lực")
                                                 p * Sau 00:00 phút của ngày được chọn, link sẽ không còn hiệu lực. Để trống nếu giữ vĩnh viễn link.
-                                            .col
+                                            .col-12.col-lg-4
                                                 label.form-label.mb-0.px-0 {{$t("Mật khẩu bảo vệ")}}
                                                 .input-group.mb-2.bg-block.px-0
                                                     span.input-group-text
                                                         i.fas.fa-lock
-                                                    input.form-control(type='text' aria-describedby='basic-addon3' placeholder="Mật khẩu bảo vệ")
+                                                    input.form-control(v-model="short_link.password" type='text' aria-describedby='basic-addon3' placeholder="Mật khẩu bảo vệ")
                                                 p * Đặt mật khẩu để bảo vệ link rút gọn. Để trống nếu bạn không muốn đặt mật khẩu.
 
                                         //button.btn.btn-deposit() {{$t("Update Profile")}}
@@ -53,15 +73,34 @@ import _ from 'lodash'
 import { profileStore } from '~/store/profile'
 import { kaStore } from '~/store/ka'
 import Cookies from "js-cookie";
+import {useLinkStore} from "~/store/link";
+import {useAccountStore} from "~/store/account";
 
 // const theme = Cookies.get('theme') || 'light'
-// definePageMeta({
-//     layout: theme !== 'light' ? 'master' : 'master-light',
+definePageMeta({
+    layout: 'master-light',
+})
+
+// useHead({
+//     meta: [
+//         { hid: 'og:title', name: 'og:title', property: 'og:title', content: 'Moba Game : Crypto Dapp Games & Crypto Slot Games - Crypto Gambling' },
+//         { hid: 'og:site_name', name: 'og:site_name', content: 'Mobagame Crypto Gambling' },
+//         { hid: 'og:url', name: 'og:url', content: 'https://mobagame.io' },
+//         { hid: 'og:description', name: 'og:description', property: 'og:description', content: 'Moba Game : Crypto Dapp Games & Crypto Slot Games - Crypto Gambling' },
+//         { hid: 'og:type', name: 'og:type', property: 'og:type', content: 'website' },
+//         { hid: 'og:image:type', name: 'og:image:type', content: 'image/jpeg' },
+//         { hid: 'og:image', name: 'og:image', property: 'og:image', content: 'https://mobagame.io/client/images/moba_game_banner.jpg' },
+//         { hid: 'og:image:secure_url', name: 'og:image:secure_url', content: 'https://mobagame.io/client/images/moba_game_banner.jpg' },
+//         { hid: 'og:image:width', name: 'og:image:width', content: '500' },
+//         { hid: 'og:image:height', name: 'og:image:height', content: '282' },
+//         { hid: 'og:image:alt', name: 'og:image:alt', property: 'og:image:alt', content: 'Moba Game : Crypto Dapp Games & Crypto Slot Games - Crypto Gambling' },
+//     ]
 // })
 export default {
     name: 'Index',
     computed: {
         ...mapState(profileStore, _.keys(profileStore().$state)),
+        ...mapState(useAccountStore, _.keys(useAccountStore().$state)),
     },
     data() {
         return {
@@ -70,6 +109,13 @@ export default {
                 custom: '',
                 date_expires: null,
                 password: null,
+                domain: '',
+            },
+            get_short_link: {
+                short_link: ''
+            },
+            new_link: {
+                short_link: '',
             }
         }
     },
@@ -89,13 +135,26 @@ export default {
                 locale: {
                     format: 'YYYY/MM/DD'
                 },
-                autoApply: true
+                autoApply: true,
+                minDate: moment().toDate(),
             }, function(start, end, label) {
                 vm.short_link.date_expires = start.format('YYYY-MM-DD')
             });
         });
+        await vm.getShortLink()
     },
     methods: {
+        copyText(text) {
+            const vm = this
+            navigator.clipboard.writeText(text).then(
+                function () {
+                    vm.$success(vm.$t('copy success'))
+                },
+                function (err) {
+                    vm.$error(vm.$t('copy failed'), err)
+                }
+            )
+        },
         splitUsername(username) {
             if (username === null || username.length === 0) {
                 return '******'
@@ -103,6 +162,68 @@ export default {
             const strTemp = ''
             return strTemp.concat(username.slice(0, 3), '*****', username.slice(-3))
         },
+        async createShortLink(){
+            let vm = this
+            const linkStore = useLinkStore()
+            try {
+                if(!vm.short_link.origin){
+                    throw new Error('Link bạn vừa nhập không hợp lệ. Hãy nhập 1 link hợp lệ bắt đầu bằng http:// hoặc https://')
+                }
+
+                await linkStore.createShortLink({
+                    user_id: vm.account.detail.user_id,
+                    domain: vm.short_link.domain,
+                    origin_link: vm.short_link.origin,
+                    short_link: vm.short_link.custom,
+                    date_expires: vm.short_link.date_expires,
+                    password: vm.short_link.password
+                }).then((response) => {
+                    let {data, message, success} = response
+                    if(success){
+                        vm.new_link.short_link = `${data.domain}/${data.short_link}`
+                        vm.$success(message)
+                    } else {
+                        vm.$error(message)
+                    }
+                }).catch((error) => {
+                    vm.$error(error.message)
+                })
+            } catch (e) {
+                vm.$error(e.message)
+            }
+        },
+        async getShortLink(){
+            let vm = this
+            const linkStore = useLinkStore()
+            try {
+                vm.get_short_link.short_link = vm.$route
+                console.log('vm.$route', vm.$route)
+            //     if(!vm.get_short_link.short_link){
+            //         throw new Error('Link bạn vừa nhập không hợp lệ. Hãy nhập 1 link hợp lệ bắt đầu bằng http:// hoặc https://')
+            //     }
+            //
+            //     await linkStore.getShortLink({
+            //         user_id: vm.account.detail.user_id,
+            //         domain: vm.short_link.domain,
+            //         origin_link: vm.short_link.origin,
+            //         short_link: vm.short_link.custom,
+            //         date_expires: vm.short_link.date_expires,
+            //         password: vm.short_link.password
+            //     }).then((response) => {
+            //         let {data, message, success} = response
+            //         if(success){
+            //             console.log(data)
+            //             vm.$success(message)
+            //         } else {
+            //             vm.$error(message)
+            //         }
+            //     }).catch((error) => {
+            //         vm.$error(error.message)
+            //     })
+            } catch (e) {
+                vm.$error(e.message)
+            }
+        }
     },
 }
 </script>
