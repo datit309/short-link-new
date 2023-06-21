@@ -144,6 +144,15 @@ export default {
         await vm.getShortLink()
     },
     methods: {
+         validURL(str) {
+            let pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+                '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+                '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+                '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+                '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+                '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+            return !!pattern.test(str);
+        },
         copyText(text) {
             const vm = this
             navigator.clipboard.writeText(text).then(
@@ -166,7 +175,7 @@ export default {
             let vm = this
             const linkStore = useLinkStore()
             try {
-                if(!vm.short_link.origin){
+                if(!vm.short_link.origin || !vm.validURL(vm.short_link.origin)){
                     throw new Error('Link bạn vừa nhập không hợp lệ. Hãy nhập 1 link hợp lệ bắt đầu bằng http:// hoặc https://')
                 }
 
