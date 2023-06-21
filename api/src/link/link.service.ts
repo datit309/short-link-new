@@ -89,6 +89,7 @@ export class LinkService {
         short_link: body['short_link'],
         date_expires: body['date_expires'] || null,
         password: body['password'] || null,
+        is_password: !!body['password'],
         counter: 0
       })
       return link
