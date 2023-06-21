@@ -39,7 +39,7 @@ section
                                                 button.btn.btn-sub.py-2(@click="copyText(new_link.short_link)") {{$t('Sao chép')}}
                                             .row.mt-3.justify-content-center
                                                 .col-2
-                                                    button.btn.btn-sub.py-3.w-100(@click="new_link.short_link = ''") {{$t('Tiếp tục')}}
+                                                    button.btn.btn-sub.py-3.w-100(@click="new_link.short_link = ''") {{$t('Tạo link khác')}}
 
                                         .row.my-3(v-if="!new_link.short_link" )
                                             .col-12.col-lg-4

@@ -115,7 +115,8 @@ export default {
                     if(success){
                         vm.link = data
                         if(data.origin_link){
-                            window.location.href = data.origin_link
+                            // window.location.href = data.origin_link
+                            return navigateTo(data.origin_link, {external: true, redirectCode: 301})
                         }
                         vm.$hideLoading()
                     } else {
@@ -148,7 +149,8 @@ export default {
                     if(success){
                         vm.link = data
                         if(!data.is_password && data.origin_link){
-                            window.location.href = data.origin_link
+                            // window.location.href = data.origin_link
+                            return navigateTo(data.origin_link, {external: true, redirectCode: 301})
                         }
                         vm.$hideLoading()
                     } else {
