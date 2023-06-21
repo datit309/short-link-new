@@ -18,7 +18,7 @@ section(v-if="link.is_password" )
                                         .input-group.mb-2.bg-block.px-0.input-group-lg(v-if="link.is_password" )
                                             span.input-group-text
                                                 i.fas.fa-lock
-                                            input.form-control(v-model="short_link.password" type='password' aria-describedby='basic-addon3' placeholder="Mật khẩu truy cập")
+                                            input.form-control(v-model="get_short_link.password" type='password' aria-describedby='basic-addon3' placeholder="Mật khẩu truy cập")
 
                                             button.btn.btn-sub.py-3(@click="getShortLinkWithPassword") {{$t('Tiếp tục')}}
 </template>
@@ -101,26 +101,33 @@ export default {
             let vm = this
             const linkStore = useLinkStore()
             try {
+                vm.$showLoading()
                 vm.get_short_link.short_link = vm.$route.path.split('/').join('')
                 if(!vm.get_short_link.short_link){
                     throw new Error('Link bạn vừa nhập không hợp lệ')
                 }
 
-                await linkStore.getShortLink({
+                await linkStore.getShortLinkWithPassword({
                     short_link: vm.get_short_link.short_link,
                     password: vm.get_short_link.password,
                 }).then((response) => {
                     let {data, message, success} = response
                     if(success){
-                        console.log(data)
-                        vm.$success(message)
+                        vm.link = data
+                        if(data.origin_link){
+                            window.location.href = data.origin_link
+                        }
+                        vm.$hideLoading()
                     } else {
+                        vm.$hideLoading()
                         vm.$error(message)
                     }
                 }).catch((error) => {
+                    vm.$hideLoading()
                     vm.$error(error.message)
                 })
             } catch (e) {
+                vm.$hideLoading()
                 vm.$error(e.message)
             }
         },
@@ -140,7 +147,7 @@ export default {
                     let {data, message, success} = response
                     if(success){
                         vm.link = data
-                        if(!data.is_password){
+                        if(!data.is_password && data.origin_link){
                             window.location.href = data.origin_link
                         }
                         vm.$hideLoading()

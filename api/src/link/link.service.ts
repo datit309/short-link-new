@@ -133,15 +133,15 @@ export class LinkService {
 
       short_link = short_link.split('/').join('')
       let link = await this.modelLink.findOne({
-        short_link,
-        date_expires: {
-          $gte: moment().unix()
-        }
+        short_link
       }).select('domain origin_link short_link is_password password counter')
       if(!link) {
         throw new Error(`Link does not exist`)
       }
-      if(link['password'] && password != link['password']){
+      if(link.date_expires && moment(link.date_expires, 'YYYY-MM-DD').unix() < moment().unix()) {
+        throw new Error(`Link was expired`)
+      }
+      if(link['is_password'] && password != link['password']){
         throw new Error(`Password incorrect`)
       }
       if(link['is_password']){

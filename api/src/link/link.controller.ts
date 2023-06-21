@@ -51,7 +51,7 @@ export class LinkController {
 
   }
 
-  @Post('check-password')
+  @Post('get-link-password')
   async getLinkWithPassword(@Body() body: GetLinkDto, @Req() req, @Res() res) {
     try {
       let data = await this.linkService.checkPassword(body.short_link, body.password)
