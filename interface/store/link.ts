@@ -29,5 +29,12 @@ export const useLinkStore = defineStore('useLinkStore', {
                 useFetchAPI('post', 'api/link/get-link-password', body).then(resolve).catch(reject)
             })
         },
+        getListShortLinkByUser(body: any) {
+            const config = useRuntimeConfig()
+
+            return new Promise((resolve, reject) => {
+                useFetchAPI('post', 'api/link/list', body).then(resolve).catch(reject)
+            })
+        },
     },
 })

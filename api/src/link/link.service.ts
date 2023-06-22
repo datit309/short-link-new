@@ -98,8 +98,23 @@ export class LinkService {
     }
   }
 
-  findAll() {
-    return `This action returns all link`;
+  async findAll(user_id: string, page: number, limit: number) {
+    try {
+      let link = await this.modelLink.paginate({
+        user_id,
+      },{
+        select: 'domain origin_link short_link is_password password date_expires counter',
+        page,
+        limit
+      })
+      if(!link) {
+        throw new Error(`Link does not exist`)
+      }
+      return link;
+    } catch (e) {
+      return e
+    }
+
   }
 
   async findOne(short_link: string) {

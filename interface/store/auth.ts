@@ -29,51 +29,15 @@ export const authStore = defineStore('auth', {
                 useFetchAPI('post', 'api/auth/ping', body).then(resolve).catch(reject)
             })
         },
-        doLoginUUID(body: any) {
-            const config = useRuntimeConfig()
-
-            return new Promise((resolve, reject) => {
-                useFetchAPI('post', 'api/auth/do-login-uuid', body)
-                    .then((response: any) => {
-                        const { data, message, success } = response
-                        if (success) {
-                            Cookies.set(config.public.clientKeyStoreToken, data.token)
-                        }
-                        resolve(response)
-                    })
-                    .catch(reject)
-            })
-        },
-        doLoginCRM(body: any) {
-            const config = useRuntimeConfig()
-
-            return new Promise((resolve, reject) => {
-                useFetchAPI('post', 'api/auth/do-login-crm', body)
-                    .then((response: any) => {
-                        const { data, message, success } = response
-                        if (success) {
-                            Cookies.set(config.public.clientKeyStoreToken, data.token)
-                        }
-                        resolve(response)
-                    })
-                    .catch(reject)
-            })
-        },
-        doRegisterCRM(body: any) {
-            const config = useRuntimeConfig()
-            return new Promise((resolve, reject) => {
-                useFetchAPI('post', 'api/auth/do-register-crm', body).then(resolve).catch(reject)
-            })
-        },
         doLoginCRMV2(body: any) {
             const config = useRuntimeConfig()
 
             return new Promise((resolve, reject) => {
-                useFetchAPI('post', 'api/auth/do-login-crm-v2', body)
+                useFetchAPI('post', 'api/auth/login', body)
                     .then((response: any) => {
                         const { data, message, success } = response
                         if (success) {
-                            Cookies.set(config.public.clientKeyStoreToken, data.token)
+                            Cookies.set(config.public.clientKeyStoreToken, data)
                         }
                         resolve(response)
                     })
@@ -83,7 +47,7 @@ export const authStore = defineStore('auth', {
         doRegisterCRMV2(body: any) {
             const config = useRuntimeConfig()
             return new Promise((resolve, reject) => {
-                useFetchAPI('post', 'api/auth/do-register-crm-v2', body).then(resolve).catch(reject)
+                useFetchAPI('post', 'api/auth/register', body).then(resolve).catch(reject)
             })
         },
         doResetPasswordCRMV2(body: any) {

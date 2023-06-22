@@ -8,7 +8,7 @@ button#backtop.hvr-float(@click='backToTop' title='Go to top')
 
 <script lang="ts">
 import { useNuxtApp } from 'nuxt/app'
-import "@/assets/scss/style-light.scss";
+import '@/assets/scss/style-light.scss'
 
 export default {
     watch: {
@@ -33,5 +33,4 @@ export default {
     },
 }
 </script>
-<style scoped>
-</style>
+<style scoped></style>

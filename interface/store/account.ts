@@ -14,54 +14,20 @@ export const useAccountStore = defineStore('account', {
     state: () => ({
         account: {
             detail: {
-                id: null,
-                wallet_address: null,
                 token: null,
                 email: '',
                 username: '',
                 type: '',
-                access_token: '',
-            },
-            user_crm: {
-                UserName: '',
-                RefID: '',
-            },
-            referral: {
-                address: null,
-                team: 'A',
-            },
-            wallet: {
-                signer: null,
-                auto_connect: 'off',
+                user_id: '',
             },
         },
     }),
     getters: {
-        getAddress(state) {
-            return state.account.detail.wallet_address
-        },
         getToken(state) {
             return state.account.detail.token
         },
-        getUsername(state) {
-            return state.account.user_crm.UserName
-        },
-        getRefID(state) {
-            return state.account.user_crm.RefID
-        },
     },
     actions: {
-        updateWalletAddress(data: any) {
-            this.account.detail.wallet_address = data
-        },
-        updateSigner(data: any) {
-            this.account.wallet.signer = data
-        },
-        updateRefDetail(data: any) {
-            this.account.referral.address = data.address
-            this.account.referral.team = data.team
-        },
-
         resetState() {
             this.$reset()
         },
@@ -82,13 +48,9 @@ export const useAccountStore = defineStore('account', {
                 // @ts-ignore
                 this.account.detail.token = token
                 this.account.detail.type = data.type
-                this.account.detail.wallet_address = data.wallet_address
                 this.account.detail.email = data.email
                 this.account.detail.username = data.username
-                this.account.detail.access_token = data.access_token
-
-                this.account.user_crm.UserName = data.username
-                this.account.user_crm.RefID = data.user_crm.RefID
+                this.account.detail.user_id = data.user_id
 
                 return data
             } catch (e) {

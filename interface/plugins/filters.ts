@@ -35,13 +35,11 @@ export default defineNuxtPlugin((nuxtApp) => {
             })
         },
         countDownTo: (timestamp: string) => {
-            let to = moment(timestamp, 'X').utc();
-            let duration = moment.duration(to.diff(moment()));
-            let exp = duration.asMonths() > 1
-                ? Math.floor(duration.asDays())
-                : duration.days()
+            const to = moment(timestamp, 'X').utc()
+            const duration = moment.duration(to.diff(moment()))
+            const exp = duration.asMonths() > 1 ? Math.floor(duration.asDays()) : duration.days()
             let days = exp + ' days'
-            if(exp <= 0){
+            if (exp <= 0) {
                 days = 'Out of date'
             }
             return days

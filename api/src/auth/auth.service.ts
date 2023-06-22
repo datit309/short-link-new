@@ -23,6 +23,8 @@ import * as bcrypt from 'bcrypt';
 import * as _ from 'lodash';
 import { LoginClientDto } from './dto/login-client.dto';
 import { ConfigService } from '@nestjs/config';
+import {RegisterClientDto} from "./dto/register-client.dto";
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class AuthService {
@@ -167,6 +169,7 @@ export class AuthService {
         user_id: user.id,
         type: 'client',
         username: user.username,
+        email: user.email,
         ability,
       };
 
@@ -187,6 +190,51 @@ export class AuthService {
             }
           : {},
       );
+    } catch (e) {
+      throw new UnauthorizedException({
+        success: false,
+        message: e.message,
+        data: null,
+      });
+    }
+  }
+
+  async postRegisterClient(dto: RegisterClientDto) {
+    try {
+      const { username, email, password } = dto;
+      const user = await this.modelUser
+          .findOne({
+            $or: [
+              {username},
+              {email}
+            ],
+            status: 'ACTIVE',
+          })
+          .populate({
+            path: 'group_id',
+            populate: 'roles',
+          });
+
+      if (user) {
+        throw new UnauthorizedException({
+          success: false,
+          message: 'User is exists',
+          data: null,
+        });
+      }
+      let group = await this.modelGroup.findOne({ name: 'User' }) // group User default
+
+      let newUser = await this.modelUser.create({
+        username,
+        password: await bcrypt.hash(password, 8),
+        email,
+        user_type: 'L',
+        status: 'active',
+        group_id : group._id,
+        token: uuidv4(),
+      });
+
+      return newUser
     } catch (e) {
       throw new UnauthorizedException({
         success: false,

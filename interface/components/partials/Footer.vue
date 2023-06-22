@@ -38,21 +38,21 @@ footer.fixed-bottom
 </template>
 
 <script>
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie'
 
 export default {
-    data(){
+    data() {
         return {
-            theme: 'dark'
+            theme: 'dark',
         }
     },
     mounted() {
-        let theme = Cookies.get('theme')
-        let vm = this
-        if(theme){
+        const theme = Cookies.get('theme')
+        const vm = this
+        if (theme) {
             vm.theme = theme
         }
-    }
+    },
 }
 </script>
 <style scoped></style>

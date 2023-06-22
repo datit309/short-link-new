@@ -25,10 +25,7 @@ section(v-if="link.is_password" )
 <script>
 import { mapState } from 'pinia'
 import _ from 'lodash'
-import { profileStore } from '~/store/profile'
-import { kaStore } from '~/store/ka'
-import Cookies from "js-cookie";
-import {useLinkStore} from "~/store/link";
+import { useLinkStore } from '~/store/link'
 
 // const theme = Cookies.get('theme') || 'light'
 definePageMeta({
@@ -52,9 +49,6 @@ definePageMeta({
 // })
 export default {
     name: 'Index',
-    computed: {
-        ...mapState(profileStore, _.keys(profileStore().$state)),
-    },
     data() {
         return {
             short_link: {
@@ -66,106 +60,116 @@ export default {
             },
             get_short_link: {
                 short_link: '',
-                password: ''
+                password: '',
             },
             link: {
                 domain: '',
                 is_password: null,
                 short_link: '',
                 origin_link: '',
-                counter: 0
-            }
+                counter: 0,
+            },
         }
     },
+    computed: {},
     watch: {},
     async mounted() {
         const vm = this
 
-        $(function() {
-            $('input[name="date_expires"]').daterangepicker({
-                opens: 'left',
-                singleDatePicker: true,
-                showDropdowns: true,
-                locale: {
-                    format: 'YYYY/MM/DD'
+        $(function () {
+            $('input[name="date_expires"]').daterangepicker(
+                {
+                    opens: 'left',
+                    singleDatePicker: true,
+                    showDropdowns: true,
+                    locale: {
+                        format: 'YYYY/MM/DD',
+                    },
+                    autoApply: true,
                 },
-                autoApply: true
-            }, function(start, end, label) {
-                vm.short_link.date_expires = start.format('YYYY-MM-DD')
-            });
-        });
+                function (start, end, label) {
+                    vm.short_link.date_expires = start.format('YYYY-MM-DD')
+                }
+            )
+        })
         await vm.getShortLink()
     },
     methods: {
-        async getShortLinkWithPassword(){
-            let vm = this
+        async getShortLinkWithPassword() {
+            const vm = this
             const linkStore = useLinkStore()
             try {
                 vm.$showLoading()
                 vm.get_short_link.short_link = vm.$route.path.split('/').join('')
-                if(!vm.get_short_link.short_link){
+                if (!vm.get_short_link.short_link) {
                     throw new Error('Link bạn vừa nhập không hợp lệ')
                 }
 
-                await linkStore.getShortLinkWithPassword({
-                    short_link: vm.get_short_link.short_link,
-                    password: vm.get_short_link.password,
-                }).then((response) => {
-                    let {data, message, success} = response
-                    if(success){
-                        vm.link = data
-                        if(data.origin_link){
-                            // window.location.href = data.origin_link
-                            return navigateTo(data.origin_link, {external: true, redirectCode: 301})
+                await linkStore
+                    .getShortLinkWithPassword({
+                        short_link: vm.get_short_link.short_link,
+                        password: vm.get_short_link.password,
+                    })
+                    .then((response) => {
+                        const { data, message, success } = response
+                        if (success) {
+                            vm.link = data
+                            if (data.origin_link) {
+                                // window.location.href = data.origin_link
+                                return navigateTo(data.origin_link, { external: true, redirectCode: 301 })
+                            }
+                            vm.$hideLoading()
+                        } else {
+                            vm.$hideLoading()
+                            vm.$error(message)
                         }
+                    })
+                    .catch((error) => {
                         vm.$hideLoading()
-                    } else {
-                        vm.$hideLoading()
-                        vm.$error(message)
-                    }
-                }).catch((error) => {
-                    vm.$hideLoading()
-                    vm.$error(error.message)
-                })
+                        vm.$error(error.message)
+                    })
             } catch (e) {
                 vm.$hideLoading()
                 vm.$error(e.message)
             }
         },
-        async getShortLink(){
-            let vm = this
+        async getShortLink() {
+            const vm = this
             const linkStore = useLinkStore()
             try {
                 vm.$showLoading()
                 vm.get_short_link.short_link = vm.$route.path.split('/').join('')
-                if(!vm.get_short_link.short_link){
+                if (!vm.get_short_link.short_link) {
                     throw new Error('Link bạn vừa nhập không hợp lệ')
                 }
 
-                await linkStore.getShortLink({
-                    short_link: vm.get_short_link.short_link,
-                }).then((response) => {
-                    let {data, message, success} = response
-                    if(success){
-                        vm.link = data
-                        if(!data.is_password && data.origin_link){
-                            // window.location.href = data.origin_link
-                            return navigateTo(data.origin_link, {external: true, redirectCode: 301})
+                await linkStore
+                    .getShortLink({
+                        short_link: vm.get_short_link.short_link,
+                    })
+                    .then((response) => {
+                        const { data, message, success } = response
+                        if (success) {
+                            vm.link = data
+                            if (!data.is_password && data.origin_link) {
+                                // window.location.href = data.origin_link
+                                return navigateTo(data.origin_link, { external: true, redirectCode: 301 })
+                            }
+                            vm.$hideLoading()
+                        } else {
+                            vm.$hideLoading()
+                            vm.$error(message)
                         }
+                    })
+                    .catch((error) => {
                         vm.$hideLoading()
-                    } else {
-                        vm.$hideLoading()
-                        vm.$error(message)
-                    }
-                }).catch((error) => {
-                    vm.$hideLoading()
-                    vm.$error(error.message)
-                })
+                        vm.$error(error.message)
+                    })
             } catch (e) {
                 vm.$hideLoading()
                 vm.$error(e.message)
             }
-        }
+        },
     },
 }
 </script>

@@ -70,11 +70,9 @@ section
 <script>
 import { mapState } from 'pinia'
 import _ from 'lodash'
-import { profileStore } from '~/store/profile'
-import { kaStore } from '~/store/ka'
-import Cookies from "js-cookie";
-import {useLinkStore} from "~/store/link";
-import {useAccountStore} from "~/store/account";
+import Cookies from 'js-cookie'
+import { useLinkStore } from '~/store/link'
+import { useAccountStore } from '~/store/account'
 
 // const theme = Cookies.get('theme') || 'light'
 definePageMeta({
@@ -99,7 +97,6 @@ definePageMeta({
 export default {
     name: 'Index',
     computed: {
-        ...mapState(profileStore, _.keys(profileStore().$state)),
         ...mapState(useAccountStore, _.keys(useAccountStore().$state)),
     },
     data() {
@@ -112,11 +109,11 @@ export default {
                 domain: '',
             },
             get_short_link: {
-                short_link: ''
+                short_link: '',
             },
             new_link: {
                 short_link: '',
-            }
+            },
         }
     },
     watch: {},
@@ -127,31 +124,37 @@ export default {
             backdrop: 'static',
         })
 
-        $(function() {
-            $('input[name="date_expires"]').daterangepicker({
-                opens: 'left',
-                singleDatePicker: true,
-                showDropdowns: true,
-                locale: {
-                    format: 'YYYY/MM/DD'
+        $(function () {
+            $('input[name="date_expires"]').daterangepicker(
+                {
+                    opens: 'left',
+                    singleDatePicker: true,
+                    showDropdowns: true,
+                    locale: {
+                        format: 'YYYY/MM/DD',
+                    },
+                    autoApply: true,
+                    minDate: moment().toDate(),
                 },
-                autoApply: true,
-                minDate: moment().toDate(),
-            }, function(start, end, label) {
-                vm.short_link.date_expires = start.format('YYYY-MM-DD')
-            });
-        });
+                function (start, end, label) {
+                    vm.short_link.date_expires = start.format('YYYY-MM-DD')
+                }
+            )
+        })
         await vm.getShortLink()
     },
     methods: {
-         validURL(str) {
-            let pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-                '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-                '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-                '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-                '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-                '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
-            return !!pattern.test(str);
+        validURL(str) {
+            const pattern = new RegExp(
+                '^(https?:\\/\\/)?' + // protocol
+                    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+                    '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+                    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+                    '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+                    '(\\#[-a-z\\d_]*)?$',
+                'i'
+            ) // fragment locator
+            return !!pattern.test(str)
         },
         copyText(text) {
             const vm = this
@@ -171,68 +174,69 @@ export default {
             const strTemp = ''
             return strTemp.concat(username.slice(0, 3), '*****', username.slice(-3))
         },
-        async createShortLink(){
-            let vm = this
+        async createShortLink() {
+            const vm = this
             const linkStore = useLinkStore()
             try {
-                if(!vm.short_link.origin || !vm.validURL(vm.short_link.origin)){
+                if (!vm.short_link.origin || !vm.validURL(vm.short_link.origin)) {
                     throw new Error('Link bạn vừa nhập không hợp lệ. Hãy nhập 1 link hợp lệ bắt đầu bằng http:// hoặc https://')
                 }
-
-                await linkStore.createShortLink({
-                    user_id: vm.account.detail.user_id,
-                    domain: vm.short_link.domain,
-                    origin_link: vm.short_link.origin,
-                    short_link: vm.short_link.custom,
-                    date_expires: vm.short_link.date_expires,
-                    password: vm.short_link.password
-                }).then((response) => {
-                    let {data, message, success} = response
-                    if(success){
-                        vm.new_link.short_link = `${data.domain}/${data.short_link}`
-                        vm.$success(message)
-                    } else {
-                        vm.$error(message)
-                    }
-                }).catch((error) => {
-                    vm.$error(error.message)
-                })
+                await linkStore
+                    .createShortLink({
+                        user_id: vm.account.detail.user_id,
+                        domain: vm.short_link.domain,
+                        origin_link: vm.short_link.origin,
+                        short_link: vm.short_link.custom,
+                        date_expires: vm.short_link.date_expires,
+                        password: vm.short_link.password,
+                    })
+                    .then((response) => {
+                        const { data, message, success } = response
+                        if (success) {
+                            vm.new_link.short_link = `${data.domain}/${data.short_link}`
+                            vm.$success(message)
+                        } else {
+                            vm.$error(message)
+                        }
+                    })
+                    .catch((error) => {
+                        vm.$error(error.message)
+                    })
             } catch (e) {
                 vm.$error(e.message)
             }
         },
-        async getShortLink(){
-            let vm = this
+        async getShortLink() {
+            const vm = this
             const linkStore = useLinkStore()
             try {
                 vm.get_short_link.short_link = vm.$route
-                console.log('vm.$route', vm.$route)
-            //     if(!vm.get_short_link.short_link){
-            //         throw new Error('Link bạn vừa nhập không hợp lệ. Hãy nhập 1 link hợp lệ bắt đầu bằng http:// hoặc https://')
-            //     }
-            //
-            //     await linkStore.getShortLink({
-            //         user_id: vm.account.detail.user_id,
-            //         domain: vm.short_link.domain,
-            //         origin_link: vm.short_link.origin,
-            //         short_link: vm.short_link.custom,
-            //         date_expires: vm.short_link.date_expires,
-            //         password: vm.short_link.password
-            //     }).then((response) => {
-            //         let {data, message, success} = response
-            //         if(success){
-            //             console.log(data)
-            //             vm.$success(message)
-            //         } else {
-            //             vm.$error(message)
-            //         }
-            //     }).catch((error) => {
-            //         vm.$error(error.message)
-            //     })
+                //     if(!vm.get_short_link.short_link){
+                //         throw new Error('Link bạn vừa nhập không hợp lệ. Hãy nhập 1 link hợp lệ bắt đầu bằng http:// hoặc https://')
+                //     }
+                //
+                //     await linkStore.getShortLink({
+                //         user_id: vm.account.detail.user_id,
+                //         domain: vm.short_link.domain,
+                //         origin_link: vm.short_link.origin,
+                //         short_link: vm.short_link.custom,
+                //         date_expires: vm.short_link.date_expires,
+                //         password: vm.short_link.password
+                //     }).then((response) => {
+                //         let {data, message, success} = response
+                //         if(success){
+                //             console.log(data)
+                //             vm.$success(message)
+                //         } else {
+                //             vm.$error(message)
+                //         }
+                //     }).catch((error) => {
+                //         vm.$error(error.message)
+                //     })
             } catch (e) {
                 vm.$error(e.message)
             }
-        }
+        },
     },
 }
 </script>
