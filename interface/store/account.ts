@@ -45,13 +45,7 @@ export const useAccountStore = defineStore('account', {
                     Cookies.remove(config.public.clientKeyStoreToken)
                     return null
                 }
-                // @ts-ignore
-                this.account.detail.token = token
-                this.account.detail.type = data.type
-                this.account.detail.email = data.email
-                this.account.detail.username = data.username
-                this.account.detail.user_id = data.user_id
-
+                this.account.detail = data
                 return data
             } catch (e) {
                 return null

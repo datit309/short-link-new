@@ -73,31 +73,19 @@ import _ from 'lodash'
 import Cookies from 'js-cookie'
 import { useLinkStore } from '~/store/link'
 import { useAccountStore } from '~/store/account'
+import moment from "moment";
 
 // const theme = Cookies.get('theme') || 'light'
 definePageMeta({
     layout: 'master-light',
 })
-
-// useHead({
-//     meta: [
-//         { hid: 'og:title', name: 'og:title', property: 'og:title', content: 'Moba Game : Crypto Dapp Games & Crypto Slot Games - Crypto Gambling' },
-//         { hid: 'og:site_name', name: 'og:site_name', content: 'Mobagame Crypto Gambling' },
-//         { hid: 'og:url', name: 'og:url', content: 'https://mobagame.io' },
-//         { hid: 'og:description', name: 'og:description', property: 'og:description', content: 'Moba Game : Crypto Dapp Games & Crypto Slot Games - Crypto Gambling' },
-//         { hid: 'og:type', name: 'og:type', property: 'og:type', content: 'website' },
-//         { hid: 'og:image:type', name: 'og:image:type', content: 'image/jpeg' },
-//         { hid: 'og:image', name: 'og:image', property: 'og:image', content: 'https://mobagame.io/client/images/moba_game_banner.jpg' },
-//         { hid: 'og:image:secure_url', name: 'og:image:secure_url', content: 'https://mobagame.io/client/images/moba_game_banner.jpg' },
-//         { hid: 'og:image:width', name: 'og:image:width', content: '500' },
-//         { hid: 'og:image:height', name: 'og:image:height', content: '282' },
-//         { hid: 'og:image:alt', name: 'og:image:alt', property: 'og:image:alt', content: 'Moba Game : Crypto Dapp Games & Crypto Slot Games - Crypto Gambling' },
-//     ]
-// })
 export default {
     name: 'Index',
     computed: {
-        ...mapState(useAccountStore, _.keys(useAccountStore().$state)),
+        ...mapState(useAccountStore, {
+            myOwnName: 'account',
+            account: (store) => store.account,
+        }),
     },
     data() {
         return {
@@ -119,10 +107,6 @@ export default {
     watch: {},
     async mounted() {
         const vm = this
-        const modal = new vm.$bootstrap.Modal('#notice', {
-            keyboard: false,
-            backdrop: 'static',
-        })
 
         $(function () {
             $('input[name="date_expires"]').daterangepicker(
@@ -141,7 +125,6 @@ export default {
                 }
             )
         })
-        await vm.getShortLink()
     },
     methods: {
         validURL(str) {
@@ -166,13 +149,6 @@ export default {
                     vm.$error(vm.$t('copy failed'), err)
                 }
             )
-        },
-        splitUsername(username) {
-            if (username === null || username.length === 0) {
-                return '******'
-            }
-            const strTemp = ''
-            return strTemp.concat(username.slice(0, 3), '*****', username.slice(-3))
         },
         async createShortLink() {
             const vm = this
@@ -202,37 +178,6 @@ export default {
                     .catch((error) => {
                         vm.$error(error.message)
                     })
-            } catch (e) {
-                vm.$error(e.message)
-            }
-        },
-        async getShortLink() {
-            const vm = this
-            const linkStore = useLinkStore()
-            try {
-                vm.get_short_link.short_link = vm.$route
-                //     if(!vm.get_short_link.short_link){
-                //         throw new Error('Link bạn vừa nhập không hợp lệ. Hãy nhập 1 link hợp lệ bắt đầu bằng http:// hoặc https://')
-                //     }
-                //
-                //     await linkStore.getShortLink({
-                //         user_id: vm.account.detail.user_id,
-                //         domain: vm.short_link.domain,
-                //         origin_link: vm.short_link.origin,
-                //         short_link: vm.short_link.custom,
-                //         date_expires: vm.short_link.date_expires,
-                //         password: vm.short_link.password
-                //     }).then((response) => {
-                //         let {data, message, success} = response
-                //         if(success){
-                //             console.log(data)
-                //             vm.$success(message)
-                //         } else {
-                //             vm.$error(message)
-                //         }
-                //     }).catch((error) => {
-                //         vm.$error(error.message)
-                //     })
             } catch (e) {
                 vm.$error(e.message)
             }

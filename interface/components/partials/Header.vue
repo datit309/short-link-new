@@ -2,20 +2,6 @@
 header
     // Modal
     coming-soon
-    #notice.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
-        .modal-dialog
-            .modal-content
-                .modal-body.p-4.py-lg-5.position-relative
-                    .position-absolute.top-0.end-0
-                        button.btn.border-0.text-title(data-bs-dismiss="modal")
-                            i.fas.fa-times
-                    //div.justify-content-center.d-flex.mb-2
-                        img.w-75(src='@/assets/images/logo.png')
-                    //h5.text-title.text-uppercase.fw-bold.text-center {{$t('Notice')}}
-                    .row.py-3.justify-content-center
-                        img.w-100(src='@/assets/images/notice-4-6.jpeg')
-
-
     #resend-email.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
         .modal-dialog
             .modal-content
@@ -212,32 +198,6 @@ header
 
 
 
-    #selectnetwork.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
-        .modal-dialog
-            .modal-content
-                .modal-body.p-4.py-lg-5.position-relative
-                    .position-absolute.top-0.end-0
-                        button.btn.border-0.text-title(data-bs-dismiss="modal")
-                            i.fas.fa-times
-                    h1.text-title.text-uppercase.fw-bold Select a network
-                    p You are currently browsing on the
-                        span.text-title.mx-1 Moba game
-                        | network
-                    .row.py-3.justify-content-center
-                        //.col-6.mb-3.d-none
-                        //  a(@click="selectNetwork('TRC20')").hvr-float-shadow
-                        //    img.w-100(src='@/assets/images/trc.png')
-                        .col-6.mb-3
-                            a(@click="selectNetwork('BEP20')" data-bs-dismiss="modal").hvr-float-shadow
-                                img.w-100(src='@/assets/images/bep.png')
-                        .col-6.mb-3
-                            a(@click="selectNetwork('ERC20')" data-bs-dismiss="modal").hvr-float-shadow
-                                img.w-100(src='@/assets/images/erc.png')
-                        .col-6.mb-3
-                            a(@click="selectNetwork('POLYGON')" data-bs-dismiss="modal").hvr-float-shadow
-                                img.w-100(src='@/assets/images/poly.png')
-
-
     nav.navbar.navbar-expand-lg.bg-menu.mt-lg-3
         .container
             a.navbar-brand.me-0(href="/")
@@ -247,6 +207,11 @@ header
             .d-flex.justify-content-center
                 button.btn.btn-sub.p-2.px-lg-3.me-1(v-if="!account.detail.username" data-bs-toggle="modal" data-bs-target="#loginModal" type='button' aria-expanded='false')
                     | {{$t('Login')}} / {{$t('Register')}}
+                nuxt-link.btn.btn-sub.p-2.px-lg-3.me-1(to="/" v-if="account.detail.username" aria-expanded='false')
+                    | {{$t('Thêm mới')}}
+                nuxt-link.btn.btn-sub.p-2.px-lg-3.me-1(to="/account/list-link" v-if="account.detail.username" aria-expanded='false')
+                    | {{$t('Lịch sử')}}
+
                 .dropdown.me-1.dropdown-menu-right(v-if="account.detail.username")
                     button.btn.btn-sub(type='button' data-bs-toggle='dropdown' aria-expanded='false')
                         .d-flex
@@ -259,7 +224,7 @@ header
                                 i.fas.fa-caret-down
                     ul.dropdown-menu.dropdown-menu-end(aria-labelledby='dropdownMenuButton1' style='min-width:200px')
                         li
-                            nuxt-link.dropdown-item.d-flex.justify-content-between.align-items-center.border-bottom.py-2(to="/account/list-link")
+                            //nuxt-link.dropdown-item.d-flex.justify-content-between.align-items-center.border-bottom.py-2(to="/account/list-link")
                                 span {{$t('My Account')}}
                                 i.fas.fa-user.ms-5
                             a.dropdown-item.d-flex.justify-content-between.align-items-center.py-2(@click="logoutAPIV2")
@@ -303,15 +268,10 @@ export default {
             account: (store) => store.account,
         }),
         ...mapState(langStore, {
-            myOwnName: 'order',
+            myOwnName: 'lang',
             locale: (store) => store.locale,
             list_locales: (store) => store.list_locales,
         }),
-        current_route_name: {
-            get() {
-                return useRoute().name
-            },
-        },
     },
     data() {
         return {
@@ -399,48 +359,8 @@ export default {
                         modal._hideModal()
                         $('.modal-backdrop').remove()
                     }, 100)
-                    if (data.two_factor_enabled) {
-                        vm.$Swal
-                            .fire({
-                                title: vm.$t('Enter the code by the authentication app on your device.'),
-                                input: 'number',
-                                inputAttributes: {
-                                    autocapitalize: 'off',
-                                },
-                                showCancelButton: false,
-                                confirmButtonText: 'Submit',
-                                showLoaderOnConfirm: true,
-                                preConfirm: (code) => {
-                                    return auth
-                                        .verify2FA({ username: vm.username, code })
-                                        .then(async (response) => {
-                                            if (!response.success) {
-                                                throw new Error(response.message)
-                                            }
-                                            return response
-                                        })
-                                        .catch((error) => {
-                                            vm.$Swal.showValidationMessage(`${error.message}`)
-                                        })
-                                },
-                                allowOutsideClick: () => !vm.$Swal.isLoading(),
-                            })
-                            .then(async (result) => {
-                                if (result.isConfirmed) {
-                                    if (result.value.success) {
-                                        const decoded = await storeAccount.decodeToken()
-                                        Cookies.set('default_asset', vm.default_asset)
-                                        Cookies.set('default_asset_type', 'L')
-                                        await vm.$router.push('/')
-                                    } else {
-                                        await vm.logoutAPIV2()
-                                    }
-                                }
-                            })
-                    } else {
-                        const decoded = await storeAccount.decodeToken()
-                        await vm.$router.push('/')
-                    }
+                    const decoded = await storeAccount.decodeToken()
+                    await vm.$router.push('/')
                 } else {
                     vm.$hideLoading()
                     if (_.isArray(message)) {

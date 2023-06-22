@@ -371,10 +371,10 @@ body {
 .img-logo {
     width: 200px;
     @include md {
-        width: 40px;
+        width: 120px;
     }
     @include sm {
-        width: 30px;
+        width: 100px;
     }
 }
 
@@ -384,7 +384,7 @@ body {
         width: 120px;
     }
     @include sm {
-        width: 30px;
+        width: 100px;
     }
 }
 

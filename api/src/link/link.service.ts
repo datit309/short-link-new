@@ -103,9 +103,11 @@ export class LinkService {
       let link = await this.modelLink.paginate({
         user_id,
       },{
-        select: 'domain origin_link short_link is_password password date_expires counter',
         page,
-        limit
+        limit,
+        sort: {
+          createdAt: -1 //Sort by Date Added DESC
+        }
       })
       if(!link) {
         throw new Error(`Link does not exist`)

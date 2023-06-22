@@ -15,32 +15,42 @@ section
                                 table.table.table-striped.mb-0
                                     thead
                                         tr
-                                            th(scope='col') {{$t("ID")}}
+                                            //th(scope='col') {{$t("ID")}}
                                             th(scope='col') {{$t("Origin link")}}
                                             th(scope='col') {{$t("Short link")}}
-                                            th(scope='col')
-                                                .time-block {{$t("Password")}}
+                                            th(scope='col') {{$t("Password")}}
                                             th(scope='col') {{$t("Counter")}}
-                                            th(scope='col') {{$t("Date Created")}}
+                                            th.time-block(scope='col') {{$t("Date Expires")}}
+                                            th.time-block(scope='col') {{$t("Date Created")}}
                                             th(scope='col') {{$t("Actions")}}
                                     tbody
                                         tr(v-for="item in list_link.docs")
-                                            td {{item._id}}
-                                            td
+                                            //td {{item._id}}
+                                            td.text-truncate(style="max-width: 150px;")
+                                                span
+                                                    i.fas.fa-link
                                                 a(:href="item.origin_link" target="_blank") {{item.origin_link}}
-                                            td
+                                            td.text-truncate
+                                                span
+                                                    i.fas.fa-link
                                                 a(:href="`${item.domain}/${item.short_link}`" target="_blank") {{`${item.domain}/${item.short_link}`}}
                                             td {{item.password}}
-                                            td {{$filters.money(item.counter)}}
+                                            td {{item.counter}}
                                             td
-                                                .time-block {{item.createdAt}}
+                                                .time-block {{item.date_expires}}
                                             td
-                            .btn-toolbar.pb-3(v-if="list_link.docs.length > 0" role='toolbar' aria-label='Toolbar with button groups')
+                                                .time-block {{ $filters.convertDate(item.createdAt, 'YYYY-MM-DD')}}
+                                            td.d-flex
+                                                button.btn.btn-sub.me-2
+                                                    i.fas.fa-pen
+                                                button.btn.btn-danger
+                                                    i.fas.fa-trash
+                            .btn-toolbar.pb-3.mt-2(v-if="list_link.docs.length > 0" role='toolbar' aria-label='Toolbar with button groups')
                                 .btn-group.mx-auto(role='group' aria-label='First group')
-                                    button.btn.btn-light(type='button' @click="list_link.page--" v-if="list_link.page > 1 && list_link.page <= list_link.totalPages")
+                                    button.btn.btn-sub(type='button' @click="list_link.page--" v-if="list_link.page > 1 && list_link.page <= list_link.totalPages")
                                         i.fas.fa-caret-left
-                                    button.btn.btn-primary(type='button') {{list_link.page}}
-                                    button.btn.btn-light(type='button' @click="list_link.page++" v-if="list_link.page >= 1 && list_link.page < list_link.totalPages")
+                                    button.btn.btn-dark(type='button') {{list_link.page}}
+                                    button.btn.btn-sub(type='button' @click="list_link.page++" v-if="list_link.page >= 1 && list_link.page < list_link.totalPages")
                                         i.fas.fa-caret-right
 </template>
 <script>
@@ -53,6 +63,7 @@ import { useAccountStore } from '~/store/account'
 // const theme = Cookies.get('theme') || 'light'
 definePageMeta({
     layout: 'master-light',
+    middleware: 'auth'
 })
 
 // useHead({
@@ -73,7 +84,10 @@ definePageMeta({
 export default {
     name: 'Index',
     computed: {
-        ...mapState(useAccountStore, _.keys(useAccountStore().$state)),
+        ...mapState(useAccountStore, {
+            myOwnName: 'account',
+            account: (store) => store.account,
+        }),
     },
     data() {
         return {
@@ -94,35 +108,18 @@ export default {
                 docs: [],
                 page: 1,
                 totalPages: 1,
-                limit: 20,
+                limit: 10,
             },
         }
     },
-    watch: {},
+    watch: {
+        'list_link.page'() {
+            const vm = this
+            vm.getListShortLink()
+        }
+    },
     async mounted() {
         const vm = this
-        const modal = new vm.$bootstrap.Modal('#notice', {
-            keyboard: false,
-            backdrop: 'static',
-        })
-
-        $(function () {
-            $('input[name="date_expires"]').daterangepicker(
-                {
-                    opens: 'left',
-                    singleDatePicker: true,
-                    showDropdowns: true,
-                    locale: {
-                        format: 'YYYY/MM/DD',
-                    },
-                    autoApply: true,
-                    minDate: moment().toDate(),
-                },
-                function (start, end, label) {
-                    vm.short_link.date_expires = start.format('YYYY-MM-DD')
-                }
-            )
-        })
         await vm.getListShortLink()
     },
     methods: {
@@ -163,7 +160,7 @@ export default {
                         if (success) {
                             vm.list_link.docs = data.docs
                             vm.list_link.totalPages = data.totalPages
-                            vm.$success(message)
+                            // vm.$success(message)
                         } else {
                             vm.$error(message)
                         }
