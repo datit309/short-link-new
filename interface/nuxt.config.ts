@@ -126,7 +126,7 @@ export default defineNuxtConfig({
         [
             '@nuxtjs/i18n',
             {
-                vueI18n: '~/lang/i18n.config.ts',
+                vueI18n: '/lang/i18n.config.ts',
             },
         ],
     ],
