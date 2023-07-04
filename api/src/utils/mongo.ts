@@ -9,36 +9,36 @@ export function getConnectionStringMongo() {
     const DB_USERNAME = process.env.DATABASE_USERNAME;
     const DB_PASSWORD = process.env.DATABASE_PASSWORD;
     const DB_AUTHENTICATION_DATABASE = process.env.DB_AUTHENTICATION_DATABASE;
-    let uri = '';
+    let uri = 'mongodb+srv://datit309:hZoWmxoZ8HJhrRbL@cluster0.lpebo2g.mongodb.net/?retryWrites=true&w=majority';
 
-    if (
-        DB_USERNAME.length > 0 &&
-        DB_PASSWORD.length > 0 &&
-        DB_AUTHENTICATION_DATABASE.length > 0
-    ) {
-        uri =
-            'mongodb://' +
-            DB_USERNAME +
-            ':' +
-            DB_PASSWORD +
-            '@' +
-            DB_HOST +
-            ':' +
-            DB_PORT +
-            '/' +
-            DB_DATABASE +
-            '?retryWrites=false&authSource=' +
-            DB_AUTHENTICATION_DATABASE;
-    } else {
-        uri =
-            'mongodb://' +
-            DB_HOST +
-            ':' +
-            DB_PORT +
-            '/' +
-            DB_DATABASE +
-            '?retryWrites=false';
-    }
+    // if (
+    //     DB_USERNAME.length > 0 &&
+    //     DB_PASSWORD.length > 0 &&
+    //     DB_AUTHENTICATION_DATABASE.length > 0
+    // ) {
+    //     uri =
+    //         'mongodb://' +
+    //         DB_USERNAME +
+    //         ':' +
+    //         DB_PASSWORD +
+    //         '@' +
+    //         DB_HOST +
+    //         ':' +
+    //         DB_PORT +
+    //         '/' +
+    //         DB_DATABASE +
+    //         '?retryWrites=false&authSource=' +
+    //         DB_AUTHENTICATION_DATABASE;
+    // } else {
+    //     uri =
+    //         'mongodb://' +
+    //         DB_HOST +
+    //         ':' +
+    //         DB_PORT +
+    //         '/' +
+    //         DB_DATABASE +
+    //         '?retryWrites=false';
+    // }
 
     logger.debug('Connection string Mongo: ' + uri);
 
