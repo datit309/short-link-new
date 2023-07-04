@@ -13,7 +13,7 @@
     "build-dev": "cross-env NODE_ENV=development nest build && cp .env.development ./dist/.env",
     "build-testnet": "cross-env NODE_ENV=production nest build && cp .env.testnet ./dist/.env",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start",
+    "start": "cross-env NODE_ENV=production nest start",
     "dev": "cross-env NODE_ENV=development nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
