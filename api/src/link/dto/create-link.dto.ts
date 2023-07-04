@@ -5,7 +5,7 @@ export class CreateLinkDto {
     short_link: string;
     date_expires: string;
     password: string
-
     is_password: boolean;
     counter: number
+    limit:  number
 }

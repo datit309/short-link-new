@@ -43,6 +43,14 @@ section
 
                                         .row.my-3(v-if="!new_link.short_link" )
                                             .col-12.col-lg-4
+                                                label.form-label.mb-0.px-0 {{$t("Số lượng")}}
+                                                .input-group.mb-2.bg-block.px-0
+                                                    //span.input-group-text
+                                                        i.fas.fa-link
+                                                    //span.input-group-text https://domain.com/
+                                                    input.form-control(v-model="short_link.limit" type='number' min="1" max="5" aria-describedby='basic-addon3' placeholder="1")
+                                                p * Bạn có thể tạo tối đa 5 link khác nhau cùng lúc.
+                                            .col-12.col-lg-4
                                                 label.form-label.mb-0.px-0 {{$t("Link tùy chỉnh")}}
                                                 .input-group.mb-2.bg-block.px-0
                                                     //span.input-group-text
@@ -95,6 +103,7 @@ export default {
                 date_expires: null,
                 password: null,
                 domain: '',
+                limit: 1,
             },
             get_short_link: {
                 short_link: '',
@@ -165,6 +174,7 @@ export default {
                         short_link: vm.short_link.custom,
                         date_expires: vm.short_link.date_expires,
                         password: vm.short_link.password,
+                        limit: vm.short_link.limit,
                     })
                     .then((response) => {
                         const { data, message, success } = response

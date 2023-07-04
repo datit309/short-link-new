@@ -81,18 +81,24 @@ export class LinkService {
           return link
         }
       }
-
-      link = await this.modelLink.create({
-        user_id: body['user_id'],
-        domain: body['domain'],
-        origin_link: body['origin_link'],
-        short_link: body['short_link'],
-        date_expires: body['date_expires'] || null,
-        password: body['password'] || null,
-        is_password: !!body['password'],
-        counter: 0
-      })
-      return link
+      let list_link = []
+      if(body['limit'] >= 1 && body['limit'] <= 5){
+        for(let i = 0; i < body['limit']; i++){
+          body['short_link'] = await this.generateLink(5)
+          link = await this.modelLink.create({
+            user_id: body['user_id'],
+            domain: body['domain'],
+            origin_link: body['origin_link'],
+            short_link: body['short_link'],
+            date_expires: body['date_expires'] || null,
+            password: body['password'] || null,
+            is_password: !!body['password'],
+            counter: 0
+          })
+          list_link.push(link)
+        }
+      }
+      return list_link
     } catch (e) {
       return e
     }

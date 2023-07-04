@@ -299,10 +299,10 @@ export default {
 
         // await vm.checkServerMaintenance()
 
-        const langCode = Cookies.get('i18n_redirected')
-        if (langCode) {
-            this.setLanguage(langCode)
-        }
+        // const langCode = Cookies.get('i18n_redirected')
+        // if (langCode) {
+        //     this.setLanguage(langCode)
+        // }
     },
     methods: {
         setTheme(code) {
@@ -311,12 +311,12 @@ export default {
             vm.theme = code
             window.location.reload()
         },
-        setLanguage(code) {
-            const lang = langStore()
-            lang.setLang(code)
-            this.$i18n.setLocaleCookie(code)
-            this.$i18n.setLocale(code)
-        },
+        // setLanguage(code) {
+        //     const lang = langStore()
+        //     lang.setLang(code)
+        //     this.$i18n.setLocaleCookie(code)
+        //     this.$i18n.setLocale(code)
+        // },
         async resendEmailActive() {
             const vm = this
             const auth = authStore()
