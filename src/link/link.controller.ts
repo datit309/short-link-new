@@ -1,0 +1,106 @@
+import {Controller, Get, Post, Body, Patch, Param, Delete, Res, Req, HttpStatus, UseGuards} from '@nestjs/common';
+import { LinkService } from './link.service';
+import { CreateLinkDto } from './dto/create-link.dto';
+import { UpdateLinkDto } from './dto/update-link.dto';
+import {GetLinkDto} from "./dto/get-link.dto";
+import {RoleGuard} from "../auth/guards/role.guard";
+import {Roles} from "../auth/roles.decorator";
+import {JwtAuthGuard} from "../auth/guards/jwt-auth.guard";
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger'
+
+@Controller('link')
+export class LinkController {
+  constructor(private readonly linkService: LinkService) {}
+
+  @Post('create')
+  async createLink(@Body() body: CreateLinkDto, @Req() req, @Res() res) {
+    try {
+      let data = await this.linkService.createLink(body);
+      if(data.message){
+        throw new Error(data.message)
+      }
+      return res.status(HttpStatus.OK).send({
+        data: data,
+        success: true,
+        message: 'request success'
+      });
+    } catch (e) {
+      return res.status(HttpStatus.BAD_REQUEST).send({
+        data: null,
+        success: false,
+        message: e.message
+      });
+    }
+  }
+
+  @Post('get')
+  async getLink(@Body() body: GetLinkDto, @Req() req, @Res() res) {
+    try {
+      let data = await this.linkService.findOne(body.short_link)
+      if(data.message){
+        throw new Error(data.message)
+      }
+      return res.status(HttpStatus.OK).send({
+        data: data,
+        success: true,
+        message: 'request success'
+      });
+    } catch (e) {
+      return res.status(HttpStatus.BAD_REQUEST).send({
+        data: null,
+        success: false,
+        message: e.message
+      });
+    }
+
+  }
+
+  @Post('get-link-password')
+  async getLinkWithPassword(@Body() body: GetLinkDto, @Req() req, @Res() res) {
+    try {
+      let data = await this.linkService.checkPassword(body.short_link, body.password)
+      if(data.message){
+        throw new Error(data.message)
+      }
+      return res.status(HttpStatus.OK).send({
+        data: data,
+        success: true,
+        message: 'request success'
+      });
+    } catch (e) {
+      return res.status(HttpStatus.BAD_REQUEST).send({
+        data: null,
+        success: false,
+        message: e.message
+      });
+    }
+
+  }
+
+  @Post('list')
+  @Roles('client')
+  @UseGuards(JwtAuthGuard, RoleGuard)
+  @ApiBearerAuth('defaultBearerAuth')
+  async getListLink(@Body() body: any, @Req() req, @Res() res) {
+    try {
+      let user_id = req.user.user_id
+      let data = await this.linkService.findAll(user_id, body.page, body.limit)
+      if(data.message){
+        throw new Error(data.message)
+      }
+      return res.status(HttpStatus.OK).send({
+        data: data,
+        success: true,
+        message: 'request success'
+      });
+    } catch (e) {
+      return res.status(HttpStatus.BAD_REQUEST).send({
+        data: null,
+        success: false,
+        message: e.message
+      });
+    }
+
+  }
+
+}
