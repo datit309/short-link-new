@@ -86,7 +86,7 @@ export class LinkService {
         for(let i = 0; i < body['limit']; i++){
           body['short_link'] = await this.generateLink(5)
           link = await this.modelLink.create({
-            user_id: body['user_id'],
+            user_id: body['user_id'] ? body['user_id'] : null,
             domain: body['domain'],
             origin_link: body['origin_link'],
             short_link: body['short_link'],
