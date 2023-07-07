@@ -60,8 +60,8 @@ export default defineNuxtConfig({
                 { hid: 'og:image:type', name: 'og:image:type', content: 'image/jpeg' },
                 { hid: 'og:image', name: 'og:image', property: 'og:image', content: '/logo.png' },
                 { hid: 'og:image:secure_url', name: 'og:image:secure_url', content: '/logo.png' },
-                { hid: 'og:image:width', name: 'og:image:width', content: '500' },
-                { hid: 'og:image:height', name: 'og:image:height', content: '282' },
+                // { hid: 'og:image:width', name: 'og:image:width', content: '120' },
+                // { hid: 'og:image:height', name: 'og:image:height', content: '282' },
                 {
                     hid: 'og:image:alt',
                     name: 'og:image:alt',
