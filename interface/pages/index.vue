@@ -29,12 +29,12 @@ section
                                             span.me-1 đồng nghĩa với việc bạn đồng ý với
                                             span
                                                 a(href="javascript:void(0)") Điều khoản sử dụng
-                                        template(v-if="new_link.short_link" )
+                                        template(v-if="new_link.length > 0" )
                                             label.form-label.mb-0.px-0 {{$t("Link rút gọn của bạn")}}
-                                            .input-group.mb-2.bg-block.px-0
+                                            .input-group.mb-2.bg-block.px-0(v-for="link in new_link" )
                                                 span.input-group-text
                                                     i.fas.fa-link
-                                                input.form-control(:value="new_link.short_link" type='text' aria-describedby='basic-addon3' placeholder="Link rút gọn của bạn" readonly)
+                                                input.form-control(:value="`${link.domain}/${link.short_link}`" type='text' aria-describedby='basic-addon3' placeholder="Link rút gọn của bạn" readonly)
 
                                                 button.btn.btn-sub.py-2(@click="copyText(new_link.short_link)") {{$t('Sao chép')}}
                                             .row.mt-3.justify-content-center
@@ -108,9 +108,9 @@ export default {
             get_short_link: {
                 short_link: '',
             },
-            new_link: {
+            new_link: [{
                 short_link: '',
-            },
+            }],
         }
     },
     watch: {},
@@ -179,7 +179,7 @@ export default {
                     .then((response) => {
                         const { data, message, success } = response
                         if (success) {
-                            vm.new_link.short_link = `${data.domain}/${data.short_link}`
+                            vm.new_link = data
                             vm.$success(message)
                         } else {
                             vm.$error(message)

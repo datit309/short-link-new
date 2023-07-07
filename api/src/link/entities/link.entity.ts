@@ -10,6 +10,7 @@ export class LinkEntity {
         required: false,
         type: SchemaTypes.ObjectId,
         ref: UserEntity.name,
+        default: null
     })
     @Type(() => UserEntity)
     user_id: UserEntity;
