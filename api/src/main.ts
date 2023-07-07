@@ -17,7 +17,6 @@ import * as _ from 'lodash';
 import {DocumentBuilder, SwaggerModule} from '@nestjs/swagger';
 import {getConnectionStringMongo} from './utils/mongo';
 import {HttpExceptionFilter} from './exceptions/http-exception.filter';
-import { WsAdapter } from '@nestjs/platform-ws';
 import {ethers} from 'ethers'
 const crypto = require('crypto');
 
@@ -65,7 +64,6 @@ async function bootstrap() {
         credentials: true,
         origin: '*',
     });
-    app.useWebSocketAdapter(new WsAdapter(app));
     app.set('trust proxy', true); // trust first proxy
 
     app.useGlobalPipes(

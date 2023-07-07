@@ -18,8 +18,6 @@ import {HttpExceptionFilter} from "./exceptions/http-exception.filter";
 import * as process from "process";
 import {ServeStaticModule} from '@nestjs/serve-static';
 import {AllExceptionsFilter} from "./exceptions/all-exceptions.filter";
-import { WebsocketModule } from './websocket/websocket.module';
-import {WebsocketService} from "./websocket/websocket.service";
 import { LinkModule } from './link/link.module';
 
 @Module({
@@ -54,7 +52,6 @@ import { LinkModule } from './link/link.module';
     AuthModule,
     UserModule,
     ThirdPartyModule,
-    WebsocketModule,
     LinkModule,
   ],
   controllers: [AppController],
@@ -67,7 +64,6 @@ import { LinkModule } from './link/link.module';
       provide: APP_GUARD,
       useClass: ThrottlerGuard
     },
-    WebsocketService
   ],
 })
 export class AppModule implements NestModule {

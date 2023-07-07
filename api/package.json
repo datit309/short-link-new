@@ -5,6 +5,11 @@
   "author": "",
   "private": true,
   "license": "UNLICENSED",
+  "engines": {
+    "node": "16.x",
+    "npm": "7.x",
+    "yarn": "1.x"
+  },
   "scripts": {
     "deploy": "sh install-product.bash",
     "deploy-dev": "sh install-testnet.bash",
