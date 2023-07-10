@@ -14,16 +14,16 @@ export default {
     watch: {
         $route(to, from) {
             const nuxtApp = useNuxtApp()
-            nuxtApp.hook('page:finish', async () => {
-                await import('~/assets/js/main').then((r) => r).catch((e) => e)
-            })
+            // nuxtApp.hook('page:finish', async () => {
+            //     await import('~/assets/js/main').then((r) => r).catch((e) => e)
+            // })
         },
     },
     mounted() {
         const nuxtApp = useNuxtApp()
-        nuxtApp.hook('page:finish', async () => {
-            await import('~/assets/js/main').then((r) => r).catch((e) => e)
-        })
+        // nuxtApp.hook('page:finish', async () => {
+        //     await import('~/assets/js/main').then((r) => r).catch((e) => e)
+        // })
     },
     methods: {
         backToTop() {

@@ -22,7 +22,7 @@ export default {
         },
     },
     mounted() {
-        import('~/assets/js/main')
+        // import('~/assets/js/main')
     },
     methods: {
         backToTop() {
