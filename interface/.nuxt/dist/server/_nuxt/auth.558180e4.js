@@ -1,2 +1,0 @@
-import{f as n,u as i,e as a,a as c,g as u,h as p}from"../server.mjs";import"vue";import"#internal/nitro";import"vue-router";const k=n(async(l,f)=>{const e=i(),o=a.get(e.public.clientKeyStoreToken),t=c(),r=u();if(o){const s=JSON.parse(atob(o.split(".")[1]));if(p().utc().unix()>=s.exp){localStorage.clear(),sessionStorage.clear(),a.remove(e.public.clientKeyStoreToken);try{t.$error("Please login again!"),r.push("/")}catch{}}}else try{t.$error("Unauthorized!"),r.push("/")}catch{}});export{k as default};
-//# sourceMappingURL=auth.558180e4.js.map

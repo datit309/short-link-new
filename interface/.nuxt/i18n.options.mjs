@@ -46,5 +46,5 @@ export const nuxtI18nInternalOptions = Object({__normalizedLocales: []})
 export const NUXT_I18N_MODULE_ID = "@nuxtjs/i18n"
 export const NUXT_I18N_PRECOMPILE_ENDPOINT = "/__i18n__/precompile"
 export const NUXT_I18N_PRECOMPILED_LOCALE_KEY = "i18n-locales"
-export const isSSG = true
+export const isSSG = false
 export const isSSR = false
