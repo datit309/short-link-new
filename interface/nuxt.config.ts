@@ -13,7 +13,7 @@ export default defineNuxtConfig({
         apiSecret: '123',
         // Public keys that are exposed to the client
         public: {
-            APP_URL: 'https://short-link-demo.vercel.app',
+            APP_URL: 'https://hidelink.top',
             apiBase: process.env.NUXT_PUBLIC_API_BASE_URL,
             clientKeyStoreToken: process.env.NUXT_PUBLIC_APP_CLIENT_TOKEN,
         },
@@ -49,7 +49,7 @@ export default defineNuxtConfig({
                     content: 'Website rút gọn link miễn phí, cách đơn giản để tạo url ngắn gọn. Hỗ trợ rút gọn link Google, link Bio, link Facebook, Tiktok giúp chia sẻ liên kết dễ dàng.',
                 },
                 { hid: 'og:site_name', name: 'og:site_name', content: 'Rút gọn link' },
-                { hid: 'og:url', name: 'og:url', content: 'https://short-link-demo.vercel.app/' },
+                { hid: 'og:url', name: 'og:url', content: 'https://hidelink.top/' },
                 {
                     hid: 'og:description',
                     name: 'og:description',
@@ -58,8 +58,8 @@ export default defineNuxtConfig({
                 },
                 { hid: 'og:type', name: 'og:type', property: 'og:type', content: 'website' },
                 { hid: 'og:image:type', name: 'og:image:type', content: 'image/jpeg' },
-                { hid: 'og:image', name: 'og:image', property: 'og:image', content: 'https://short-link-demo.vercel.app/client/images/moba_game_banner.jpg' },
-                { hid: 'og:image:secure_url', name: 'og:image:secure_url', content: 'https://short-link-demo.vercel.app/client/images/moba_game_banner.jpg' },
+                { hid: 'og:image', name: 'og:image', property: 'og:image', content: 'https://hidelink.top/client/images/moba_game_banner.jpg' },
+                { hid: 'og:image:secure_url', name: 'og:image:secure_url', content: 'https://hidelink.top/client/images/moba_game_banner.jpg' },
                 { hid: 'og:image:width', name: 'og:image:width', content: '500' },
                 { hid: 'og:image:height', name: 'og:image:height', content: '282' },
                 {
@@ -71,7 +71,7 @@ export default defineNuxtConfig({
 
                 { name: 'twitter:card', content: 'summary_large_image' },
                 { property: 'twitter:domain', content: 'short-link-demo.vercel.app' },
-                { property: 'twitter:url', content: 'https://short-link-demo.vercel.app' },
+                { property: 'twitter:url', content: 'https://hidelink.top' },
                 {
                     name: 'twitter:title',
                     content: 'Website rút gọn link miễn phí, cách đơn giản để tạo url ngắn gọn. Hỗ trợ rút gọn link Google, link Bio, link Facebook, Tiktok giúp chia sẻ liên kết dễ dàng.',
@@ -80,7 +80,7 @@ export default defineNuxtConfig({
                     name: 'twitter:description',
                     content: 'Website rút gọn link miễn phí, cách đơn giản để tạo url ngắn gọn. Hỗ trợ rút gọn link Google, link Bio, link Facebook, Tiktok giúp chia sẻ liên kết dễ dàng.',
                 },
-                { name: 'twitter:image', content: 'https://short-link-demo.vercel.app/client/images/moba_game_banner.jpg' },
+                { name: 'twitter:image', content: 'https://hidelink.top/client/images/moba_game_banner.jpg' },
             ],
             link: [
                 { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
