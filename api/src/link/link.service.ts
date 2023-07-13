@@ -39,7 +39,7 @@ export class LinkService {
     }
     return result;
   }
-  async createLink(body: CreateLinkDto) {
+  async createLink(body: CreateLinkDto) : Promise<LinkEntity[]>{
     try {
       let link = null
       let user = null
@@ -47,10 +47,12 @@ export class LinkService {
 
       if(body['user_id']){
         user = await this.modelUser.findOne({_id: body['user_id']})
-        if(!user){
-          body['user_id'] = null
+        if(user){
+          body['user_id'] = user._id
         }
-        body['user_id'] = user._id
+        body['user_id'] = null
+      } else {
+        body['user_id'] = null
       }
 
       if(!body['origin_link']){
@@ -73,20 +75,22 @@ export class LinkService {
         body['short_link'] = await this.generateLink(5)
       }
 
-      if(body['origin_link']){
-        link = await this.modelLink.findOne({
-          origin_link: body['origin_link']
-        })
-        if(link){
-          return link
-        }
-      }
+      // if(body['origin_link']){
+      //   link = await this.modelLink.findOne({
+      //     origin_link: body['origin_link']
+      //   })
+      //   if(link){
+      //     return link
+      //   }
+      // }
       let list_link = []
       if(body['limit'] >= 1 && body['limit'] <= 5){
         for(let i = 0; i < body['limit']; i++){
-          body['short_link'] = await this.generateLink(5)
+          if(body['limit'] > 1) {
+            body['short_link'] = await this.generateLink(5)
+          }
           link = await this.modelLink.create({
-            user_id: body['user_id'] || null,
+            user_id: body['user_id'],
             domain: body['domain'],
             origin_link: body['origin_link'],
             short_link: body['short_link'],
@@ -95,12 +99,12 @@ export class LinkService {
             is_password: !!body['password'],
             counter: 0
           })
-          list_link.push(link)
+          list_link = list_link.concat(link)
         }
       }
       return list_link
     } catch (e) {
-      return e
+      throw new HttpException(e.message, HttpStatus.BAD_REQUEST)
     }
   }
 
@@ -120,7 +124,7 @@ export class LinkService {
       }
       return link;
     } catch (e) {
-      return e
+      throw new HttpException(e.message, HttpStatus.BAD_REQUEST)
     }
 
   }
@@ -146,7 +150,7 @@ export class LinkService {
 
       return link
     } catch (e) {
-      return e
+      throw new HttpException(e.message, HttpStatus.BAD_REQUEST)
     }
 
   }
@@ -176,7 +180,7 @@ export class LinkService {
 
       return link
     } catch (e) {
-      return e
+      throw new HttpException(e.message, HttpStatus.BAD_REQUEST)
     }
 
   }

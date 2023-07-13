@@ -15,12 +15,8 @@ export class LinkController {
   @Post('create')
   async createLink(@Body() body: CreateLinkDto, @Req() req, @Res() res) {
     try {
-      let data = await this.linkService.createLink(body);
-      if(data.message){
-        throw new Error(data.message)
-      }
       return res.status(HttpStatus.OK).send({
-        data: data,
+        data: await this.linkService.createLink(body),
         success: true,
         message: 'request success'
       });
@@ -36,12 +32,8 @@ export class LinkController {
   @Post('get')
   async getLink(@Body() body: GetLinkDto, @Req() req, @Res() res) {
     try {
-      let data = await this.linkService.findOne(body.short_link)
-      if(data.message){
-        throw new Error(data.message)
-      }
       return res.status(HttpStatus.OK).send({
-        data: data,
+        data: await this.linkService.findOne(body.short_link),
         success: true,
         message: 'request success'
       });
@@ -58,12 +50,9 @@ export class LinkController {
   @Post('get-link-password')
   async getLinkWithPassword(@Body() body: GetLinkDto, @Req() req, @Res() res) {
     try {
-      let data = await this.linkService.checkPassword(body.short_link, body.password)
-      if(data.message){
-        throw new Error(data.message)
-      }
+
       return res.status(HttpStatus.OK).send({
-        data: data,
+        data: await this.linkService.checkPassword(body.short_link, body.password),
         success: true,
         message: 'request success'
       });
@@ -84,12 +73,8 @@ export class LinkController {
   async getListLink(@Body() body: any, @Req() req, @Res() res) {
     try {
       let user_id = req.user.user_id
-      let data = await this.linkService.findAll(user_id, body.page, body.limit)
-      if(data.message){
-        throw new Error(data.message)
-      }
       return res.status(HttpStatus.OK).send({
-        data: data,
+        data: await this.linkService.findAll(user_id, body.page, body.limit),
         success: true,
         message: 'request success'
       });

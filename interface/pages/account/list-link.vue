@@ -26,20 +26,22 @@ section
                                     tbody
                                         tr(v-for="item in list_link.docs")
                                             //td {{item._id}}
-                                            td.text-truncate(style="max-width: 150px;")
+                                            td.text-truncate(style="max-width: 150px;" @click="copyText(item.origin_link)")
                                                 span
                                                     i.fas.fa-link
-                                                a(:href="item.origin_link" target="_blank") {{item.origin_link}}
-                                            td.text-truncate
+                                                //a(:href="item.origin_link" target="_blank")
+                                                span {{item.origin_link}}
+                                            td.text-truncate(@click="copyText(`${item.domain}/${item.short_link}`)")
                                                 span
                                                     i.fas.fa-link
-                                                a(:href="`${item.domain}/${item.short_link}`" target="_blank") {{`${item.domain}/${item.short_link}`}}
+                                                //a(:href="`${item.domain}/${item.short_link}`" target="_blank")
+                                                span {{`${item.domain}/${item.short_link}`}}
                                             td {{item.password}}
                                             td {{item.counter}}
                                             td
                                                 .time-block {{item.date_expires}}
                                             td
-                                                .time-block {{ $filters.convertDate(item.createdAt, 'YYYY-MM-DD')}}
+                                                .time-block {{ $filters.convertDate(item.createdAt, 'YYYY-MM-DD HH:mm:ss')}}
                                             td.d-flex
                                                 button.btn.btn-sub.me-2
                                                     i.fas.fa-pen

@@ -201,16 +201,15 @@ header
     nav.navbar.navbar-expand-lg.bg-menu.mt-lg-3
         .container
             a.navbar-brand.me-0(href="/")
-                img.img-logo.d-none.d-lg-block(v-if="theme === 'dark'" src='~/assets/images/logo.png')
-                img.img-logo.d-none.d-lg-block(v-else src='~/assets/images/logo.png')
+                img.img-logo.d-none.d-lg-block(src='~/assets/images/logo.png')
                 img.img-logo.d-lg-none(src='~/assets/images/favicon.png')
             .d-flex.justify-content-center
                 button.btn.btn-sub.p-2.px-lg-3.me-1(v-if="!account.detail.username" data-bs-toggle="modal" data-bs-target="#loginModal" type='button' aria-expanded='false')
                     | {{$t('Login')}} / {{$t('Register')}}
                 nuxt-link.btn.btn-sub.p-2.px-lg-3.me-1(to="/" v-if="account.detail.username" aria-expanded='false')
-                    | {{$t('Thêm mới')}}
+                    | {{$t('Create a shortened link')}}
                 nuxt-link.btn.btn-sub.p-2.px-lg-3.me-1(to="/account/list-link" v-if="account.detail.username" aria-expanded='false')
-                    | {{$t('Lịch sử')}}
+                    | {{$t('History')}}
 
                 .dropdown.me-1.dropdown-menu-right(v-if="account.detail.username")
                     button.btn.btn-sub(type='button' data-bs-toggle='dropdown' aria-expanded='false')
@@ -231,7 +230,7 @@ header
                                 span {{$t('Logout')}}
                                 i.fas.fa-sign-out-alt.ms-5
 
-                .dropdown.dropdown-menu-right.me-1
+                //.dropdown.dropdown-menu-right.me-1
                   button.btn.btn-sub(type='button' data-bs-toggle='dropdown' aria-expanded='false')
                     span(:class="`${locale.img}`")
                     span.text-light.d-none.d-lg-inline.ms-2 {{locale.name}}

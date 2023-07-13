@@ -8,70 +8,71 @@ section
                         nav
                             .nav.nav-pills(role='tablist')
                                 button.nav-link.active(data-bs-toggle='tab' data-bs-target='#bets' type='button' role='tab' aria-controls='nav-home' aria-selected='true')
-                                    h3.text-uppercase {{$t("Rút gọn link miễn phí. Dữ liệu lưu giữ vĩnh viễn")}}
+                                    h3.text-uppercase {{$t("SHORT LINK FOR FREE. DATA KEEPING PERMANENTLY")}}
                     .card-body.p-0
                         .tab-content
                             .row.mx-0.justify-content-center
                                 .col-lg-12.mb-4
                                     .bg-box.p-2.p-lg-3.rounded
-                                        label.form-label.mb-0.px-0 {{$t("Dán link cần rút gọn của bạn")}}
+                                        label.form-label.mb-0.px-0 {{$t("Paste your link to shorten")}}
                                         .input-group.mb-2.bg-block.px-0.input-group-lg
                                             span.input-group-text
                                                 i.fab.fa-telegram-plane
-                                            input.form-control.py-3(:readonly="!!new_link.short_link" v-model="short_link.origin" type='text' aria-describedby='basic-addon3' placeholder="Dán link cần rút gọn của bạn")
-                                            button.btn.btn-sub.py-3(v-if="!new_link.short_link" @click="createShortLink") {{$t('Rút gọn link')}}
+                                            input.form-control.py-3(:readonly="!!new_link.short_link.length > 0" v-model="short_link.origin" type='text' aria-describedby='basic-addon3' :placeholder='$t("Paste your link to shorten")')
+                                            button.btn.btn-sub.py-3(v-if="new_link.short_link.length <= 0" @click="createShortLink") {{$t('Shorten links')}}
 
                                         p.my-3
                                             span.me-1
                                                 i.fas.fa-exclamation-triangle
-                                            span.me-1 Bằng việc bấm vào nút
-                                            span.fw-bold.me-1 RÚT GỌN LINK,
-                                            span.me-1 đồng nghĩa với việc bạn đồng ý với
+                                            span.me-1 {{$t('By clicking the button')}}
+                                            span.fw-bold.me-1 {{$t("SHORT LINK,")}}
+                                            span.me-1 {{$t('means you agree with')}}
                                             span
-                                                a(href="javascript:void(0)") Điều khoản sử dụng
-                                        template(v-if="new_link.short_link" )
-                                            label.form-label.mb-0.px-0 {{$t("Link rút gọn của bạn")}}
-                                            .input-group.mb-2.bg-block.px-0
-                                                span.input-group-text
-                                                    i.fas.fa-link
-                                                input.form-control(:value="new_link.short_link" type='text' aria-describedby='basic-addon3' placeholder="Link rút gọn của bạn" readonly)
+                                                a(href="javascript:void(0)") {{$t('terms of use')}}
+                                        template(v-if="new_link.short_link.length > 0" )
+                                            label.form-label.mb-0.px-0 {{$t("Your shortened link")}}
+                                            template(v-for="link in new_link.short_link" )
+                                                .input-group.mb-2.bg-block.px-0
+                                                    span.input-group-text
+                                                        i.fas.fa-link
+                                                    input.form-control(:value="`${link.domain}/${link.short_link}`" type='text' aria-describedby='basic-addon3' :placeholder="$t('Your shortened link')" readonly)
 
-                                                button.btn.btn-sub.py-2(@click="copyText(new_link.short_link)") {{$t('Sao chép')}}
+                                                    button.btn.btn-sub.py-2(@click="copyText(`${link.domain}/${link.short_link}`)") {{$t('Copy')}}
                                             .row.mt-3.justify-content-center
-                                                .col-2
-                                                    button.btn.btn-sub.py-3.w-100(@click="new_link.short_link = ''") {{$t('Tạo link khác')}}
+                                                .col-md-3.col-lg-2.col-6
+                                                    button.btn.btn-sub.py-3.w-100(@click="new_link.short_link = []") {{$t('Create another link')}}
 
-                                        .row.my-3(v-if="!new_link.short_link" )
+                                        .row.my-3(v-if="new_link.short_link.length <= 0" )
                                             .col-12.col-lg-4
-                                                label.form-label.mb-0.px-0 {{$t("Số lượng")}}
+                                                label.form-label.mb-0.px-0 {{$t("Quantity")}}
                                                 .input-group.mb-2.bg-block.px-0
                                                     //span.input-group-text
                                                         i.fas.fa-link
                                                     //span.input-group-text https://domain.com/
                                                     input.form-control(v-model="short_link.limit" type='number' min="1" max="5" aria-describedby='basic-addon3' placeholder="1")
-                                                p * Bạn có thể tạo tối đa 5 link khác nhau cùng lúc.
+                                                p * {{$t('You can create up to 5 different links at the same time.')}}
                                             .col-12.col-lg-4
-                                                label.form-label.mb-0.px-0 {{$t("Link tùy chỉnh")}}
+                                                label.form-label.mb-0.px-0 {{$t("Custom Links")}}
                                                 .input-group.mb-2.bg-block.px-0
                                                     //span.input-group-text
                                                         i.fas.fa-link
                                                     span.input-group-text https://domain.com/
                                                     input.form-control(v-model="short_link.custom" type='text' aria-describedby='basic-addon3' placeholder="custom-link")
-                                                p * Mặc định, hệ thống sẽ tạo link ngẫu nhiên. Bạn có thể đặt link theo tùy chọn.
+                                                p * {{$t('By default, the system will generate random links. You can set the link by option.')}}
                                             .col-12.col-lg-4
-                                                label.form-label.mb-0.px-0 {{$t("Thời gian hiệu lực")}}
+                                                label.form-label.mb-0.px-0 {{$t("Effective time")}}
                                                 .input-group.mb-2.bg-block.px-0
                                                     span.input-group-text
                                                         i.far.fa-calendar-alt
-                                                    input.form-control(name="date_expires" type='text' aria-describedby='basic-addon3' placeholder="Thời gian hiệu lực")
-                                                p * Sau 00:00 phút của ngày được chọn, link sẽ không còn hiệu lực. Để trống nếu giữ vĩnh viễn link.
+                                                    input.form-control(name="date_expires" type='text' aria-describedby='basic-addon3' :placeholder="$t('Effective time')")
+                                                p * {{$t('After 00:00 minutes of the selected date, the link will no longer be valid. Leave blank if keeping the link permanently.')}}
                                             .col-12.col-lg-4
-                                                label.form-label.mb-0.px-0 {{$t("Mật khẩu bảo vệ")}}
+                                                label.form-label.mb-0.px-0 {{$t("Password protection")}}
                                                 .input-group.mb-2.bg-block.px-0
                                                     span.input-group-text
                                                         i.fas.fa-lock
-                                                    input.form-control(v-model="short_link.password" type='text' aria-describedby='basic-addon3' placeholder="Mật khẩu bảo vệ")
-                                                p * Đặt mật khẩu để bảo vệ link rút gọn. Để trống nếu bạn không muốn đặt mật khẩu.
+                                                    input.form-control(v-model="short_link.password" type='text' aria-describedby='basic-addon3' :placeholder='$t("Password protection")')
+                                                p * {{$t('Set a password to protect the shortened link. Leave blank if you do not want to set a password.')}}
 
                                         //button.btn.btn-deposit() {{$t("Update Profile")}}
 </template>
@@ -109,7 +110,7 @@ export default {
                 short_link: '',
             },
             new_link: {
-                short_link: '',
+                short_link: [],
             },
         }
     },
@@ -179,7 +180,7 @@ export default {
                     .then((response) => {
                         const { data, message, success } = response
                         if (success) {
-                            vm.new_link.short_link = `${data.domain}/${data.short_link}`
+                            vm.new_link.short_link = data
                             vm.$success(message)
                         } else {
                             vm.$error(message)
