@@ -29,6 +29,10 @@ declare module '@nuxt/schema' {
   interface PublicRuntimeConfig {
      APP_URL: string,
 
+    apiBase: string,
+
+    clientKeyStoreToken: string,
+
     persistedState: {
         storage: string,
 

@@ -8,6 +8,6 @@ export { default as useDeviceD } from '../node_modules/@nuxtjs/device/dist/runti
 export { default as useDevice } from '../node_modules/@nuxtjs/device/dist/runtime/composables/useDevice';
 export { usePinia, defineStore as definePiniaStore } from '../node_modules/@pinia/nuxt/dist/runtime/composables';
 export { persistedState } from '../node_modules/@pinia-plugin-persistedstate/nuxt/dist/runtime/storages';
-export { useI18n } from '../node_modules/vue-i18n/dist/vue-i18n.runtime';
+export { useI18n } from '../node_modules/vue-i18n/dist/vue-i18n';
 export { useRouteBaseName, useLocalePath, useLocaleRoute, useSwitchLocalePath, useLocaleHead, useBrowserLocale, useCookieLocale, defineI18nRoute, defineI18nLocale, defineI18nConfig } from '../node_modules/@nuxtjs/i18n/dist/runtime/composables';
 export { definePageMeta } from '../node_modules/nuxt/dist/pages/runtime/composables';
