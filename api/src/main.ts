@@ -23,48 +23,43 @@ const crypto = require('crypto');
 
 async function bootstrap() {
     let app = null;
-    // if (process.env.NODE_ENV !== 'development') {
-    //     const httpsOptions = {
-    //         key: fs.readFileSync(
-    //             path.join(__dirname, '..', '/ssl/' + process.env.SSL_PRIVATE_KEY),
-    //         ),
-    //         cert: fs.readFileSync(
-    //             path.join(__dirname, '..', '/ssl/' + process.env.SSL_PRIVATE_CRT),
-    //         ),
-    //         cors: true,
-    //     };
-    //     app = await NestFactory.create<NestExpressApplication>(AppModule, {
-    //         httpsOptions,
-    //         logger: ['error', 'warn'],
-    //     });
-    //     app.enableCors((req, callback) => {
-    //         const allowlist = process.env.CORS.toString().split(',');
-    //
-    //         let corsOptions;
-    //
-    //         if (allowlist.includes(req.header('Origin'))) {
-    //             corsOptions = {
-    //                 credentials: true,
-    //                 origin: true,
-    //                 methods: ['GET', 'POST'],
-    //             };
-    //         } else {
-    //             corsOptions = {origin: false}; // disable CORS for this request
-    //         }
-    //         callback(null, corsOptions); // callback expects two parameters: error and options
-    //     });
-    // } else {
-    //     app = await NestFactory.create<NestExpressApplication>(AppModule);
-    //     app.enableCors({
-    //         credentials: true,
-    //         origin: '*',
-    //     });
-    // }
-    app = await NestFactory.create<NestExpressApplication>(AppModule);
-    app.enableCors({
-        credentials: true,
-        origin: '*',
-    });
+    if (process.env.NODE_ENV !== 'development') {
+        const httpsOptions = {
+            key: fs.readFileSync(
+                path.join(__dirname, '..', '/ssl/' + process.env.SSL_PRIVATE_KEY),
+            ),
+            cert: fs.readFileSync(
+                path.join(__dirname, '..', '/ssl/' + process.env.SSL_PRIVATE_CRT),
+            ),
+            cors: true,
+        };
+        app = await NestFactory.create<NestExpressApplication>(AppModule, {
+            httpsOptions,
+            logger: ['error', 'warn'],
+        });
+        app.enableCors((req, callback) => {
+            const allowlist = process.env.CORS.toString().split(',');
+
+            let corsOptions;
+
+            if (allowlist.includes(req.header('Origin'))) {
+                corsOptions = {
+                    credentials: true,
+                    origin: true,
+                    methods: ['GET', 'POST'],
+                };
+            } else {
+                corsOptions = {origin: false}; // disable CORS for this request
+            }
+            callback(null, corsOptions); // callback expects two parameters: error and options
+        });
+    } else {
+        app = await NestFactory.create<NestExpressApplication>(AppModule);
+        app.enableCors({
+            credentials: true,
+            origin: '*',
+        });
+    }
     app.useWebSocketAdapter(new WsAdapter(app));
     app.set('trust proxy', true); // trust first proxy
 
