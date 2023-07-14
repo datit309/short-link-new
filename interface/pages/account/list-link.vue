@@ -8,7 +8,7 @@ section
                         nav
                             .nav.nav-pills(role='tablist')
                                 button.nav-link.active(data-bs-toggle='tab' data-bs-target='#bets' type='button' role='tab' aria-controls='nav-home' aria-selected='true')
-                                    h3.text-uppercase {{$t("History")}}
+                                    h3.text-uppercase {{$t("HIDEURL.TOP - HISTORY")}}
                     .card-body.p-0
                         .tab-content
                             .record-scroll.table-responsive

@@ -101,6 +101,8 @@ export class LinkService {
           })
           list_link = list_link.concat(link)
         }
+      } else {
+        throw new Error(`Exceeding the permitted limits`)
       }
       return list_link
     } catch (e) {
