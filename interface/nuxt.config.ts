@@ -6,7 +6,7 @@ const path = require('path')
 const MODE = process.env.NODE_ENV
 const development = MODE === 'development'
 const title = process.env.NUXT_PUBLIC_APP_TITLE
-const description = 'HideURL’s Connections Platform is more than a free URL shortener, with robust link management software, advanced QR Code features, and a Link-in-bio solution.'
+const description = 'HideURL.top is a free URL shortening and link hiding tool that allows you to protect and secure your links effortlessly. Safeguard your URLs and maintain privacy with our user-friendly service'
 export default defineNuxtConfig({
     ssr: false,
     runtimeConfig: {
@@ -32,6 +32,10 @@ export default defineNuxtConfig({
                 {
                     name: 'description',
                     content: description,
+                },
+                {
+                    name: 'keywords',
+                    content: 'URL shortener, Link hiding, Link protection, Secure URL, Privacy link, Hide URLs, Shorten links, URL concealment, Link security, Safe link sharing, URL encryption, Confidential links, Privacy protection, Link privacy tool, Free URL shortener',
                 },
                 { name: 'viewport', content: 'width=device-width, initial-scale=1' },
                 { name: 'format-detection', content: 'telephone=no' },
