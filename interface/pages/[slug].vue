@@ -8,19 +8,19 @@ section(v-if="link.is_password" )
                         nav
                             .nav.nav-pills(role='tablist')
                                 button.nav-link.active(data-bs-toggle='tab' data-bs-target='#bets' type='button' role='tab' aria-controls='nav-home' aria-selected='true')
-                                    h3 {{$t("Rút gọn link miễn phí. Dữ liệu lưu giữ vĩnh viễn")}}
+                                    h3 {{$t("SHORT LINK FOR FREE. DATA KEEPING PERMANENTLY")}}
                     .card-body.p-0
                         .tab-content
                             .row.mx-0.justify-content-center
                                 .col-lg-12.mb-4
                                     .bg-box.p-2.p-lg-3.rounded
-                                        label.form-label.mb-0.px-0(v-if="link.is_password" ) {{$t("Mật khẩu truy cập")}}
+                                        label.form-label.mb-0.px-0(v-if="link.is_password" ) {{$t("Password protection")}}
                                         .input-group.mb-2.bg-block.px-0.input-group-lg(v-if="link.is_password" )
                                             span.input-group-text
                                                 i.fas.fa-lock
-                                            input.form-control(v-model="get_short_link.password" type='password' aria-describedby='basic-addon3' placeholder="Mật khẩu truy cập")
+                                            input.form-control(v-model="get_short_link.password" type='password' aria-describedby='basic-addon3' :placeholder='$t("Password protection")')
 
-                                            button.btn.btn-sub.py-3(@click="getShortLinkWithPassword") {{$t('Tiếp tục')}}
+                                            button.btn.btn-sub.py-3(@click="getShortLinkWithPassword") {{$t('Continue')}}
 </template>
 <script>
 import { mapState } from 'pinia'
@@ -102,7 +102,7 @@ export default {
                 vm.$showLoading()
                 vm.get_short_link.short_link = vm.$route.path.split('/').join('')
                 if (!vm.get_short_link.short_link) {
-                    throw new Error('Link bạn vừa nhập không hợp lệ')
+                    throw new Error('The link you entered is not valid')
                 }
 
                 await linkStore
@@ -140,7 +140,7 @@ export default {
                 vm.$showLoading()
                 vm.get_short_link.short_link = vm.$route.path.split('/').join('')
                 if (!vm.get_short_link.short_link) {
-                    throw new Error('Link bạn vừa nhập không hợp lệ')
+                    throw new Error('The link you entered is not valid')
                 }
 
                 await linkStore
