@@ -79,6 +79,10 @@ button:active {
     box-shadow: none;
 }
 
+.border-website {
+    border-color: $color-page-light !important;
+}
+
 a {
     text-decoration: none !important;
     color: $color-page-light;

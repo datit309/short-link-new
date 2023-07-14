@@ -1,6 +1,6 @@
 <template lang="pug">
 section
-    .container
+    .container.trade-game
         .row.mx-0.my-5
             .score-table.wow.fadeIn(data-wow-delay='0.2s' data-wow-duration="0.7s")
                 .card.mb-4
@@ -13,7 +13,7 @@ section
                         .tab-content
                             .row.mx-0.justify-content-center
                                 .col-lg-12.mb-4
-                                    .bg-box.p-2.p-lg-3.rounded
+                                    .p-2.p-lg-3.rounded
                                         label.form-label.mb-0.px-0 {{$t("Paste your link to shorten")}}
                                         .input-group.mb-2.bg-block.px-0.input-group-lg
                                             span.input-group-text
@@ -56,7 +56,7 @@ section
                                                 .input-group.mb-2.bg-block.px-0
                                                     //span.input-group-text
                                                         i.fas.fa-link
-                                                    span.input-group-text(@click="copyText('https://hideurl.top')") hideurl.top/
+                                                    span.input-group-text(@click="copyText('https://hideurl.top')") HideURL.TOP/
                                                     input.form-control(v-model="short_link.custom" type='text' aria-describedby='basic-addon3' placeholder="custom-link")
                                                 p * {{$t('By default, the system will generate random links. You can set the link by option.')}}
                                             .col-12.col-lg-4
@@ -73,6 +73,43 @@ section
                                                         i.fas.fa-lock
                                                     input.form-control(v-model="short_link.password" type='text' aria-describedby='basic-addon3' :placeholder='$t("Password protection")')
                                                 p * {{$t('Set a password to protect the shortened link. Leave blank if you do not want to set a password.')}}
+                    .card-body.p-0
+                        .row.mx-0.justify-content-center
+                            .col-lg-4.mb-4.col-sm-12
+                                .bg-box.p-2.p-lg-3.rounded.h-100
+                                    .tab-content
+                                        p.mb-2.fs-5
+                                            | At
+                                            a.mx-1(href="https://hideurl.top") HideURL.TOP
+                                            | , we provide an exceptional URL shortening and link protection service. Anyone can enjoy the benefits of our platform to hide URLs, shorten links, and protect important information.
+                            .col-lg-4.mb-4.col-sm-12
+                                .bg-box.p-2.p-lg-3.rounded.h-100
+                                    .tab-content
+                                        p.mb-2.fs-5
+                                            | With
+                                            a.mx-1(href="https://HideURL.TOP") HideURL.TOP
+                                            | , you can easily shorten long URLs into concise, memorable, and convenient links. This makes your links look neater and more professional.
+                            .col-lg-4.mb-4.col-sm-12
+                                .bg-box.p-2.p-lg-3.rounded.h-100
+                                    .tab-content
+                                        p.mb-2.fs-5
+                                            | We understand that security is a crucial factor. Therefore,
+                                            a.mx-1(href="https://HideURL.TOP") HideURL.TOP
+                                            |  offers link protection features, allowing you to control who can access your links and safeguard your information.
+                            .col-lg-4.mb-4.col-sm-12
+                                .bg-box.p-2.p-lg-3.rounded.h-100
+                                    .tab-content
+                                        p.mb-2.fs-5
+                                            | With a user-friendly and intuitive interface,
+                                            a.mx-1(href="https://HideURL.TOP") HideURL.TOP
+                                            |  delivers a great user experience. You can create, customize, and manage links effortlessly and quickly.
+                            .col-lg-4.mb-4.col-sm-12
+                                .bg-box.p-2.p-lg-3.rounded.h-100
+                                    .tab-content
+                                        p.mb-2.fs-5
+                                            | Discover
+                                            a.mx-1(href="https://HideURL.TOP") HideURL.TOP
+                                            |  today and experience the convenience, security, and professionalism of hiding and protecting your links.
 
 </template>
 <script>
