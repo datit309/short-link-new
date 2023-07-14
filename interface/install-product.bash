@@ -15,8 +15,8 @@ yarn
 echo "================> Build folder website"
 yarn build
 
-echo "================> Chown permissions"
-chown -R kanni:kanni /home/kanni/web
+#echo "================> Chown permissions"
+#chown -R kanni:kanni /home/kanni/web
 
 echo "================> Delete pm2"
 pm2 delete ecosystem.config.js
