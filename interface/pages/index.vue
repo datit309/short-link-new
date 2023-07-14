@@ -74,7 +74,6 @@ section
                                                     input.form-control(v-model="short_link.password" type='text' aria-describedby='basic-addon3' :placeholder='$t("Password protection")')
                                                 p * {{$t('Set a password to protect the shortened link. Leave blank if you do not want to set a password.')}}
 
-                                        //button.btn.btn-deposit() {{$t("Update Profile")}}
 </template>
 <script>
 import { mapState } from 'pinia'
