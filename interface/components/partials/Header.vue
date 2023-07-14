@@ -10,8 +10,8 @@ header
                         button.btn.border-0.text-title(data-bs-dismiss="modal")
                             i.fas.fa-times
                     div.justify-content-center.d-flex.mb-2
-                        img.w-75(v-if="theme === 'dark'" src='~/assets/images/logo.png')
-                        img.w-75(v-else src='~/assets/images/logo.png')
+                        img.w-75(v-if="theme === 'dark'" src='~/assets/images/logo.png' alt="hideurl")
+                        img.w-75(v-else src='~/assets/images/logo.png' alt="hideurl")
                     h5.text-title.text-uppercase.fw-bold.text-center {{$t('Resend Email Active')}}
                     .row.py-3.justify-content-center
                         form
@@ -47,8 +47,8 @@ header
                         button.btn.border-0.text-title(data-bs-dismiss="modal")
                             i.fas.fa-times
                     div.justify-content-center.d-flex.mb-2
-                        img.w-75(v-if="theme === 'dark'" src='~/assets/images/logo.png')
-                        img.w-75(v-else src='~/assets/images/logo.png')
+                        img.w-75(v-if="theme === 'dark'" src='~/assets/images/logo.png' alt="hideurl")
+                        img.w-75(v-else src='~/assets/images/logo.png' alt="hideurl")
                     h5.text-title.text-uppercase.fw-bold.text-center {{$t('Register')}}
                     .row.py-3.justify-content-center
                         div
@@ -112,8 +112,8 @@ header
                         button.btn.border-0.text-title(data-bs-dismiss="modal")
                             i.fas.fa-times
                     div.justify-content-center.d-flex.mb-2
-                        img.w-75(v-if="theme === 'dark'" src='~/assets/images/logo.png')
-                        img.w-75(v-else src='~/assets/images/logo.png')
+                        img.w-75(v-if="theme === 'dark'" src='~/assets/images/logo.png' alt="hideurl")
+                        img.w-75(v-else src='~/assets/images/logo.png' alt="hideurl")
                     h5.text-title.text-uppercase.fw-bold.text-center {{$t('RESET PASSWORD')}}
                     .row.py-3.justify-content-center
                         form
@@ -147,8 +147,8 @@ header
                         button.btn.border-0.text-title(data-bs-dismiss="modal")
                             i.fas.fa-times
                     div.justify-content-center.d-flex.mb-2
-                        img.w-75(v-if="theme === 'dark'" src='~/assets/images/logo.png')
-                        img.w-75(v-else src='~/assets/images/logo.png')
+                        img.w-75(v-if="theme === 'dark'" src='~/assets/images/logo.png' alt="hideurl")
+                        img.w-75(v-else src='~/assets/images/logo.png' alt="hideurl")
                     //h5.text-title.text-uppercase.fw-bold.text-center {{$t('LOGIN WITH WALLET')}}
                     //.row.border-bottom.py-3.justify-content-center
                     //    .d-flex.justify-content-center
@@ -201,8 +201,8 @@ header
     nav.navbar.navbar-expand-lg.bg-menu.mt-lg-3
         .container
             a.navbar-brand.me-0(href="/")
-                img.img-logo.d-none.d-lg-block(src='~/assets/images/logo.png')
-                img.img-logo.d-lg-none(src='~/assets/images/favicon.png')
+                img.img-logo.d-none.d-lg-block(src='~/assets/images/logo.png' alt="hideurl")
+                img.img-logo.d-lg-none(src='~/assets/images/favicon.png' alt="hideurl")
             .d-flex.justify-content-center
                 button.btn.btn-sub.p-2.px-lg-3.me-1(v-if="!account.detail.username" data-bs-toggle="modal" data-bs-target="#loginModal" type='button' aria-expanded='false')
                     | {{$t('Login')}} / {{$t('Register')}}

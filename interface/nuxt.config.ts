@@ -85,10 +85,10 @@ export default defineNuxtConfig({
                 { src: '/jquery.min.js', type: 'text/javascript' },
                 // {src: "/js/bootstrap.bundle.min.js", type: "text/javascript"},
                 { src: '/js/all.min.js', type: 'text/javascript' },
-                { src: '/js/smooth-scroll.js', type: 'text/javascript' },
-                { src: '/wow/wow.min.js', type: 'text/javascript' },
-                { src: '/slick/slick.js', type: 'text/javascript' },
-                { src: '/js/moment.min.js', type: 'text/javascript' },
+                // { src: '/js/smooth-scroll.js', type: 'text/javascript' },
+                // { src: '/wow/wow.min.js', type: 'text/javascript' },
+                // { src: '/slick/slick.js', type: 'text/javascript' },
+                // { src: '/js/moment.min.js', type: 'text/javascript' },
                 { src: '/js/daterangepicker.js', type: 'text/javascript' },
                 { src: 'https://www.googletagmanager.com/gtag/js?id=G-RKK4GZERT5', type: 'text/javascript' },
                 {
@@ -111,10 +111,10 @@ export default defineNuxtConfig({
         '~/assets/css/fontawesome.min.css',
         '~/assets/css/hover-min.css',
         '~/assets/scss/style-light.scss',
-        '~/assets/css/animate.css',
-        '~/assets/slick/slick.css',
+        // '~/assets/css/animate.css',
+        // '~/assets/slick/slick.css',
         '~/assets/fonts/fontstyle.css',
-        '~/assets/css/flag-icons.min.css',
+        // '~/assets/css/flag-icons.min.css',
         '~/assets/css/daterangepicker.css',
     ],
     modules: [
@@ -156,5 +156,11 @@ export default defineNuxtConfig({
         },
 
     },
-
+    // webpack: {
+    //     loaders: {
+    //         vue: {
+    //             hotReload: true,
+    //         }
+    //     }
+    // }
 })
