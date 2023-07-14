@@ -19,7 +19,7 @@ echo "================> Copy env"
 cp .env.testnet .env
 
 echo "================> Chown permissions"
-chown -R kanni:kanni /home/kanni/web
+chown -R robert:robert /home/robert/web
 
 echo "================> Delete pm2"
 pm2 delete ecosystem.config.js

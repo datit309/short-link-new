@@ -8,7 +8,7 @@
         "preview": "nuxt preview",
         "postinstall": "nuxt prepare",
         "lint": "eslint . --ext .ts,.vue --fix",
-        "chown": "chown -R kanni:kanni /home/kanni/web/",
+        "chown": "chown -R robert:robert /home/robert/web/",
         "deploy": "sh install-product.bash",
         "deploy-dev": "sh install-testnet.bash"
     },

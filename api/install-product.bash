@@ -18,8 +18,8 @@ yarn build
 echo "================> Copy env"
 cp .env.production .env
 
-#echo "================> Chown permissions"
-#chown -R kanni:kanni /home/kanni/web
+echo "================> Chown permissions"
+chown -R robert:robert /home/robert/web
 
 echo "================> Delete pm2"
 pm2 delete ecosystem.config.js
