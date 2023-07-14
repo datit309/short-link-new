@@ -136,6 +136,7 @@ export default defineNuxtConfig({
                 vueI18n: '/lang/i18n.config.ts',
             },
         ],
+        'nuxt-simple-sitemap'
     ],
     vite: {
         plugins: [
