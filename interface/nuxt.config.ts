@@ -5,7 +5,8 @@ const path = require('path')
 
 const MODE = process.env.NODE_ENV
 const development = MODE === 'development'
-
+const title = process.env.NUXT_PUBLIC_APP_TITLE
+const description = `This article provides an overview of the benefits of using a free url shortener to quickly and easily change the URL of a website or app.`
 export default defineNuxtConfig({
     ssr: false,
     runtimeConfig: {
@@ -22,7 +23,7 @@ export default defineNuxtConfig({
         head: {
             charset: 'utf-16',
             viewport: 'width=device-width, initial-scale=1',
-            title: process.env.NUXT_PUBLIC_APP_TITLE,
+            title: title,
             htmlAttrs: {
                 lang: 'en',
             },
@@ -30,7 +31,7 @@ export default defineNuxtConfig({
                 { charset: 'utf-8' },
                 {
                     name: 'description',
-                    content: 'HideURL’s Connections Platform is more than a free URL shortener, with robust link management software, advanced QR Code features, and a Link-in-bio solution.',
+                    content: description,
                 },
                 { name: 'viewport', content: 'width=device-width, initial-scale=1' },
                 { name: 'format-detection', content: 'telephone=no' },
@@ -42,15 +43,15 @@ export default defineNuxtConfig({
                     hid: 'og:title',
                     name: 'og:title',
                     property: 'og:title',
-                    content: 'HideURL’s Connections Platform is more than a free URL shortener, with robust link management software, advanced QR Code features, and a Link-in-bio solution.',
+                    content: description,
                 },
-                { hid: 'og:site_name', name: 'og:site_name', content: process.env.NUXT_PUBLIC_APP_TITLE },
+                { hid: 'og:site_name', name: 'og:site_name', content: title },
                 { hid: 'og:url', name: 'og:url', content: 'https://hideurl.top' },
                 {
                     hid: 'og:description',
                     name: 'og:description',
                     property: 'og:description',
-                    content: 'HideURL’s Connections Platform is more than a free URL shortener, with robust link management software, advanced QR Code features, and a Link-in-bio solution.',
+                    content: description,
                 },
                 { hid: 'og:type', name: 'og:type', property: 'og:type', content: 'website' },
                 { hid: 'og:image:type', name: 'og:image:type', content: 'image/png' },
@@ -62,7 +63,7 @@ export default defineNuxtConfig({
                     hid: 'og:image:alt',
                     name: 'og:image:alt',
                     property: 'og:image:alt',
-                    content: 'HideURL’s Connections Platform is more than a free URL shortener, with robust link management software, advanced QR Code features, and a Link-in-bio solution.',
+                    content: description,
                 },
 
                 { name: 'twitter:card', content: 'summary_large_image' },
@@ -70,11 +71,11 @@ export default defineNuxtConfig({
                 { property: 'twitter:url', content: 'https://hideurl.top' },
                 {
                     name: 'twitter:title',
-                    content: 'HideURL’s Connections Platform is more than a free URL shortener, with robust link management software, advanced QR Code features, and a Link-in-bio solution.',
+                    content: description,
                 },
                 {
                     name: 'twitter:description',
-                    content: 'HideURL’s Connections Platform is more than a free URL shortener, with robust link management software, advanced QR Code features, and a Link-in-bio solution.',
+                    content: description,
                 },
                 { name: 'twitter:image', content: 'https://hideurl.top/favicon.png' },
             ],

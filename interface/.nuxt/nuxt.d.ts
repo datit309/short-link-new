@@ -2,6 +2,7 @@
 /// <reference types="@pinia-plugin-persistedstate/nuxt" />
 /// <reference types="@nuxtjs/device" />
 /// <reference types="nuxt-simple-sitemap" />
+/// <reference types="@nuxtjs/robots" />
 /// <reference types="@nuxt/telemetry" />
 /// <reference types="nuxt" />
 /// <reference path="types/plugins.d.ts" />

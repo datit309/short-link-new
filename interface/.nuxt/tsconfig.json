@@ -83,6 +83,9 @@
       "#i18n": [
         "/Users/robert/GIC/OT/short-link-new/interface/node_modules/@nuxtjs/i18n/dist/runtime/composables"
       ],
+      "#robots": [
+        "/Users/robert/GIC/OT/short-link-new/interface/.nuxt/robots"
+      ],
       "#vue-router": [
         "/Users/robert/GIC/OT/short-link-new/interface/.nuxt/vue-router"
       ],
