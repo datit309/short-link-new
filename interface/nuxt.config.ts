@@ -92,17 +92,7 @@ export default defineNuxtConfig({
                 { src: '/js/moment.min.js', type: 'text/javascript' },
                 { src: '/js/daterangepicker.js', type: 'text/javascript' },
                 { src: 'https://www.googletagmanager.com/gtag/js?id=G-RKK4GZERT5', type: 'text/javascript' },
-                {
-                    hid: 'gtm',
-                    children: `
-                        window.dataLayer = window.dataLayer || [];
-                          function gtag(){dataLayer.push(arguments);}
-                          gtag('js', new Date());
-
-                          gtag('config', 'G-RKK4GZERT5');
-                    `,
-                    type: 'text/javascript',
-                },
+                { src: '/js/gganalyst.js', type: 'text/javascript' },
             ],
             noscript: [{ children: 'Javascript is required' }],
         },
