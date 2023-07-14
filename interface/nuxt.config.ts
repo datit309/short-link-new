@@ -6,7 +6,7 @@ const path = require('path')
 const MODE = process.env.NODE_ENV
 const development = MODE === 'development'
 const title = process.env.NUXT_PUBLIC_APP_TITLE
-const description = `This article provides an overview of the benefits of using a free url shortener to quickly and easily change the URL of a website or app.`
+const description = 'HideURL’s Connections Platform is more than a free URL shortener, with robust link management software, advanced QR Code features, and a Link-in-bio solution.'
 export default defineNuxtConfig({
     ssr: false,
     runtimeConfig: {
