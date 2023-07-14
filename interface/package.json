@@ -30,6 +30,7 @@
     },
     "dependencies": {
         "@coinbase/wallet-sdk": "^3.6.1",
+        "@nuxtjs/robots": "^3.0.0",
         "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
         "@pinia/nuxt": "^0.4.6",
         "@popperjs/core": "^2.11.6",
