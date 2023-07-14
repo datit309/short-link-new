@@ -91,15 +91,15 @@ export default defineNuxtConfig({
                 // { src: '/slick/slick.js', type: 'text/javascript' },
                 { src: '/js/moment.min.js', type: 'text/javascript' },
                 { src: '/js/daterangepicker.js', type: 'text/javascript' },
-                { src: 'https://www.googletagmanager.com/gtag/js?id=G-RKK4GZERT5', type: 'text/javascript' },
+                { src: 'https://www.googletagmanager.com/gtag/js?id=G-L408P91Y7S', type: 'text/javascript', async: true },
                 {
                     hid: 'gtm',
                     children: `
-                        window.dataLayer = window.dataLayer || [];
+                         window.dataLayer = window.dataLayer || [];
                           function gtag(){dataLayer.push(arguments);}
                           gtag('js', new Date());
 
-                          gtag('config', 'G-RKK4GZERT5');
+                          gtag('config', 'G-L408P91Y7S');
                     `,
                     type: 'text/javascript',
                 },
