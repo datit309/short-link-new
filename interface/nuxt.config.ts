@@ -88,7 +88,7 @@ export default defineNuxtConfig({
                 // { src: '/js/smooth-scroll.js', type: 'text/javascript' },
                 // { src: '/wow/wow.min.js', type: 'text/javascript' },
                 // { src: '/slick/slick.js', type: 'text/javascript' },
-                // { src: '/js/moment.min.js', type: 'text/javascript' },
+                { src: '/js/moment.min.js', type: 'text/javascript' },
                 { src: '/js/daterangepicker.js', type: 'text/javascript' },
                 { src: 'https://www.googletagmanager.com/gtag/js?id=G-RKK4GZERT5', type: 'text/javascript' },
                 {
@@ -156,11 +156,11 @@ export default defineNuxtConfig({
         },
 
     },
-    // webpack: {
-    //     loaders: {
-    //         vue: {
-    //             hotReload: true,
-    //         }
-    //     }
-    // }
+    webpack: {
+        loaders: {
+            vue: {
+                hotReload: true,
+            }
+        }
+    }
 })
