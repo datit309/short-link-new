@@ -11,5 +11,4 @@
 </template>
 
 <script setup>
-import '@/assets/js/gganalyst.js'
 </script>
