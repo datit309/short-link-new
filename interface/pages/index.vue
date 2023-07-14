@@ -56,7 +56,7 @@ section
                                                 .input-group.mb-2.bg-block.px-0
                                                     //span.input-group-text
                                                         i.fas.fa-link
-                                                    span.input-group-text https://domain.com/
+                                                    span.input-group-text(@click="copyText('https://hideurl.top')") hideurl.top/
                                                     input.form-control(v-model="short_link.custom" type='text' aria-describedby='basic-addon3' placeholder="custom-link")
                                                 p * {{$t('By default, the system will generate random links. You can set the link by option.')}}
                                             .col-12.col-lg-4
