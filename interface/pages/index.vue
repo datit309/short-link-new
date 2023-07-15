@@ -7,7 +7,7 @@ section
                     .card-header
                         nav
                             .nav.nav-pills(role='tablist')
-                                button.nav-link.active(data-bs-toggle='tab' data-bs-target='#bets' type='button' role='tab' aria-controls='nav-home' aria-selected='true')
+                                button.nav-link.active(data-bs-toggle='tab' data-bs-target='#bets' type='button' role='tab'  )
                                     .fs-3.text-uppercase {{$t("HideURL.TOP - Free URL Shortener and Link Hider")}}
 
                     .card-body.p-0
@@ -81,7 +81,7 @@ section
                     .card-header
                         nav
                             .nav.nav-pills(role='tablist')
-                                button.nav-link.active(data-bs-toggle='tab' data-bs-target='#bets' type='button' role='tab' aria-controls='nav-home' aria-selected='true')
+                                button.nav-link.active(data-bs-toggle='tab' data-bs-target='#bets' type='button' role='tab'  )
                                     .text-uppercase.fs-5 {{$t("About us")}}
                     .card-body.p-0
                         .row.mx-0.justify-content-center

@@ -7,7 +7,7 @@ section
                     .card-header
                         nav
                             .nav.nav-pills(role='tablist')
-                                button.nav-link.active(data-bs-toggle='tab' data-bs-target='#bets' type='button' role='tab' aria-controls='nav-home' aria-selected='true')
+                                button.nav-link.active(data-bs-toggle='tab' data-bs-target='#bets' type='button' role='tab' )
                                     .text-uppercase.fs-3 {{$t("HIDEURL.TOP - Welcome to hideurl.top!")}}
                     .card-body.p-0
                         .row.mx-0.justify-content-center
