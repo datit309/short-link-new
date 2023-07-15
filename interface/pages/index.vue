@@ -1,14 +1,15 @@
 <template lang="pug">
 section
     .container.trade-game
-        .row.mx-0.my-5
+        .row.mx-0.mt-4
             .score-table.wow.fadeIn(data-wow-delay='0.2s' data-wow-duration="0.7s")
                 .card.mb-4
                     .card-header
                         nav
                             .nav.nav-pills(role='tablist')
                                 button.nav-link.active(data-bs-toggle='tab' data-bs-target='#bets' type='button' role='tab' aria-controls='nav-home' aria-selected='true')
-                                    h1.text-uppercase.fs-3 {{$t("HIDEURL.TOP - SHORT LINK FOR FREE. DATA KEEPING PERMANENTLY")}}
+                                    .fs-3.text-uppercase {{$t("HideURL.TOP - Free URL Shortener and Link Hider")}}
+
                     .card-body.p-0
                         .tab-content
                             .row.mx-0.justify-content-center
@@ -73,43 +74,86 @@ section
                                                         i.fas.fa-lock
                                                     input.form-control(v-model="short_link.password" type='text' aria-describedby='basic-addon3' :placeholder='$t("Password protection")')
                                                 p * {{$t('Set a password to protect the shortened link. Leave blank if you do not want to set a password.')}}
+
+        .row.mx-0
+            .score-table.wow.fadeIn(data-wow-delay='0.2s' data-wow-duration="0.7s")
+                .card.mb-4
+                    .card-header
+                        nav
+                            .nav.nav-pills(role='tablist')
+                                button.nav-link.active(data-bs-toggle='tab' data-bs-target='#bets' type='button' role='tab' aria-controls='nav-home' aria-selected='true')
+                                    .text-uppercase.fs-5 {{$t("About us")}}
                     .card-body.p-0
                         .row.mx-0.justify-content-center
-                            .col-lg-4.mb-4.col-sm-12
-                                .bg-box.p-2.p-lg-3.rounded.h-100
+                            .col-lg-12.mb-2.col-sm-12.mt-2
+                                .p-2.p-lg-3.rounded.h-100
                                     .tab-content
-                                        p.mb-2.fs-5
+                                        p.mb-2.fs-6
+                                            | We are delighted to introduce you to our website,
+                                            a.mx-1(href="/") HideURL.TOP
+                                            | . Our platform is designed to provide a simple and secure way to hide and shorten URLs, ensuring privacy and convenience for our users.
+                                        p.mb-2.fs-6
                                             | At
-                                            a.mx-1(href="https://hideurl.top") HideURL.TOP
-                                            | , we provide an exceptional URL shortening and link protection service. Anyone can enjoy the benefits of our platform to hide URLs, shorten links, and protect important information.
+                                            a.mx-1(href="/") HideURL.TOP
+                                            | , we understand the importance of protecting your online presence and safeguarding your personal information. With our user-friendly interface, you can quickly and easily convert lengthy URLs into shorter, more manageable links. This feature not only helps you save space when sharing links but also provides an added layer of anonymity and security.
+                                        p.mb-2.fs-6 Here are some key features of
+                                            a.mx-1(href="/") HideURL.TOP
+                                            | :
                             .col-lg-4.mb-4.col-sm-12
                                 .bg-box.p-2.p-lg-3.rounded.h-100
                                     .tab-content
-                                        p.mb-2.fs-5
-                                            | With
-                                            a.mx-1(href="https://HideURL.TOP") HideURL.TOP
-                                            | , you can easily shorten long URLs into concise, memorable, and convenient links. This makes your links look neater and more professional.
+                                        p.mb-2.fs-6
+                                            i.fas.fa-link.fa-2x.me-2.text-website
+                                            | URL Shortening: Our platform allows you to shorten any URL, making it easier to share and remember. Whether you're sharing links on social media, sending them via email, or posting them on websites, our service ensures that your URLs are concise and user-friendly.
                             .col-lg-4.mb-4.col-sm-12
                                 .bg-box.p-2.p-lg-3.rounded.h-100
                                     .tab-content
-                                        p.mb-2.fs-5
-                                            | We understand that security is a crucial factor. Therefore,
-                                            a.mx-1(href="https://HideURL.TOP") HideURL.TOP
-                                            |  offers link protection features, allowing you to control who can access your links and safeguard your information.
+                                        p.mb-2.fs-6
+                                            i.fas.fa-user-shield.fa-2x.me-2.text-website
+                                            | Privacy Protection: We value your privacy and take it seriously. When you use
+                                            a.mx-1(href="/") HideURL.TOP
+                                            | , we do not collect any personally identifiable information without your consent. Your data is securely processed, and we employ industry-standard security measures to protect it from unauthorized access.
                             .col-lg-4.mb-4.col-sm-12
                                 .bg-box.p-2.p-lg-3.rounded.h-100
                                     .tab-content
-                                        p.mb-2.fs-5
-                                            | With a user-friendly and intuitive interface,
-                                            a.mx-1(href="https://HideURL.TOP") HideURL.TOP
-                                            |  delivers a great user experience. You can create, customize, and manage links effortlessly and quickly.
+                                        p.mb-2.fs-6
+                                            i.fas.fa-cog.fa-2x.me-2.text-website
+                                            | Customizable Links: With
+                                            a.mx-1(href="/") HideURL.TOP
+                                            | , you can customize your shortened links to make them more memorable and meaningful. Personalize your URLs with keywords or relevant terms to enhance their effectiveness and branding.
                             .col-lg-4.mb-4.col-sm-12
                                 .bg-box.p-2.p-lg-3.rounded.h-100
                                     .tab-content
-                                        p.mb-2.fs-5
-                                            | Discover
-                                            a.mx-1(href="https://HideURL.TOP") HideURL.TOP
-                                            |  today and experience the convenience, security, and professionalism of hiding and protecting your links.
+                                        p.mb-2.fs-6
+                                            i.fas.fa-chart-bar.fa-2x.me-2.text-website
+                                            | Analytics and Tracking: Gain insights into the performance of your shortened links with our analytics feature. Track the number of clicks, geographic distribution, and other relevant statistics to measure the impact of your shared links.
+                            .col-lg-4.mb-4.col-sm-12
+                                .bg-box.p-2.p-lg-3.rounded.h-100
+                                    .tab-content
+                                        p.mb-2.fs-6
+                                            i.fas.fa-palette.fa-2x.me-2.text-website
+                                            | User-Friendly Interface: We strive to provide a seamless user experience. Our intuitive interface makes it effortless to shorten URLs, manage your links, and access additional features. Enjoy a hassle-free and efficient process from start to finish.
+                            .col-lg-4.mb-4.col-sm-12
+                                .bg-box.p-2.p-lg-3.rounded.h-100
+                                    .tab-content
+                                        p.mb-2.fs-6
+                                            i.fas.fa-rocket.fa-2x.me-2.text-website
+                                            | Reliable and Fast: Our platform is built to deliver speed and reliability. We understand the importance of quick access to information, and we ensure that your shortened links redirect promptly, allowing your audience to access the desired content without delay.
+                            .col-lg-4.mb-4.col-sm-12
+                                .bg-box.p-2.p-lg-3.rounded.h-100
+                                    .tab-content
+                                        p.mb-2.fs-6
+                                            i.fas.fa-headset.fa-2x.me-2.text-website
+                                            | Dedicated Support: We are here to assist you every step of the way. If you have any questions, concerns, or need technical support, our responsive customer support team is ready to provide assistance and address your queries promptly.
+                            .col-lg-12.mb-4.col-sm-12
+                                .p-2.p-lg-3.rounded.h-100
+                                    .tab-content
+                                        p.mb-2.fs-6 At
+                                            a.mx-1(href="/") HideURL.TOP
+                                            | , we are committed to creating a trusted and user-focused environment for all our visitors. We continually strive to improve our services and enhance your online experience. Whether you're an individual, business professional, marketer, or social media enthusiast, we aim to be your go-to platform for URL shortening and privacy protection.
+                                        p.mb-2.fs-6 Thank you for choosing
+                                            a.mx-1(href="/") HideURL.TOP
+                                            | . Start exploring our website and discover the benefits of secure and simplified URL management today!
 
 </template>
 <script>

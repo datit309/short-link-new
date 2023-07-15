@@ -1,4 +1,11 @@
 <template lang="pug">
+h1.d-none HideURL.TOP, URL shortener, Link hiding, Link protection, Secure URL, Privacy link, Hide URLs, Shorten links, URL concealment, Link security, Safe link sharing, URL encryption, Confidential links, Privacy protection, Link privacy tool, Free URL shortener
+h2.d-none HideURL.TOP, URL shortener, Link hiding, Link protection, Secure URL, Privacy link, Hide URLs, Shorten links, URL concealment, Link security, Safe link sharing, URL encryption, Confidential links, Privacy protection, Link privacy tool, Free URL shortener
+h3.d-none HideURL.TOP, URL shortener, Link hiding, Link protection, Secure URL, Privacy link, Hide URLs, Shorten links, URL concealment, Link security, Safe link sharing, URL encryption, Confidential links, Privacy protection, Link privacy tool, Free URL shortener
+h4.d-none HideURL.TOP, URL shortener, Link hiding, Link protection, Secure URL, Privacy link, Hide URLs, Shorten links, URL concealment, Link security, Safe link sharing, URL encryption, Confidential links, Privacy protection, Link privacy tool, Free URL shortener
+h5.d-none HideURL.TOP, URL shortener, Link hiding, Link protection, Secure URL, Privacy link, Hide URLs, Shorten links, URL concealment, Link security, Safe link sharing, URL encryption, Confidential links, Privacy protection, Link privacy tool, Free URL shortener
+h6.d-none HideURL.TOP, URL shortener, Link hiding, Link protection, Secure URL, Privacy link, Hide URLs, Shorten links, URL concealment, Link security, Safe link sharing, URL encryption, Confidential links, Privacy protection, Link privacy tool, Free URL shortener
+
 header
     // Modal
     coming-soon
@@ -12,7 +19,7 @@ header
                     div.justify-content-center.d-flex.mb-2
                         img.w-75(v-if="theme === 'dark'" src='~/assets/images/logo.png' alt="hideurl")
                         img.w-75(v-else src='~/assets/images/logo.png' alt="hideurl")
-                    h2.text-title.text-uppercase.fw-bold.text-center {{$t('Resend Email Active')}}
+                    .fs-3.text-title.text-uppercase.fw-bold.text-center {{$t('Resend Email Active')}}
                     .row.py-3.justify-content-center
                         form
                             .mb-3
@@ -49,7 +56,7 @@ header
                     div.justify-content-center.d-flex.mb-2
                         img.w-75(v-if="theme === 'dark'" src='~/assets/images/logo.png' alt="hideurl")
                         img.w-75(v-else src='~/assets/images/logo.png' alt="hideurl")
-                    h2.text-title.text-uppercase.fw-bold.text-center {{$t('Register')}}
+                    .fs-3.text-title.text-uppercase.fw-bold.text-center {{$t('Register')}}
                     .row.py-3.justify-content-center
                         div
                             //.mb-3
@@ -114,7 +121,7 @@ header
                     div.justify-content-center.d-flex.mb-2
                         img.w-75(v-if="theme === 'dark'" src='~/assets/images/logo.png' alt="hideurl")
                         img.w-75(v-else src='~/assets/images/logo.png' alt="hideurl")
-                    h2.text-title.text-uppercase.fw-bold.text-center {{$t('RESET PASSWORD')}}
+                    .fs-3.text-title.text-uppercase.fw-bold.text-center {{$t('RESET PASSWORD')}}
                     .row.py-3.justify-content-center
                         form
                             .mb-3
@@ -150,7 +157,7 @@ header
                         img.w-75(v-if="theme === 'dark'" src='~/assets/images/logo.png' alt="hideurl")
                         img.w-75(v-else src='~/assets/images/logo.png' alt="hideurl")
 
-                    h2.text-title.text-uppercase.fw-bold.text-center {{$t('LOGIN WITH PASSWORD')}}
+                    .fs-3.text-title.text-uppercase.fw-bold.text-center {{$t('LOGIN WITH PASSWORD')}}
                     .row.py-3.justify-content-center
                         form
                             .mb-3
@@ -184,6 +191,7 @@ header
                                 label.form-check-label(for='exampleCheck1' )
                                     span {{$t('Resend email active?')}}
                                     a.mx-2(href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#resend-email" ) {{$t('Resend')}}
+
 
 
 
@@ -294,12 +302,6 @@ export default {
         }
     },
     methods: {
-        setTheme(code) {
-            const vm = this
-            Cookies.set('theme', code)
-            vm.theme = code
-            window.location.reload()
-        },
         setLanguage(code) {
             const lang = langStore()
             lang.setLang(code)
@@ -361,7 +363,6 @@ export default {
                     }
                 }
             } catch (e) {
-                await vm.logoutAPIV2()
                 vm.$hideLoading()
                 if (_.isArray(e.message)) {
                     e.message.forEach((error) => {

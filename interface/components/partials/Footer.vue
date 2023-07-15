@@ -1,5 +1,5 @@
 <template lang="pug">
-footer.fixed-bottom
+footer
     nav.navbar.navbar-expand-lg.bg-menu.mt-lg-3
         .container.justify-content-between
             a.navbar-brand(href='/')
