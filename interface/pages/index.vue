@@ -201,7 +201,7 @@ export default {
             const linkStore = useLinkStore()
             try {
                 if (!vm.short_link.origin || !vm.validURL(vm.short_link.origin)) {
-                    throw new Error('Link bạn vừa nhập không hợp lệ. Hãy nhập 1 link hợp lệ bắt đầu bằng http:// hoặc https://')
+                    throw new Error('The link you just entered is not valid. Please enter a valid link starting with http:// or https://')
                 }
                 await linkStore
                     .createShortLink({
@@ -217,7 +217,7 @@ export default {
                         const { data, message, success } = response
                         if (success) {
                             vm.new_link.short_link = data
-                            vm.$success(message)
+                            vm.$success('Create success')
                         } else {
                             vm.$error(message)
                         }
