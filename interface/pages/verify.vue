@@ -1,7 +1,7 @@
 <template lang="pug">
 section
     .login
-        .row.mx-0
+        .row.mx-0.mt-4
             .col-lg-3.mx-auto.pt-5
                 //.row.mx-0
                 //    .col-12.col-lg-3.mx-auto

@@ -1,7 +1,7 @@
 <template lang="pug">
 section
     .container
-        .row.mx-0.my-5
+        .row.mx-0.mt-4
             .score-table.wow.fadeIn(data-wow-delay='0.2s' data-wow-duration="0.7s")
                 .card.mb-4
                     .card-header
@@ -62,27 +62,11 @@ import Cookies from 'js-cookie'
 import { useLinkStore } from '~/store/link'
 import { useAccountStore } from '~/store/account'
 
-// const theme = Cookies.get('theme') || 'light'
 definePageMeta({
     layout: 'master-light',
-    middleware: 'auth'
+    // middleware: 'auth'
 })
 
-// useHead({
-//     meta: [
-//         { hid: 'og:title', name: 'og:title', property: 'og:title', content: 'Moba Game : Crypto Dapp Games & Crypto Slot Games - Crypto Gambling' },
-//         { hid: 'og:site_name', name: 'og:site_name', content: 'Mobagame Crypto Gambling' },
-//         { hid: 'og:url', name: 'og:url', content: 'https://mobagame.io' },
-//         { hid: 'og:description', name: 'og:description', property: 'og:description', content: 'Moba Game : Crypto Dapp Games & Crypto Slot Games - Crypto Gambling' },
-//         { hid: 'og:type', name: 'og:type', property: 'og:type', content: 'website' },
-//         { hid: 'og:image:type', name: 'og:image:type', content: 'image/jpeg' },
-//         { hid: 'og:image', name: 'og:image', property: 'og:image', content: 'https://mobagame.io/client/images/moba_game_banner.jpg' },
-//         { hid: 'og:image:secure_url', name: 'og:image:secure_url', content: 'https://mobagame.io/client/images/moba_game_banner.jpg' },
-//         { hid: 'og:image:width', name: 'og:image:width', content: '500' },
-//         { hid: 'og:image:height', name: 'og:image:height', content: '282' },
-//         { hid: 'og:image:alt', name: 'og:image:alt', property: 'og:image:alt', content: 'Moba Game : Crypto Dapp Games & Crypto Slot Games - Crypto Gambling' },
-//     ]
-// })
 export default {
     name: 'Index',
     computed: {

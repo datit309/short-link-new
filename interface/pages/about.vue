@@ -1,7 +1,7 @@
 <template lang="pug">
 section
     .container.trade-game
-        .row.mx-0.my-5
+        .row.mx-0.mt-4
             .score-table.wow.fadeIn(data-wow-delay='0.2s' data-wow-duration="0.7s")
                 .card.mb-4
                     .card-header

@@ -1,7 +1,7 @@
 <template lang="pug">
 section
     .container.trade-game
-        .row.mx-0.my-5
+        .row.mx-0.mt-4
             .score-table.wow.fadeIn(data-wow-delay='0.2s' data-wow-duration="0.7s")
                 .card.mb-4
                     .card-header
@@ -90,104 +90,6 @@ export default {
             myOwnName: 'account',
             account: (store) => store.account,
         }),
-    },
-    data() {
-        return {
-            short_link: {
-                origin: '',
-                custom: '',
-                date_expires: null,
-                password: null,
-                domain: '',
-                limit: 1,
-            },
-            get_short_link: {
-                short_link: '',
-            },
-            new_link: {
-                short_link: [],
-            },
-        }
-    },
-    watch: {},
-    async mounted() {
-        const vm = this
-
-        $(function () {
-            $('input[name="date_expires"]').daterangepicker(
-                {
-                    opens: 'left',
-                    singleDatePicker: true,
-                    showDropdowns: true,
-                    locale: {
-                        format: 'YYYY/MM/DD',
-                    },
-                    autoApply: true,
-                    minDate: moment().toDate(),
-                },
-                function (start, end, label) {
-                    vm.short_link.date_expires = start.format('YYYY-MM-DD')
-                }
-            )
-        })
-    },
-    methods: {
-        validURL(str) {
-            const pattern = new RegExp(
-                '^(https?:\\/\\/)?' + // protocol
-                    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-                    '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-                    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-                    '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-                    '(\\#[-a-z\\d_]*)?$',
-                'i'
-            ) // fragment locator
-            return !!pattern.test(str)
-        },
-        copyText(text) {
-            const vm = this
-            navigator.clipboard.writeText(text).then(
-                function () {
-                    vm.$success(vm.$t('copy success'))
-                },
-                function (err) {
-                    vm.$error(vm.$t('copy failed'), err)
-                }
-            )
-        },
-        async createShortLink() {
-            const vm = this
-            const linkStore = useLinkStore()
-            try {
-                if (!vm.short_link.origin || !vm.validURL(vm.short_link.origin)) {
-                    throw new Error('The link you just entered is not valid. Please enter a valid link starting with http:// or https://')
-                }
-                await linkStore
-                    .createShortLink({
-                        user_id: vm.account.detail.user_id,
-                        domain: vm.short_link.domain,
-                        origin_link: vm.short_link.origin,
-                        short_link: vm.short_link.custom,
-                        date_expires: vm.short_link.date_expires,
-                        password: vm.short_link.password,
-                        limit: vm.short_link.limit,
-                    })
-                    .then((response) => {
-                        const { data, message, success } = response
-                        if (success) {
-                            vm.new_link.short_link = data
-                            vm.$success('Create success')
-                        } else {
-                            vm.$error(message)
-                        }
-                    })
-                    .catch((error) => {
-                        vm.$error(error.message)
-                    })
-            } catch (e) {
-                vm.$error(e.message)
-            }
-        },
     },
 }
 </script>
