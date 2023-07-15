@@ -59,10 +59,6 @@ header
                     .fs-3.text-title.text-uppercase.fw-bold.text-center {{$t('Register')}}
                     .row.py-3.justify-content-center
                         div
-                            //.mb-3
-                                label.form-label {{$t('Referral')}}
-                                input.form-control(v-model="account.referral.address" type='text' placeholder='Referral')
-                                //#emailHelp.form-text We&apos;ll never share your email with anyone else.
                             .mb-3
                                 label.form-label(for='exampleInputPassword1') {{$t('Username')}}
                                 input.form-control(v-model="username" type='text' placeholder="Username")
@@ -84,18 +80,14 @@ header
 
                             .mb-3
                                 label.form-label(for='exampleInputPassword1') {{$t('Email')}}
-                                //  (Can be changed later)
                                 input.form-control(v-model="email" type='text' placeholder="Email")
                             .mb-3.form-check
                                 input#exampleCheck1.form-check-input(type='checkbox' checked="true")
                                 label.form-check-label(for='exampleCheck1' )
                                     span {{$t('I agree to the collection of information in cookies, I agree with')}} &nbsp;
-                                    a(href="javascript:void(0)") {{$t('Privacy policy')}}
+                                    a(href="/policy" target="_blank") {{$t('Privacy policy')}}
                                     span &nbsp; {{$t('and with')}} &nbsp;
-                                    a(href="javascript:void(0)") {{$t('Terms of Use')}}
-                                    //span
-                                    //    | , {{$t("Gambling isn't forbidden by my")}}
-                                    //span {{$t("local authorities and I'm at least 18 years old.")}}
+                                    a(href="/policy" target="_blank") {{$t('Terms of Use')}}
                             .d-flex.justify-content-center
                                 button.btn.text-center.w-50.btn-connect(@click.prevent="registerAPIV2" type='submit') {{$t('COMPLETE REGISTRATION')}}
                         .mt-3
