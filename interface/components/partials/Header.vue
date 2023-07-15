@@ -12,7 +12,7 @@ header
                     div.justify-content-center.d-flex.mb-2
                         img.w-75(v-if="theme === 'dark'" src='~/assets/images/logo.png' alt="hideurl")
                         img.w-75(v-else src='~/assets/images/logo.png' alt="hideurl")
-                    h5.text-title.text-uppercase.fw-bold.text-center {{$t('Resend Email Active')}}
+                    h2.text-title.text-uppercase.fw-bold.text-center {{$t('Resend Email Active')}}
                     .row.py-3.justify-content-center
                         form
                             .mb-3
@@ -49,7 +49,7 @@ header
                     div.justify-content-center.d-flex.mb-2
                         img.w-75(v-if="theme === 'dark'" src='~/assets/images/logo.png' alt="hideurl")
                         img.w-75(v-else src='~/assets/images/logo.png' alt="hideurl")
-                    h5.text-title.text-uppercase.fw-bold.text-center {{$t('Register')}}
+                    h2.text-title.text-uppercase.fw-bold.text-center {{$t('Register')}}
                     .row.py-3.justify-content-center
                         div
                             //.mb-3
@@ -114,7 +114,7 @@ header
                     div.justify-content-center.d-flex.mb-2
                         img.w-75(v-if="theme === 'dark'" src='~/assets/images/logo.png' alt="hideurl")
                         img.w-75(v-else src='~/assets/images/logo.png' alt="hideurl")
-                    h5.text-title.text-uppercase.fw-bold.text-center {{$t('RESET PASSWORD')}}
+                    h2.text-title.text-uppercase.fw-bold.text-center {{$t('RESET PASSWORD')}}
                     .row.py-3.justify-content-center
                         form
                             .mb-3
@@ -149,18 +149,8 @@ header
                     div.justify-content-center.d-flex.mb-2
                         img.w-75(v-if="theme === 'dark'" src='~/assets/images/logo.png' alt="hideurl")
                         img.w-75(v-else src='~/assets/images/logo.png' alt="hideurl")
-                    //h5.text-title.text-uppercase.fw-bold.text-center {{$t('LOGIN WITH WALLET')}}
-                    //.row.border-bottom.py-3.justify-content-center
-                    //    .d-flex.justify-content-center
-                    //        button.btn.text-center.w-50.text-dark.d-lg-block.d-none(style='background: #60FFFA;' @click.prevent="connectWithWeb3Modal" type='submit' data-bs-dismiss="modal")
-                    //            span.mx-2 {{$t('Connect Wallet')}}
-                    //            i.fas.fa-wallet
-                    //    .d-flex.justify-content-center
-                    //        button.btn.text-center.w-50.text-dark.d-block.d-lg-none(style='background: #60FFFA;' @click.prevent="connectWithWalletConnect" type='submit' data-bs-dismiss="modal")
-                    //            span.mx-2 {{$t('Connect Wallet')}}
-                    //            i.fas.fa-wallet
-                    //h5.text-title.text-uppercase.fw-bold.text-center.mt-3 {{$t('OR')}}
-                    h5.text-title.text-uppercase.fw-bold.text-center {{$t('LOGIN WITH PASSWORD')}}
+
+                    h2.text-title.text-uppercase.fw-bold.text-center {{$t('LOGIN WITH PASSWORD')}}
                     .row.py-3.justify-content-center
                         form
                             .mb-3
