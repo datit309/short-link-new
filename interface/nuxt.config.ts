@@ -95,7 +95,7 @@ export default defineNuxtConfig({
                 // { src: '/slick/slick.js', type: 'text/javascript' },
                 { src: '/js/moment.min.js', type: 'text/javascript' },
                 { src: '/js/daterangepicker.js', type: 'text/javascript' },
-                { src: 'https://www.googletagmanager.com/gtag/js?id=G-L408P91Y7S', type: 'text/javascript', async: true },
+                { src: 'https://www.googletagmanager.com/gtag/js?id=G-L408P91Y7S', type: 'text/javascript', async: "true" },
                 {
                     hid: 'gtm',
                     children: `
@@ -107,6 +107,7 @@ export default defineNuxtConfig({
                     `,
                     type: 'text/javascript',
                 },
+                { src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7566427492875170', type: 'text/javascript', async: "true", crossorigin: "anonymous" },
             ],
             noscript: [{ children: 'Javascript is required' }],
         },
