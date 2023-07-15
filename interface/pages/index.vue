@@ -28,7 +28,7 @@ section
                                             span.fw-bold.me-1 {{$t("SHORT LINK,")}}
                                             span.me-1 {{$t('means you agree with')}}
                                             span
-                                                a(href="javascript:void(0)") {{$t('terms of use')}}
+                                                nuxt-link(href="/policy") {{$t('terms of use')}}
                                         template(v-if="new_link.short_link.length > 0" )
                                             label.form-label.mb-0.px-0 {{$t("Your shortened link")}}
                                             template(v-for="link in new_link.short_link" )
