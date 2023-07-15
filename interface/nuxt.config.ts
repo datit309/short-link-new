@@ -6,15 +6,18 @@ const path = require('path')
 const MODE = process.env.NODE_ENV
 const development = MODE === 'development'
 const title = process.env.NUXT_PUBLIC_APP_TITLE
-const description = 'HideURL.top is a free URL shortening and link hiding tool that allows you to protect and secure your links effortlessly. Safeguard your URLs and maintain privacy with our user-friendly service'
+const description = 'HideURL.TOP is a free URL shortening and link hiding tool that allows you to protect and secure your links effortlessly. Safeguard your URLs and maintain privacy with our user-friendly service'
 export default defineNuxtConfig({
     ssr: false,
+    site: {
+        url: process.env.NUXT_PUBLIC_SITE_URL || 'https://hideurl.top',
+    },
     runtimeConfig: {
         // Private keys are only available on the server
         apiSecret: '123',
         // Public keys that are exposed to the client
         public: {
-            APP_URL: 'https://hideurl.top',
+            APP_URL: process.env.NUXT_PUBLIC_SITE_URL || 'https://hideurl.top',
             apiBase: process.env.NUXT_PUBLIC_API_BASE_URL,
             clientKeyStoreToken: process.env.NUXT_PUBLIC_APP_CLIENT_TOKEN,
         },
@@ -35,11 +38,15 @@ export default defineNuxtConfig({
                 },
                 {
                     name: 'keywords',
-                    content: 'URL shortener, Link hiding, Link protection, Secure URL, Privacy link, Hide URLs, Shorten links, URL concealment, Link security, Safe link sharing, URL encryption, Confidential links, Privacy protection, Link privacy tool, Free URL shortener',
+                    content: 'HideURL.TOP, URL shortener, Link hiding, Link protection, Secure URL, Privacy link, Hide URLs, Shorten links, URL concealment, Link security, Safe link sharing, URL encryption, Confidential links, Privacy protection, Link privacy tool, Free URL shortener',
                 },
                 { name: 'viewport', content: 'width=device-width, initial-scale=1' },
                 { name: 'format-detection', content: 'telephone=no' },
                 { name: 'robots', content: 'index, follow' },
+                {
+                    name: 'robots',
+                    content: '<generated>',
+                },
                 { name: 'language', content: 'English' },
                 { name: 'revisit-after', content: '3 days' },
                 { name: 'author', content: 'hideurl.top' },
@@ -85,14 +92,11 @@ export default defineNuxtConfig({
             ],
             link: [
                 { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
+                { rel: 'canonical', href: process.env.NUXT_PUBLIC_SITE_URL || 'https://hideurl.top' },
             ],
             script: [
                 { src: '/jquery.min.js', type: 'text/javascript' },
-                // {src: "/js/bootstrap.bundle.min.js", type: "text/javascript"},
                 { src: '/js/all.min.js', type: 'text/javascript' },
-                // { src: '/js/smooth-scroll.js', type: 'text/javascript' },
-                // { src: '/wow/wow.min.js', type: 'text/javascript' },
-                // { src: '/slick/slick.js', type: 'text/javascript' },
                 { src: '/js/moment.min.js', type: 'text/javascript' },
                 { src: '/js/daterangepicker.js', type: 'text/javascript' },
                 { src: 'https://www.googletagmanager.com/gtag/js?id=G-L408P91Y7S', type: 'text/javascript', async: "true" },
@@ -117,10 +121,7 @@ export default defineNuxtConfig({
         '~/assets/css/fontawesome.min.css',
         '~/assets/css/hover-min.css',
         '~/assets/scss/style-light.scss',
-        // '~/assets/css/animate.css',
-        // '~/assets/slick/slick.css',
         '~/assets/fonts/fontstyle.css',
-        // '~/assets/css/flag-icons.min.css',
         '~/assets/css/daterangepicker.css',
     ],
     modules: [
@@ -129,8 +130,7 @@ export default defineNuxtConfig({
             {
                 disableVuex: true,
                 autoImports: [
-                    // automatically imports `defineStore` as `definePiniaStore`
-                    ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
+                    ['defineStore', 'definePiniaStore'],
                 ],
             },
         ],
@@ -143,8 +143,14 @@ export default defineNuxtConfig({
             },
         ],
         'nuxt-simple-sitemap',
-        '@nuxtjs/robots',
+        'nuxt-simple-robots',
+        'nuxt-og-image',
+        'nuxt-seo-experiments'
     ],
+    sitemap: {
+        xslTips: false,
+        discoverImages: true,
+    },
     vite: {
         plugins: [
             development &&
