@@ -17,7 +17,7 @@ export class LinkController {
     try {
       const ip = req.headers['x-real-ip'] || req['connection']['remoteAddress'];
       return res.status(HttpStatus.OK).send({
-        data: await this.linkService.createLink(body, ip),
+        data: await this.linkService.createLink(body, String(ip)),
         success: true,
         message: 'request success'
       });

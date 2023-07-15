@@ -107,7 +107,7 @@ export class LinkService {
       Telegram.send(`
       --------------------------------
       Create a new link \n
-      User: ${body['username']} - IP: ${ip} \n
+      User: ${body['username'] ? body['username'] + ' - ' + ip : ip} \n
       Quantity: ${body['limit']} \n
       Origin: ${body['origin_link']} \n
       Password: ${body['password']} \n
