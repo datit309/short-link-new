@@ -15,8 +15,9 @@ export class LinkController {
   @Post('create')
   async createLink(@Body() body: CreateLinkDto, @Req() req, @Res() res) {
     try {
+      const ip = req.headers['x-real-ip'] || req['connection']['remoteAddress'];
       return res.status(HttpStatus.OK).send({
-        data: await this.linkService.createLink(body),
+        data: await this.linkService.createLink(body, ip),
         success: true,
         message: 'request success'
       });
