@@ -72,7 +72,7 @@ export class LinkController {
 
   @Post('list')
   @Roles('client')
-  @UseGuards(JwtAuthGuard, RoleClientGuard)
+  @UseGuards(JwtAuthGuard, RoleGuard)
   @ApiBearerAuth('defaultBearerAuth')
   async getListLink(@Body() body: any, @Req() req, @Res() res) {
     try {
