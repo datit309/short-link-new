@@ -17,6 +17,7 @@
         "deploy-dev": "sh install-testnet.bash"
     },
     "devDependencies": {
+        "@nuxt/image": "^1.0.0-rc.1",
         "@nuxtjs/device": "^3.0.0",
         "@nuxtjs/eslint-config-typescript": "^12.0.0",
         "@nuxtjs/i18n": "^8.0.0-beta.11",

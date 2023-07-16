@@ -140,8 +140,15 @@ export default defineNuxtConfig({
         'nuxt-simple-sitemap',
         'nuxt-simple-robots',
         'nuxt-og-image',
-        'nuxt-seo-experiments'
+        'nuxt-seo-experiments',
+        '@nuxt/image',
     ],
+    image: {
+        domains: ['hideurl.top'],
+        inject: true,
+        quality: 80,
+        format: ['webp']
+    },
     i18n: {
         vueI18n: './lang/i18n.config.ts' // if you are using custom path, default
     },
