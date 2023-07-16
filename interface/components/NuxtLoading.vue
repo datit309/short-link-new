@@ -1,7 +1,7 @@
 <template>
     <div v-if="data.loading" class="loading-page">
         <div>
-            <nuxt-img format="webp" src="/images/logo.png" alt="logo" />
+            <nuxt-img src="/images/logo.png" alt="" />
         </div>
         <div class="spinner">
             <div class="bounce1"></div>
