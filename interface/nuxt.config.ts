@@ -38,7 +38,7 @@ export default defineNuxtConfig({
                 },
                 {
                     name: 'keywords',
-                    content: 'HideURL.TOP, URL shortener, Link hiding, Link protection, Secure URL, Privacy link, Hide URLs, Shorten links, URL concealment, Link security, Safe link sharing, URL encryption, Confidential links, Privacy protection, Link privacy tool, Free URL shortener',
+                    content: 'HideURL.TOP, URL shortener, Link hiding, Link protection, Secure URL, Hide URLs, Shorten links, URL encryption, Free URL shortener, Rút gọn link miễn phí, Giấu link số lượng lớn, Rút gọn link số lượng lớn',
                 },
                 { name: 'viewport', content: 'width=device-width, initial-scale=1' },
                 { name: 'format-detection', content: 'telephone=no' },

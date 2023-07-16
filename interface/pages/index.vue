@@ -8,7 +8,7 @@ section
                         nav
                             .nav.nav-pills(role='tablist')
                                 button.nav-link.active(data-bs-toggle='tab' data-bs-target='#bets' type='button' role='tab'  )
-                                    .fs-3.text-uppercase {{$t("HideURL.TOP - Free URL Shortener and Link Hider")}}
+                                    h1.fs-3.text-uppercase {{$t("HideURL.TOP - Free URL Shortener and Link Hider")}}
 
                     .card-body.p-0
                         .tab-content
