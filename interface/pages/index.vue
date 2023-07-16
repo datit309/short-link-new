@@ -255,7 +255,7 @@ export default {
                 }
                 await linkStore
                     .createShortLink({
-                        user_id: vm.account.detail.user_id,
+                        user_id: vm.account.detail.user_id || null,
                         domain: vm.short_link.domain,
                         origin_link: vm.short_link.origin,
                         short_link: vm.short_link.custom,

@@ -47,10 +47,8 @@ export class LinkService {
 
       if(body['user_id']){
         user = await this.modelUser.findOne({_id: body['user_id']})
-        if(user){
-          body['user_id'] = user._id
-        }
-        body['user_id'] = null
+        body['user_id'] = user._id ? user._id  :  null
+
       } else {
         body['user_id'] = null
       }

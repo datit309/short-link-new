@@ -7,11 +7,14 @@ import {RoleGuard} from "../auth/guards/role.guard";
 import {Roles} from "../auth/roles.decorator";
 import {JwtAuthGuard} from "../auth/guards/jwt-auth.guard";
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger'
+import {Role} from "../auth/enums/role.enum";
+import {RoleClientGuard} from "../auth/guards/role-client.guard";
 
 @Controller('link')
 export class LinkController {
   constructor(private readonly linkService: LinkService) {}
-
+  // @Roles('client')
+  // @UseGuards(JwtAuthGuard, RoleClientGuard)
   @Post('create')
   async createLink(@Body() body: CreateLinkDto, @Req() req, @Res() res) {
     try {
@@ -69,7 +72,7 @@ export class LinkController {
 
   @Post('list')
   @Roles('client')
-  @UseGuards(JwtAuthGuard, RoleGuard)
+  @UseGuards(JwtAuthGuard, RoleClientGuard)
   @ApiBearerAuth('defaultBearerAuth')
   async getListLink(@Body() body: any, @Req() req, @Res() res) {
     try {
