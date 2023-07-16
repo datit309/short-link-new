@@ -8,7 +8,7 @@ section
                         nav
                             .nav.nav-pills(role='tablist')
                                 button.nav-link.active(data-bs-toggle='tab' data-bs-target='#bets' type='button' role='tab'  )
-                                    h1.fs-3.text-uppercase {{$t("HideURL.TOP - Free URL Shortener and Link Hider")}}
+                                    .fs-3.text-uppercase {{$t("HideURL.TOP - Free URL Shortener and Link Hider")}}
 
                     .card-body.p-0
                         .tab-content
@@ -74,7 +74,7 @@ section
                                                         i.fas.fa-lock
                                                     input.form-control(v-model="short_link.password" type='text' aria-describedby='basic-addon3' :placeholder='$t("Password protection")')
                                                 p * {{$t('Set a password to protect the shortened link. Leave blank if you do not want to set a password.')}}
-
+                                        h1.fs-5 HideURL.TOP, URL shortener, Short link, Link protection, Secure URL, Hide URLs, Shorten links, URL encryption, Free URL shortener
         .row.mx-0
             .score-table.wow.fadeIn(data-wow-delay='0.2s' data-wow-duration="0.7s")
                 .card.mb-4
@@ -155,6 +155,12 @@ section
                                             a.mx-1(href="/") HideURL.TOP
                                             | . Start exploring our website and discover the benefits of secure and simplified URL management today!
 
+
+                            //.col-lg-12.mb-4.col-sm-12
+                                .p-2.p-lg-3.rounded.h-100
+                                    .tab-content
+                                        p.mb-2.fs-6 Tag:
+                                            h1 HideURL.TOP, URL shortener, Link hiding, Link protection, Secure URL, Hide URLs, Shorten links, URL encryption, Free URL shortener, Rút gọn link miễn phí
 </template>
 <script>
 import { mapState } from 'pinia'
