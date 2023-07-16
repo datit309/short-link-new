@@ -144,7 +144,6 @@ export default defineNuxtConfig({
         '@nuxt/image',
     ],
     image: {
-        dir: 'assets',
         domains: ['hideurl.top'],
         inject: true,
         quality: 80,
