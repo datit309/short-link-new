@@ -154,7 +154,7 @@ export class LinkService {
         link['counter'] += 1
         await link.save()
       } else {
-        delete link['origin_link']
+        link['origin_link'] = null
       }
 
       return link
