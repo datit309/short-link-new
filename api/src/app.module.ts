@@ -21,6 +21,7 @@ import {AllExceptionsFilter} from "./exceptions/all-exceptions.filter";
 import { WebsocketModule } from './websocket/websocket.module';
 import {WebsocketService} from "./websocket/websocket.service";
 import { LinkModule } from './link/link.module';
+import { LinkController } from './link/link.controller';
 
 @Module({
   imports: [
@@ -74,8 +75,6 @@ export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     // lọc IP cho router này
 
-    if (process.env.NODE_ENV != 'development') {
-      consumer.apply(IPMiddleware).forRoutes(ThirdPartyController);
-    }
+    consumer.apply(IPMiddleware).forRoutes('/');
   }
 }
