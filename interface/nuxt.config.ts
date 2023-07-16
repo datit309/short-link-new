@@ -24,7 +24,7 @@ export default defineNuxtConfig({
     },
     app: {
         head: {
-            charset: 'utf-16',
+            charset: 'utf-8',
             viewport: 'width=device-width, initial-scale=1',
             title: title,
             htmlAttrs: {
@@ -54,7 +54,7 @@ export default defineNuxtConfig({
                     hid: 'og:title',
                     name: 'og:title',
                     property: 'og:title',
-                    content: description,
+                    content: title,
                 },
                 { hid: 'og:site_name', name: 'og:site_name', content: title },
                 { hid: 'og:url', name: 'og:url', content: 'https://hideurl.top' },
@@ -82,7 +82,7 @@ export default defineNuxtConfig({
                 { property: 'twitter:url', content: 'https://hideurl.top' },
                 {
                     name: 'twitter:title',
-                    content: description,
+                    content: title,
                 },
                 {
                     name: 'twitter:description',
