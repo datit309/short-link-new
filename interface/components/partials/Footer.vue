@@ -3,8 +3,8 @@ footer
     nav.navbar.navbar-expand-lg.bg-menu.mt-lg-3
         .container.justify-content-between
             a.navbar-brand(href='/')
-                img.img-logo-footer.d-none.d-lg-block(src='~/assets/images/logo.png' alt="hideurl")
-                img.img-logo-footer.d-lg-none(src='~/assets/images/favicon.png' alt="hideurl")
+                nuxt-img.img-logo-footer.d-none.d-lg-block(src='~/assets/images/logo.png' alt="hideurl")
+                nuxt-img.img-logo-footer.d-lg-none(src='~/assets/images/favicon.png' alt="hideurl")
             .d-flex
 
                 a.mx-2(href="https://t.me/+dJCz3rOLV5w1NDNl" target="_blank" rel="nofollow")
@@ -24,9 +24,9 @@ footer
                     i.fab.fa-twitter.d-lg-none
             .d-flex
                 a(href="https://hightechk.net" target="_blank" rel="nofollow")
-                    img.img-aware.d-none.d-lg-block.py-2(src='@/assets/images/hightechk.net-removebg-preview.png' style='width: 100px' alt="hightechk")
+                    nuxt-img.img-aware.d-none.d-lg-block.py-2(src='@/assets/images/hightechk.net-removebg-preview.png' style='width: 100px' alt="hightechk")
                     .d-lg-none.d-flex.align-items-center.mt-2
-                        img(src='@/assets/images/hightechk.net-removebg-preview.png' style='width: 80px' alt="hightechk")
+                        nuxt-img(src='@/assets/images/hightechk.net-removebg-preview.png' style='width: 80px' alt="hightechk")
 </template>
 
 <script>

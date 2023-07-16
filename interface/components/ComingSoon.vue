@@ -10,7 +10,7 @@
                 .row.py-3.justify-content-center.d-flex
                     .col-12.mb-3.text-center
                         a.hvr-float-shadow
-                            img.w-100(src='@/assets/images/logo.png')
+                            nuxt-img.w-100(src='@/assets/images/logo.png')
 
 </template>
 
