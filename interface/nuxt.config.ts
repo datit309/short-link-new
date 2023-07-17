@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import nodePolyfills from 'rollup-plugin-polyfill-node'
+import {NodeGlobalsPolyfillPlugin} from '@esbuild-plugins/node-globals-polyfill'
 
 const path = require('path')
 
@@ -143,7 +144,6 @@ export default defineNuxtConfig({
         '@nuxt/image',
         'nuxt-module-feed',
         '@nuxtjs/robots',
-        'nuxt-gtag',
     ],
     image: {
         domains: ['hideurl.top'],
@@ -173,6 +173,19 @@ export default defineNuxtConfig({
                 transformMixedEsModules: true,
             },
 
+        },
+        optimizeDeps: {
+            esbuildOptions: {
+                define: {
+                    global: 'globalThis'
+                },
+                plugins: [
+                    NodeGlobalsPolyfillPlugin({
+                        process: true,
+                        buffer: true
+                    }),
+                ]
+            }
         },
 
     },

@@ -38,6 +38,7 @@
     },
     "dependencies": {
         "@coinbase/wallet-sdk": "^3.6.1",
+        "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
         "@nuxtjs/robots": "^3.0.0",
         "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
         "@pinia/nuxt": "^0.4.6",
