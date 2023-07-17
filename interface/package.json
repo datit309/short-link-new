@@ -24,6 +24,7 @@
         "@types/currency-formatter": "^1.5.1",
         "@typescript-eslint/eslint-plugin": "^5.6.0",
         "@typescript-eslint/parser": "^5.6.0",
+        "@unhead/schema-org": "^0.6.0",
         "@vue/eslint-config-standard": "^8.0.1",
         "eslint": "^8.29.0",
         "eslint-config-prettier": "^8.5.0",
@@ -33,11 +34,11 @@
         "nuxt": "^3.6.0",
         "nuxt-og-image": "^2.0.10",
         "nuxt-seo-experiments": "^3.0.5",
-        "nuxt-simple-robots": "^3.0.2",
         "prettier": "^2.8.1"
     },
     "dependencies": {
         "@coinbase/wallet-sdk": "^3.6.1",
+        "@nuxtjs/robots": "^3.0.0",
         "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
         "@pinia/nuxt": "^0.4.6",
         "@popperjs/core": "^2.11.6",
@@ -53,6 +54,7 @@
         "mitt": "^3.0.0",
         "moment": "^2.29.4",
         "notiflix": "^3.2.5",
+        "nuxt-module-feed": "^1.0.3",
         "nuxt-simple-sitemap": "^3.0.9",
         "pinia": "^2.0.27",
         "pug": "^3.0.2",

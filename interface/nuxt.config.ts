@@ -138,10 +138,12 @@ export default defineNuxtConfig({
         '@nuxtjs/device',
         '@nuxtjs/i18n',
         'nuxt-simple-sitemap',
-        'nuxt-simple-robots',
         'nuxt-og-image',
         'nuxt-seo-experiments',
         '@nuxt/image',
+        'nuxt-module-feed',
+        '@nuxtjs/robots',
+        'nuxt-gtag',
     ],
     image: {
         domains: ['hideurl.top'],
