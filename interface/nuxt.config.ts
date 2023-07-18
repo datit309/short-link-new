@@ -7,7 +7,7 @@ const path = require('path')
 const MODE = process.env.NODE_ENV
 const development = MODE === 'development'
 const title = process.env.NUXT_PUBLIC_APP_TITLE
-const description = 'HideURL.TOP is a free URL shortening and link hiding tool that allows you to protect and secure your links effortlessly. Safeguard your URLs and maintain privacy with our user-friendly service'
+const description = 'HideURL.TOP is a reliable and secure short link service that allows you to easily shorten and protect your links. With our user-friendly platform, you can create custom short links for sharing on social media, emails, or websites. Experience the convenience and privacy of shortening your URLs with HideURL.TOP today!'
 export default defineNuxtConfig({
     ssr: false,
     site: {
@@ -39,7 +39,7 @@ export default defineNuxtConfig({
                 },
                 {
                     name: 'keywords',
-                    content: 'HideURL.TOP, URL shortener, Link hiding, Link protection, Secure URL, Hide URLs, Shorten links, URL encryption, Free URL shortener, Rút gọn link miễn phí, Giấu link số lượng lớn, Rút gọn link số lượng lớn',
+                    content: 'HideURL.TOP, Short link, Short links, URL shortener, Link hiding, Link protection, Secure URL, Hide URLs, Hide URL, Shorten links, URL encryption, Free URL shortener, Rút gọn link miễn phí, Giấu link số lượng lớn, Rút gọn link số lượng lớn',
                 },
                 { name: 'viewport', content: 'width=device-width, initial-scale=1' },
                 { name: 'format-detection', content: 'telephone=no' },
