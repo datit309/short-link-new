@@ -92,7 +92,7 @@ export default defineNuxtConfig({
                 { name: 'twitter:image', content: 'https://hideurl.top/favicon.png' },
             ],
             link: [
-                { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
+                { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
                 { rel: 'canonical', href: process.env.NUXT_PUBLIC_SITE_URL || 'https://hideurl.top' },
             ],
             script: [
