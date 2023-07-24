@@ -143,16 +143,20 @@ export default {
                             vm.$hideLoading()
                         } else {
                             vm.$hideLoading()
-                            vm.$error(message)
+                            // vm.$error(message)
+                            clearError({ redirect: '/' })
+
                         }
                     })
                     .catch((error) => {
                         vm.$hideLoading()
+                        clearError({ redirect: '/' })
                         vm.$error(error.message)
                     })
             } catch (e) {
                 vm.$hideLoading()
                 vm.$error(e.message)
+                clearError({ redirect: '/' })
             }
         },
     },
