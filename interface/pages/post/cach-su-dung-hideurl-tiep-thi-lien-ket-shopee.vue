@@ -20,6 +20,9 @@ section
 definePageMeta({
     layout: 'master-light',
 })
+useHead({
+    title: 'Cách sử dụng HideURL.top để Giới Thiệu Tiếp Thị Liên Kết cho Shopee',
+})
 export default {
     name: "cach-an-url-hieu-qua",
     data(){

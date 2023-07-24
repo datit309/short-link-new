@@ -20,6 +20,9 @@ section
 definePageMeta({
     layout: 'master-light',
 })
+useHead({
+    title: 'HideURL.top - Giải pháp short link tối ưu cho việc chia sẻ liên kết',
+})
 export default {
     name: "cach-an-url-hieu-qua",
     data(){

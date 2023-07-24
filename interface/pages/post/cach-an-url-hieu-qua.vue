@@ -20,6 +20,9 @@ section
 definePageMeta({
     layout: 'master-light',
 })
+useHead({
+    title: 'HideURL.top - Cách ẩn địa chỉ URL hiệu quả và bảo vệ quyền riêng tư trực tuyến',
+})
 export default {
     name: "cach-an-url-hieu-qua",
     data(){

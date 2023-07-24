@@ -20,6 +20,9 @@ section
 definePageMeta({
     layout: 'master-light',
 })
+useHead({
+    title: 'So sánh các trang web rút gọn link - HideURL.top đi đầu',
+})
 export default {
     name: "cach-an-url-hieu-qua",
     data(){

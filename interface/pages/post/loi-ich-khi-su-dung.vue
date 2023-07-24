@@ -20,6 +20,9 @@ section
 definePageMeta({
     layout: 'master-light',
 })
+useHead({
+    title: 'Lợi ích khi sử dụng rút gọn link với HideURL.top',
+})
 export default {
     name: "cach-an-url-hieu-qua",
     data(){
