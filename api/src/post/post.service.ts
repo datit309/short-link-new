@@ -52,6 +52,7 @@ export class PostService {
                 .replace(/Bitly/g, "Hideurl")
                 .replace(/bitly/g, "hideurl")
                 .replace(/bitly.com/g, "hideurl.top")
+                .replace(/Bitly.com/g, "Hideurl.top")
 
           });
           const content = await page.evaluate(() => {
@@ -59,13 +60,16 @@ export class PostService {
                 .replace(/Bitly/g, "Hideurl")
                 .replace(/bitly/g, "hideurl")
                 .replace(/bitly.com/g, "hideurl.top")
+                .replace(/Bitly.com/g, "Hideurl.top")
+                .replace('bitly.com/pages/pricing', "hideurl.top")
+                .replace('Bitly.com/pages/pricing', "Hideurl.top")
                 .replace(/class="button button-primary"/g, 'class="btn btn-primary"')
                 .replace(/class="content-padding"/g, 'class="content-padding p-3"')
           });
 
           let slug = new URL(links[i]);
           await this.modelPost.findOneAndUpdate({
-            slug: slug.pathname.replace('/blog/', '').replace('/','')
+            slug: slug.pathname.replace('/blog/', '').replace('/','').replace('bitly', 'hideurl')
           },{
             title,
             description: content,
