@@ -19,7 +19,9 @@ export class PostService {
 
   // @Cron(CronExpression.EVERY_10_MINUTES)
   async crawler() {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      executablePath: '/usr/bin/chromium-browser'
+    });
     const page = await browser.newPage();
     let totalPages = 100
 
