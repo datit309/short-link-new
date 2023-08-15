@@ -68,6 +68,10 @@ export class PostService {
           });
 
           let slug = new URL(links[i]);
+          let find = await this.modelPost.findOne({ slug: slug})
+          if(find) {
+            continue;
+          }
           await this.modelPost.findOneAndUpdate({
             slug: slug.pathname.replace('/blog/', '').replace('/','').replace('bitly', 'hideurl')
           },{
