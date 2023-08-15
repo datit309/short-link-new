@@ -75,6 +75,17 @@ section
                                                     input.form-control(v-model="short_link.password" type='text' aria-describedby='basic-addon3' :placeholder='$t("Password protection")')
                                                 p * {{$t('Set a password to protect the shortened link. Leave blank if you do not want to set a password.')}}
                                         h1.fs-5 HideURL.TOP, URL shortener, Short link, Link protection, Secure URL, Hide URLs, Shorten links, URL encryption, Free URL shortener
+
+                                        .list-post.px-3
+                                            .px-2.px-lg-3.pt-4(v-for="item in list_post.docs" )
+                                                a(:href="`/post/${item.slug}`")
+                                                    .row
+                                                        .col-12.mx-auto.why-img
+                                                            img.w-100.rotate-hvr(src='@/assets/images/logo.png')
+                                                            img.icon(:src='item.thumbnail')
+                                                    .p-2
+                                                        .text-center.mb-2.fs-6 {{item.title}}
+
         .row.mx-0
             .score-table.wow.fadeIn(data-wow-delay='0.2s' data-wow-duration="0.7s")
                 .card.mb-4
@@ -198,12 +209,69 @@ export default {
             new_link: {
                 short_link: [],
             },
+            list_post: {
+                docs: [],
+                page: 1,
+                limit: 100,
+                totalPages: 1
+            }
         }
     },
     watch: {},
     async mounted() {
         const vm = this
-
+        await vm.getListPost()
+        $('.list-post').slick({
+            // dots: true,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 1000,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 4,
+                        slidesToScroll: 1,
+                        // centerMode: true,
+                    },
+                },
+                {
+                    breakpoint: 800,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                        infinite: true,
+                    },
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                        infinite: true,
+                    },
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        infinite: true,
+                    },
+                },
+                {
+                    breakpoint: 320,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        infinite: true,
+                    },
+                },
+            ],
+        }),
         $(function () {
             $('input[name="date_expires"]').daterangepicker(
                 {
@@ -245,6 +313,28 @@ export default {
                     vm.$error(vm.$t('copy failed'), err)
                 }
             )
+        },
+        async getListPost() {
+            const vm = this
+            const linkStore = useLinkStore()
+            try {
+                await linkStore
+                .getListPost({page: vm.list_post.page, limit: vm.list_post.limit})
+                .then((response) => {
+                    const { data, message, success } = response
+                    if (success) {
+                        vm.list_post.docs = data.docs
+                        vm.list_post.totalPages = data.totalPages
+                    } else {
+                        vm.$error(message)
+                    }
+                })
+                .catch((error) => {
+                    vm.$error(error.message)
+                })
+            } catch (e) {
+                vm.$error(e.message)
+            }
         },
         async createShortLink() {
             const vm = this

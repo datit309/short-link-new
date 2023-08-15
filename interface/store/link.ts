@@ -8,6 +8,20 @@ import Cookies from 'js-cookie'
 export const useLinkStore = defineStore('useLinkStore', {
     state: () => ({}),
     actions: {
+        getPost(body: any) {
+            const config = useRuntimeConfig()
+
+            return new Promise((resolve, reject) => {
+                useFetchAPI('post', 'api/post/get', body).then(resolve).catch(reject)
+            })
+        },
+        getListPost(body: any) {
+            const config = useRuntimeConfig()
+
+            return new Promise((resolve, reject) => {
+                useFetchAPI('post', 'api/post/list', body).then(resolve).catch(reject)
+            })
+        },
         createShortLink(body: any) {
             const config = useRuntimeConfig()
 

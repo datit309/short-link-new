@@ -21,6 +21,7 @@ import {AllExceptionsFilter} from "./exceptions/all-exceptions.filter";
 import { WebsocketModule } from './websocket/websocket.module';
 import {WebsocketService} from "./websocket/websocket.service";
 import { LinkModule } from './link/link.module';
+import { PostModule } from './post/post.module';
 
 @Module({
   imports: [
@@ -56,6 +57,7 @@ import { LinkModule } from './link/link.module';
     ThirdPartyModule,
     WebsocketModule,
     LinkModule,
+    PostModule,
   ],
   controllers: [AppController],
   providers: [AppService,

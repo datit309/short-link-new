@@ -98,6 +98,7 @@ export default defineNuxtConfig({
             script: [
                 { src: '/jquery.min.js', type: 'text/javascript' },
                 { src: '/js/all.min.js', type: 'text/javascript' },
+                { src: '/slick/slick.js', type: 'text/javascript' },
                 { src: '/js/moment.min.js', type: 'text/javascript' },
                 { src: '/js/daterangepicker.js', type: 'text/javascript' },
                 { src: 'https://www.googletagmanager.com/gtag/js?id=G-L408P91Y7S', type: 'text/javascript', async: "true" },
@@ -122,6 +123,7 @@ export default defineNuxtConfig({
         '~/assets/css/fontawesome.min.css',
         '~/assets/css/hover-min.css',
         '~/assets/scss/style-light.scss',
+        '~/assets/slick/slick.css',
         '~/assets/fonts/fontstyle.css',
         '~/assets/css/daterangepicker.css',
     ],

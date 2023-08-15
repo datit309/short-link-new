@@ -75,6 +75,16 @@ button:active {
     transform: translateY(1px);
 }
 
+.icon {
+    width: 100%;
+    height: auto;
+}
+
+.wp-block-image > img {
+    width: 100% !important;
+    height: auto !important;
+}
+
 .btn:focus {
     box-shadow: none;
 }
