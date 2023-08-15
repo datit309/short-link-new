@@ -14,10 +14,10 @@ export class PostService {
       @InjectModel(PostEntity.name)
       private modelPost: PaginateModel<PostEntityDocument>,
       ) {
-    this.crawler()
+    // this.crawler()
   }
 
-  // @Cron(CronExpression.EVERY_10_MINUTES)
+  @Cron(CronExpression.EVERY_30_MINUTES)
   async crawler() {
     const browser = await puppeteer.launch({ executablePath: '/usr/bin/chromium-browser', args: [ '--disable-gpu', '--disable-setuid-sandbox', '--no-sandbox', '--no-zygote' ] });
     const page = await browser.newPage();
