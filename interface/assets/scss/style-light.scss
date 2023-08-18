@@ -85,6 +85,11 @@ button:active {
     height: auto !important;
 }
 
+.wp-block-image > figure > img {
+    width: 100% !important;
+    height: auto !important;
+}
+
 .btn:focus {
     box-shadow: none;
 }
