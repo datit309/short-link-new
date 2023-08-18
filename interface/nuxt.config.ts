@@ -1,9 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import nodePolyfills from 'rollup-plugin-polyfill-node'
 import {NodeGlobalsPolyfillPlugin} from '@esbuild-plugins/node-globals-polyfill'
-
 const path = require('path')
-
+import axios from 'axios'
+import _ from "lodash";
 const MODE = process.env.NODE_ENV
 const development = MODE === 'development'
 const title = process.env.NUXT_PUBLIC_APP_TITLE
@@ -159,6 +159,18 @@ export default defineNuxtConfig({
     sitemap: {
         xslTips: false,
         discoverImages: true,
+        exclude: [
+            '/account/**'
+        ],
+        urls: async () => {
+            let {data} = await axios.post(`${process.env.NUXT_PUBLIC_API_BASE_URL}/api/post/list`, {page: 1, limit: 1000})
+            return _.map(data.data.docs, (item) => ({
+                loc: `/post/${item.slug}`,
+                lastmod: item.updatedAt,
+                changefreq: 'daily',
+                priority: 0.8,
+            }))
+        },
     },
     vite: {
         plugins: [
@@ -197,5 +209,5 @@ export default defineNuxtConfig({
                 hotReload: true,
             }
         }
-    }
+    },
 })
