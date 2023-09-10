@@ -7,6 +7,7 @@ import puppeteer from 'puppeteer';
 import {PostEntity, PostEntityDocument} from "./entities/post.entity";
 import * as moment from "moment/moment";
 import {Cron, CronExpression} from "@nestjs/schedule";
+import Telegram from "../utils/telegram";
 
 @Injectable()
 export class PostService {
@@ -17,7 +18,7 @@ export class PostService {
     // this.crawler()
   }
 
-  @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
+  @Cron(CronExpression.EVERY_HOUR)
   async crawler() {
     const browser = await puppeteer.launch({ executablePath: '/usr/bin/chromium-browser', args: [ '--disable-gpu', '--disable-setuid-sandbox', '--no-sandbox', '--no-zygote' ] });
     const page = await browser.newPage();
@@ -49,22 +50,23 @@ export class PostService {
 
           let title = await page.evaluate(() => {
             return document.getElementsByClassName('entry-title single-title')[0].textContent
-                .replace(/Bitly/g, "Hideurl")
-                .replace(/bitly/g, "hideurl")
                 .replace(/bitly.com/g, "hideurl.top")
                 .replace(/Bitly.com/g, "Hideurl.top")
+                .replace(/Bitly/g, "Hideurl")
+                .replace(/bitly/g, "hideurl")
 
           });
           const content = await page.evaluate(() => {
             return document.getElementsByClassName('cell large-9')[0].innerHTML
-                .replace(/Bitly/g, "Hideurl")
-                .replace(/bitly/g, "hideurl")
                 .replace(/bitly.com/g, "hideurl.top")
                 .replace(/Bitly.com/g, "Hideurl.top")
                 .replace('bitly.com/pages/pricing', "hideurl.top")
                 .replace('Bitly.com/pages/pricing', "Hideurl.top")
                 .replace(/class="button button-primary"/g, 'class="btn btn-primary"')
                 .replace(/class="content-padding"/g, 'class="content-padding p-3"')
+                .replace(/Bitly/g, "Hideurl")
+                .replace(/bitly/g, "hideurl")
+
           });
 
           let slug = new URL(links[i]);
