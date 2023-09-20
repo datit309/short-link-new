@@ -1,9 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import nodePolyfills from 'rollup-plugin-polyfill-node'
-import {NodeGlobalsPolyfillPlugin} from '@esbuild-plugins/node-globals-polyfill'
+import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill'
+
 const path = require('path')
 import axios from 'axios'
-import _ from "lodash";
+import _ from 'lodash'
+
 const MODE = process.env.NODE_ENV
 const development = MODE === 'development'
 const title = process.env.NUXT_PUBLIC_APP_TITLE
@@ -101,7 +103,11 @@ export default defineNuxtConfig({
                 { src: '/slick/slick.js', type: 'text/javascript' },
                 { src: '/js/moment.min.js', type: 'text/javascript' },
                 { src: '/js/daterangepicker.js', type: 'text/javascript' },
-                { src: 'https://www.googletagmanager.com/gtag/js?id=G-L408P91Y7S', type: 'text/javascript', async: "true" },
+                {
+                    src: 'https://www.googletagmanager.com/gtag/js?id=G-L408P91Y7S',
+                    type: 'text/javascript',
+                    async: 'true',
+                },
                 {
                     hid: 'gtm',
                     children: `
@@ -113,7 +119,28 @@ export default defineNuxtConfig({
                     `,
                     type: 'text/javascript',
                 },
-                { src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7566427492875170', type: 'text/javascript', async: "true", crossorigin: "anonymous" },
+                {
+                    hid: 'atsmarttag',
+                    children: `
+                         var __atsmarttag = {
+                        pub_id: '6257072555054049941'
+                      };
+                        (function () {
+                            var script = document.createElement('script');
+                            script.src = '//static.accesstrade.vn/js/atsmarttag.min.js?v=1.1.0';
+                            script.type = 'text/javascript';
+                            script.async = true;
+                            (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(script);
+                              })();
+                    `,
+                    type: 'text/javascript',
+                },
+                {
+                    src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7566427492875170',
+                    type: 'text/javascript',
+                    async: 'true',
+                    crossorigin: 'anonymous',
+                },
             ],
             noscript: [{ children: 'Javascript is required' }],
         },
@@ -151,19 +178,22 @@ export default defineNuxtConfig({
         domains: ['hideurl.top'],
         inject: true,
         quality: 80,
-        format: ['webp']
+        format: ['webp'],
     },
     i18n: {
-        vueI18n: './lang/i18n.config.ts' // if you are using custom path, default
+        vueI18n: './lang/i18n.config.ts', // if you are using custom path, default
     },
     sitemap: {
         xslTips: false,
         discoverImages: true,
         exclude: [
-            '/account/**'
+            '/account/**',
         ],
         urls: async () => {
-            let {data} = await axios.post(`${process.env.NUXT_PUBLIC_API_BASE_URL}/api/post/list`, {page: 1, limit: 1000})
+            let { data } = await axios.post(`${process.env.NUXT_PUBLIC_API_BASE_URL}/api/post/list`, {
+                page: 1,
+                limit: 1000,
+            })
             return _.map(data.data.docs, (item) => ({
                 loc: `/post/${item.slug}`,
                 lastmod: item.updatedAt,
@@ -175,9 +205,9 @@ export default defineNuxtConfig({
     vite: {
         plugins: [
             development &&
-                nodePolyfills({
-                    include: ['node_modules/**/*.js', new RegExp('node_modules/.vite/.*js')],
-                }),
+            nodePolyfills({
+                include: ['node_modules/**/*.js', new RegExp('node_modules/.vite/.*js')],
+            }),
         ],
         build: {
             rollupOptions: {
@@ -191,15 +221,15 @@ export default defineNuxtConfig({
         optimizeDeps: {
             esbuildOptions: {
                 define: {
-                    global: 'globalThis'
+                    global: 'globalThis',
                 },
                 plugins: [
                     NodeGlobalsPolyfillPlugin({
                         process: true,
-                        buffer: true
+                        buffer: true,
                     }),
-                ]
-            }
+                ],
+            },
         },
 
     },
@@ -207,7 +237,7 @@ export default defineNuxtConfig({
         loaders: {
             vue: {
                 hotReload: true,
-            }
-        }
+            },
+        },
     },
 })
