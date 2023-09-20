@@ -136,6 +136,26 @@ export default defineNuxtConfig({
                     type: 'text/javascript',
                 },
                 {
+                    hid: 'pushtimize',
+                    children: `
+                         (function() {
+                            var script = document.createElement('script');
+                            script.src = 'https://api.trackpush.com/sdk/inpage/v1.js?pid=nbwByI0UlvGyWyQlmSyuLQ';
+                            script.async = true;
+                            script.onload = function () {
+                                InPagePushSDK.init({"content_type":"mainstream","time_to_show":"onload","delay_show":0,"max_ads":3,"max_showing":2,"max_showing_mobile":1,"ads_interval":5,"closeable":"1","position":"top","mobile_position":"top","align":"right"});
+
+                            };
+                            document.head.append(script);
+                        })();
+                    `,
+                    type: 'text/javascript',
+                },
+                {
+                    src: 'https://api.trackpush.com/sdk/native/v1.js?pid=nbwByI0UlvGyWyQlmSyuLQ&class=_bd5b59c038',
+                    type: 'text/javascript',
+                },
+                {
                     src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7566427492875170',
                     type: 'text/javascript',
                     async: 'true',
