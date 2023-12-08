@@ -19,6 +19,7 @@ import {getConnectionStringMongo} from './utils/mongo';
 import {HttpExceptionFilter} from './exceptions/http-exception.filter';
 import { WsAdapter } from '@nestjs/platform-ws';
 import {ethers} from 'ethers'
+import {TransformInterceptor} from "./interceptor/transform.interceptor";
 const crypto = require('crypto');
 
 async function bootstrap() {
@@ -71,6 +72,7 @@ async function bootstrap() {
 
     app.useGlobalPipes(new ParseQueryFilterToObject());
     app.useGlobalFilters(new HttpExceptionFilter());
+    app.useGlobalInterceptors(new TransformInterceptor())
 
     app.use(
         session({

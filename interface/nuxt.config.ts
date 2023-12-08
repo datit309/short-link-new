@@ -12,6 +12,18 @@ const title = process.env.NUXT_PUBLIC_APP_TITLE
 const description = 'HideURL.TOP is a reliable and secure short link service that allows you to easily shorten and protect your links. With our user-friendly platform, you can create custom short links for sharing on social media, emails, or websites. Experience the convenience and privacy of shortening your URLs with HideURL.TOP today!'
 export default defineNuxtConfig({
     ssr: false,
+    devtools: {
+        enable: false,
+        componentInspector: false,
+    },
+    experimental: {
+        defaults: {
+            nuxtLink: {
+                activeClass: 'active',
+            },
+        },
+    },
+    spaLoadingTemplate: false,
     site: {
         url: process.env.NUXT_PUBLIC_SITE_URL || 'https://hideurl.top',
     },
@@ -103,6 +115,8 @@ export default defineNuxtConfig({
                 { src: '/slick/slick.js', type: 'text/javascript' },
                 { src: '/js/moment.min.js', type: 'text/javascript' },
                 { src: '/js/daterangepicker.js', type: 'text/javascript' },
+                { src: '/js/Winwheel.min.js', type: 'text/javascript' },
+                { src: '/js/TweenMax.min.js', type: 'text/javascript' },
                 {
                     src: 'https://www.googletagmanager.com/gtag/js?id=G-L408P91Y7S',
                     type: 'text/javascript',
@@ -172,6 +186,7 @@ export default defineNuxtConfig({
         '~/assets/scss/style-light.scss',
         '~/assets/slick/slick.css',
         '~/assets/fonts/fontstyle.css',
+        '~/assets/css/spin.css',
         '~/assets/css/daterangepicker.css',
     ],
     modules: [

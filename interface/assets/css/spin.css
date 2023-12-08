@@ -1,0 +1,95 @@
+section .spin-wheel .bg-wheel {
+  background: url(../images/bga.png) no-repeat center center;
+  background-size: 100% 100%;
+  padding-right: 200px;
+  padding-left: 200px;
+  border-radius: 15px
+}
+
+@media (min-width: 320px) and (max-width: 479px) {
+  section .spin-wheel .bg-wheel {
+    padding-right: 10px;
+    padding-left: 10px;
+    background-size: cover
+  }
+}
+
+section .spin-wheel .wheel {
+  height: 100vh;
+  background: url(../images/spin-bg.png) no-repeat center center;
+  background-size: 100% 100%
+}
+
+@media (min-width: 320px) and (max-width: 479px) {
+  section .spin-wheel .wheel {
+    background-size: cover
+  }
+}
+
+section .spin-wheel .wheel #spin_button {
+  width: 100px
+}
+
+section .spin-wheel .wheel .fade-out {
+  -webkit-animation: fade-in-slogan 2s .2s ease-in infinite;
+  -moz-animation: fade-in-slogan 2s .2s ease-in infinite;
+  animation: fade-in-slogan 2s .2s ease-in infinite
+}
+
+@-webkit-keyframes fade-in-slogan {
+  0% {
+    opacity: 0
+  }
+  30% {
+    opacity: 1
+  }
+  50% {
+    opacity: 1
+  }
+  70% {
+    opacity: 1
+  }
+  100% {
+    opacity: 0
+  }
+}
+
+section .spin-wheel .wheel .btn-spin {
+  -webkit-border-top-left-radius: 60px;
+  -webkit-border-top-right-radius: 60px;
+  -moz-border-radius-topleft: 60px;
+  -moz-border-radius-topright: 60px;
+  border-top-left-radius: 60px;
+  border-top-right-radius: 60px;
+  background: linear-gradient(#291400, #775300, #0E0700 80%);
+  border: 1px solid #FCD535;
+  color: #FCD535;
+  font-size: 18px
+}
+
+section .spin-wheel .wheel .info-box {
+  background: linear-gradient(#291400, #775300, #0E0700 80%);
+  border: 1px solid #FCD535;
+  color: #FFF0B2;
+  font-size: 18px
+}
+
+section .spin-wheel .wheel .trickger {
+  width: 30px;
+  margin-right: 3px
+}
+
+section .spin-wheel .wheel .the_wheel {
+  background: url(../images/wheel.gif) no-repeat center;
+  background-size: 100% 100%;
+  width: 355px;
+  height: 355px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+section .spin-wheel .wheel .clickable {
+  cursor: pointer
+}
