@@ -14,7 +14,9 @@ section(v-if="post.title" )
                             .row.mx-0.justify-content-center
                                 .col-lg-12.mb-4
                                     .bg-box.p-2.p-lg-3.rounded
+                                        img.w-100.rounded.mb-2(v-if="post.thumbnail" :src="post.thumbnail")
                                         h1.mb-2.px-0(v-if="post.title" ) {{post.title}}
+
                                         p(v-html="post.description")
 
 </template>

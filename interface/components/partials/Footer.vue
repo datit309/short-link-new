@@ -7,19 +7,19 @@ footer
                 nuxt-img.img-logo-footer.d-lg-none(src='/images/favicon.png' alt="hideurl")
             .d-flex
 
-                a.mx-2(href="https://t.me/+dJCz3rOLV5w1NDNl" target="_blank" rel="nofollow")
+                //a.mx-2(href="https://t.me/+dJCz3rOLV5w1NDNl" target="_blank" rel="nofollow")
                     i.fab.fa-telegram.fa-2x.d-none.d-lg-block
                     i.fab.fa-telegram.d-lg-none
-                a.mx-2(href="javascript:void(0)" target="_blank" rel="nofollow")
+                //a.mx-2(href="javascript:void(0)" target="_blank" rel="nofollow")
                     i.fab.fa-facebook.fa-2x.d-none.d-lg-block
                     i.fab.fa-facebook.d-lg-none
-                a.mx-2(href="javascript:void(0)" target="_blank" rel="nofollow")
+                //a.mx-2(href="javascript:void(0)" target="_blank" rel="nofollow")
                     i.fab.fa-discord.fa-2x.d-none.d-lg-block
                     i.fab.fa-discord.d-lg-none
                 //a.mx-2(href="javascript:void(0)" target="_blank" rel="nofollow")
                     i.fas.fa-envelope.fa-2x.d-none.d-lg-block
                     i.fas.fa-envelope.d-lg-none
-                a.mx-2(href="javascript:void(0)" target="_blank" rel="nofollow")
+                //a.mx-2(href="javascript:void(0)" target="_blank" rel="nofollow")
                     i.fab.fa-twitter.fa-2x.d-none.d-lg-block
                     i.fab.fa-twitter.d-lg-none
             .d-flex

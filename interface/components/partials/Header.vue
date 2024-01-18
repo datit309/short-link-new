@@ -194,6 +194,8 @@ header
                 nuxt-img.img-logo.d-none.d-lg-block(src='/images/logo.png' alt="hideurl")
                 nuxt-img.img-logo.d-lg-none(src='/images/favicon.png' alt="hideurl")
             .d-flex.justify-content-center
+                nuxt-link.btn.btn-sub.p-2.px-lg-3.me-1(to="/blog" aria-expanded='false')
+                    | {{$t('Blog')}}
                 button.btn.btn-sub.p-2.px-lg-3.me-1(v-if="!account.detail.username" data-bs-toggle="modal" data-bs-target="#loginModal" type='button' aria-expanded='false')
                     | {{$t('Login')}} / {{$t('Register')}}
                 nuxt-link.btn.btn-sub.p-2.px-lg-3.me-1(to="/" v-if="account.detail.username" aria-expanded='false')

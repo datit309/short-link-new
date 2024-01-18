@@ -229,6 +229,7 @@ export default {
             slidesToScroll: 1,
             autoplay: true,
             autoplaySpeed: 1000,
+            rows: 2,
             responsive: [
                 {
                     breakpoint: 1024,
