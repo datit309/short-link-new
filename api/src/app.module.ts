@@ -22,7 +22,6 @@ import { WebsocketModule } from './websocket/websocket.module';
 import {WebsocketService} from "./websocket/websocket.service";
 import { LinkModule } from './link/link.module';
 import { PostModule } from './post/post.module';
-import { SpinWheelModule } from './spin-wheel/spin-wheel.module';
 
 @Module({
   imports: [
@@ -59,7 +58,6 @@ import { SpinWheelModule } from './spin-wheel/spin-wheel.module';
     WebsocketModule,
     LinkModule,
     PostModule,
-    SpinWheelModule,
   ],
   controllers: [AppController],
   providers: [AppService,

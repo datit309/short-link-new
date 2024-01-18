@@ -13,11 +13,11 @@ export class PostController {
   async getListPost(@Body() body, @Req() req, @Res() res) {
     try {
       const ip = req.headers['x-real-ip'] || req['connection']['remoteAddress'];
-      Telegram.send(`
-      --------------------------------
-      Request from: ${body['username'] ? body['username'] + ' - ' + ip : ip} \n
-      --------------------------------
-      `)
+      // Telegram.send(`
+      // --------------------------------
+      // Request from: ${body['username'] ? body['username'] + ' - ' + ip : ip} \n
+      // --------------------------------
+      // `)
       return res.status(HttpStatus.OK).send({
         data: await this.postService.findAll(body.page, body.limit),
         success: true,
