@@ -75,7 +75,6 @@ section
                                                     input.form-control(v-model="short_link.password" type='text' aria-describedby='basic-addon3' :placeholder='$t("Password protection")')
                                                 p * {{$t('Set a password to protect the shortened link. Leave blank if you do not want to set a password.')}}
                                         h1.fs-5 HideURL.TOP, URL shortener, Short link, Link protection, Secure URL, Hide URLs, Shorten links, URL encryption, Free URL shortener
-
                                         .list-post.px-3
                                             .px-2.px-lg-3.pt-4(v-for="item in list_post.docs" )
                                                 a(:href="`/post/${item.slug}`")

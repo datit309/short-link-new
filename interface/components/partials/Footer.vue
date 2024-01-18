@@ -22,6 +22,10 @@ footer
                 //a.mx-2(href="javascript:void(0)" target="_blank" rel="nofollow")
                     i.fab.fa-twitter.fa-2x.d-none.d-lg-block
                     i.fab.fa-twitter.d-lg-none
+                a(href='https://www.buymeacoffee.com/trantandat0919' target='_blank')
+                    img(src='https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png' alt='Buy Me A Coffee' style='height: 40px !important;width: 180px !important;')
+
+
             .d-flex
                 a(href="https://hightechk.net" target="_blank" rel="nofollow")
                     nuxt-img.img-aware.d-none.d-lg-block.py-2(src='/images/hightechk.net-removebg-preview.png' style='width: 100px' alt="hightechk")
